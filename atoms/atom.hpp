@@ -1,5 +1,5 @@
-#ifndef CHEMISTRY_GENERAL_ATOMS_ATOM_HPP_INCLUDED
-#define CHEMISTRY_GENERAL_ATOMS_ATOM_HPP_INCLUDED
+#ifndef SCIFIR_CHEMISTRY_ATOMS_ATOM_HPP_INCLUDED
+#define SCIFIR_CHEMISTRY_ATOMS_ATOM_HPP_INCLUDED
 
 #include <cmath>
 #include <iostream>
@@ -333,4 +333,4 @@ bool operator ==(const scifir::atom&,const scifir::atom&);
 bool operator !=(const scifir::atom&,const scifir::atom&);
 ostream& operator <<(ostream&,const scifir::atom&);
 
-#endif // CHEMISTRY_GENERAL_ATOMS_ATOM_HPP_INCLUDED
+#endif // SCIFIR_CHEMISTRY_ATOMS_ATOM_HPP_INCLUDED

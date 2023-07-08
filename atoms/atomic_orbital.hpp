@@ -1,5 +1,5 @@
-#ifndef ATOMIC_ORBITAL_HPP_INCLUDED
-#define ATOMIC_ORBITAL_HPP_INCLUDED
+#ifndef SCIFIR_CHEMISTRY_ATOMS_ATOMIC_ORBITAL_HPP_INCLUDED
+#define SCIFIR_CHEMISTRY_ATOMS_ATOMIC_ORBITAL_HPP_INCLUDED
 
 #include "particles/electron.hpp"
 
@@ -72,4 +72,4 @@ namespace scifir
 ostream& operator <<(ostream&, const scifir::orbital&);
 ostream& operator <<(ostream&, scifir::orbital_group);
 
-#endif // ATOMIC_ORBITAL_HPP_INCLUDED
+#endif // SCIFIR_CHEMISTRY_ATOMS_ATOMIC_ORBITAL_HPP_INCLUDED

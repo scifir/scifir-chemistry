@@ -1,5 +1,5 @@
-#ifndef MOLECULE_HPP_INCLUDED
-#define MOLECULE_HPP_INCLUDED
+#ifndef SCIFIR_CHEMISTRY_MOLECULES_MOLECULE_HPP_INCLUDED
+#define SCIFIR_CHEMISTRY_MOLECULES_MOLECULE_HPP_INCLUDED
 
 #include <iostream>
 #include <sstream>
@@ -118,4 +118,4 @@ ostream& operator <<(ostream&,const scifir::molecule&);
 bool operator ==(const scifir::molecule&,const scifir::molecule&);
 bool operator !=(const scifir::molecule&,const scifir::molecule&);
 
-#endif // MOLECULE_HPP_INCLUDED
+#endif // SCIFIR_CHEMISTRY_MOLECULES_MOLECULE_HPP_INCLUDED

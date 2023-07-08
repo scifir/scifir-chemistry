@@ -1,5 +1,5 @@
-#ifndef CHEMISTRY_LABORATORY_SUBSTANCE_SUBSTANCE_HPP_INCLUDED
-#define CHEMISTRY_LABORATORY_SUBSTANCE_SUBSTANCE_HPP_INCLUDED
+#ifndef SCIFIR_CHEMISTRY_SUBSTANCES_SUBSTANCE_HPP_INCLUDED
+#define SCIFIR_CHEMISTRY_SUBSTANCES_SUBSTANCE_HPP_INCLUDED
 
 #include "analytical/crystallograph.hpp"
 #include "analytical/spectrometer.hpp"
@@ -8,7 +8,7 @@
 
 using namespace std;
 
-namespace scifir::laboratory
+namespace scifir
 {
 	class substance
 	{
@@ -34,4 +34,4 @@ namespace scifir::laboratory
 	};
 }
 
-#endif // CHEMISTRY_LABORATORY_SUBSTANCE_SUBSTANCE_HPP_INCLUDED
+#endif // SCIFIR_CHEMISTRY_SUBSTANCES_SUBSTANCE_HPP_INCLUDED

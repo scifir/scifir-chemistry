@@ -1,9 +1,19 @@
+// ACTUAL
+// TODO: if it's correct to use get_name() and get_abbreviation() with override for the ultimate_aminoacid class cause that can maybe increase the size of each instance
+
+// IMPORTANT
+// TODO: use molecule_literal where it's needed instead of another name for the respective variable
+
+// C++
+// TODO: the include path of the library should point previous to the root of the project maybe (in order to include it always by its full name)
+// TODO: molecule.cpp: rapidxml shouldn't be aliased as namespace (maybe other files too)
+
 // MSCIENCE MOLECULES VISUALIZER
-// TODO: .msm file extension (abbreviation of Mscience Molecule)
+// TODO: .mm file extension (abbreviation of Mscience Molecule)
 // TODO: support proteins (check if possible for all proteins first)
 
 // MSCIENCE CHEMISTRY CREATOR
-// TODO: Chemistry Creator program for creating molecules with .sm extension
+// TODO: Chemistry Creator program for creating molecules with .mm extension
 
 // ATOMS
 // TODO: 3D graphical functions: get_image_3d(),get_molecular_geometry_angle(const atom&) finish two angles
@@ -12,22 +22,41 @@
 // TODO: finish atom::get_atomic_color() using an enum for all colors
 // TODO: review all electrical classes, atom::get_lone_pairs() among others
 // TODO: finish normal_atom::get_electronic_configuration()
+
+// TODO: atomic_bond should have a child class for the atomic bonds that are not geometrically identical but have different angles based on the position
+
 // TODO: create the first isotope class
 // TODO: create all common isotopes of chemistry
 // TODO: create_atom() should detect ions and isotopes (and more of the nomenclature, if it exists)
-// TODO: class atomic_group
+
+// TODO: change atom::group to enum class atomic_group
+// TODO: class atomic_group (use instead of a class some name() and other functions for atom::group)
 // TODO: function atom::is_chiral()
 // TODO: is_factible(), is_valence_full(), get_valence_number() should work for atomic_group_b(), lanthanides and actinides
 // TODO: finish some properties of some atoms (like radioactive)
+// TODO: create triple_point and melting_point (maybe point classes)
+
+// TODO: ionic_charge() maybe should have non-bonded and bonded form
+// TODO: get_electrons_number() maybe is unfinished
+// TODO: get_file_format() should be outside atom
+
 // TODO: what's speed of sound of atoms
 // TODO: what's half-life and unit to represent it
-// TODO: create triple_point and melting_point (maybe point classes)
 // TODO: ordering for atoms
+
+// TODO: get_standard_atomic_weight() and get_atomic_weight() in order to allow to get the mass of a mol
 
 // DETAILED ATOMS
 // TODO: finish detailed atoms
 // TODO: finish electron_cloud object
 // TODO: electron cloud functions: get_electron_cloud(),print_electron_cloud()
+
+// AFTER NEW ATOMS
+// TODO: print_image_2d(),print_image_3d(),get_image_2d(),get_detailed_image_2d(),get_image_3d()
+// TODO: use a better criteria than the atomic number to determine radioactivity
+// TODO: finish is_factible() function
+// TODO: get_ionic_charge() for metals
+// TODO: is_exotic()
 
 // DOCUMENTATION OF ATOMS
 // TODO: document that is_atom_specimen() is always used instead of get_z() or get_symbol() to test for the specimen, cause for isotopes the string symbol can change
@@ -39,6 +68,7 @@
 // TODO: implement the bond_length inside atomic_bond class
 // TODO: 3D display
 // TODO: 2D display of molecules by printing inside 2D a 3D molecule
+// TODO: handlind of molecule_literals (valid_molecule_literal-with error messages)
 // TODO: molecule::has_functional_group(functional_group)
 // TODO: molecule::get_dipole()
 // TODO: molecule::is_polar() and molecule::is_apolar()
@@ -53,6 +83,14 @@
 // TODO: normal_molecule.cpp: see which is the best method to travel rapidxml, if to use file<> of rapidxml of if to use the actual fstream
 // TODO: ordering for molecules
 // TODO: .msm should have <atom> with nick attribute to abbreviate special atoms
+// TODO: see which functions of molecule change now that bit_molecule is being used and add those functions to normal_molecule, being the ones of molecule class pure-virtual
+
+// BIOCHEMISTRY
+// TODO: find out if the better way to store new ultimate aminoacids is with the global variable map or if it's better another approach
+// TODO: global carbohidrates pointing to the molecule object
+// TODO: protein class, with special format to store and load it
+// TODO: molecule::is_biochemical()
+// TODO: Store the proteins only one time, and to calculate a lot of them use that unique instead for the data purpose. For movement modeling, with one instance is enough, and use position coordinates and rotation coordinates to store the data of each protein
 
 // REGEX OF MOLECULE NAMES
 //(((([0-9]+-)|([0-9]+,[0-9]+-di))((meth)|(eth)|(prop)|(but)|(pent)|(hex)|(hept)|(oct)|(non)|(dec))yl-)*((([0-9]+-)|([0-9]+,[0-9]+-di))((meth)|(eth)|(prop)|(but)|(pent)|(hex)|(hept)|(oct)|(non)|(dec))yl)|((([0-9]+-)|([0-9]+,[0-9]+-di))((meth)|(eth)|(prop)|(but)|(pent)|(hex)|(hept)|(oct)|(non)|(dec))yl)?)((meth)|(eth)|(prop)|(but)|(pent)|(hex)|(hept)|(oct)|(non)|(dec))((ane)|(anol))

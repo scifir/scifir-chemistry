@@ -1,5 +1,5 @@
-#ifndef MSCI_CHEMISTRY_BIOCHEMISTRY_AMINOACID_HPP_INCLUDED
-#define MSCI_CHEMISTRY_BIOCHEMISTRY_AMINOACID_HPP_INCLUDED
+#ifndef SCIFIR_CHEMISTRY_BIOCHEMISTRY_AMINOACID_HPP_INCLUDED
+#define SCIFIR_CHEMISTRY_BIOCHEMISTRY_AMINOACID_HPP_INCLUDED
 
 #include <iostream>
 #include <string>
@@ -49,4 +49,4 @@ bool operator != (const scifir::aminoacid&,const scifir::aminoacid&);
 
 ostream& operator <<(ostream&,scifir::aminoacid&);
 
-#endif // MSCI_CHEMISTRY_BIOCHEMISTRY_AMINOACID_HPP_INCLUDED
+#endif // SCIFIR_CHEMISTRY_BIOCHEMISTRY_AMINOACID_HPP_INCLUDED

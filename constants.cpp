@@ -2,7 +2,7 @@
 
 using namespace std;
 
-namespace
+namespace scifir
 {
 	const mass electron_mass = mass("9.10938356 * 10^-31 kg");
 	const mass proton_mass = mass("0 g");

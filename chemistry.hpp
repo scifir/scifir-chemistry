@@ -1,5 +1,8 @@
-#ifndef MSCI_CHEMISTRY_CHEMISTRY_HPP_INCLUDED
-#define MSCI_CHEMISTRY_CHEMISTRY_HPP_INCLUDED
+#ifndef SCIFIR_CHEMISTRY_CHEMISTRY_HPP_INCLUDED
+#define SCIFIR_CHEMISTRY_CHEMISTRY_HPP_INCLUDED
+
+#include "particles/proton.hpp"
+#include "particles/electron.hpp"
 
 #include "molecules/atomic_bond.hpp"
 #include "molecules/molecule.hpp"
@@ -10,4 +13,4 @@
 #include "scifir/units/units.hpp"
 #include "substances/substance.hpp"
 
-#endif // MSCI_CHEMISTRY_CHEMISTRY_HPP_INCLUDED
+#endif // SCIFIR_CHEMISTRY_CHEMISTRY_HPP_INCLUDED

@@ -1,5 +1,5 @@
-#ifndef MSCI_CHEMISTRY_BIOCHEMISTRY_NORMAL_PROTEIN_HPP_INCLUDED
-#define MSCI_CHEMISTRY_BIOCHEMISTRY_NORMAL_PROTEIN_HPP_INCLUDED
+#ifndef SCIFIR_CHEMISTRY_BIOCHEMISTRY_NORMAL_PROTEIN_HPP_INCLUDED
+#define SCIFIR_CHEMISTRY_BIOCHEMISTRY_NORMAL_PROTEIN_HPP_INCLUDED
 
 #include "biochemistry/aminoacid.hpp"
 #include "biochemistry/protein.hpp"
@@ -54,4 +54,4 @@ bool operator !=(const scifir::normal_protein&,const scifir::normal_protein&);
 
 ostream& operator <<(ostream&,const scifir::normal_protein&);
 
-#endif // MSCI_CHEMISTRY_BIOCHEMISTRY_NORMAL_PROTEIN_HPP_INCLUDED
+#endif // SCIFIR_CHEMISTRY_BIOCHEMISTRY_NORMAL_PROTEIN_HPP_INCLUDED

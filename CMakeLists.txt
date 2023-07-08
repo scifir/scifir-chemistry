@@ -1,31 +1,31 @@
-cmake_minimum_required(VERSION 3.8.2)
+cmake_minimum_required(VERSION 3.7.1)
 
-include_directories(C:/Programas/MSYS2/mingw64/include .)
-link_directories(C:/Programas/MSYS2/mingw64/lib)
+include_directories(. /usr/local/include/scifir/units)
+link_directories("${CMAKE_INSTALL_PREFIX}/lib")
 
-set(CMAKE_CXX_COMPILER C:/Programas/MSYS2/mingw64/bin/g++.exe)
+set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set( CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 set(TARGET_LOCAL_H
-chemistry.hpp
-meca_numbers.hpp
-spatial_math.hpp
-units.hpp)
+particles.hpp)
 
 set(TARGET_H
-biology
-chemistry
-informatics
-math
-physics)
+analytical
+atoms
+molecules
+biochemistry
+particles
+substances)
 
-file(GLOB_RECURSE TARGET_SRC biology/*.cpp chemistry/*.cpp informatics/*.cpp math/*.cpp physics/*.cpp)
+file(GLOB_RECURSE TARGET_SRC analytical/*.cpp atoms/*.cpp molecules/*.cpp biochemistry/*.cpp particles/*.cpp substances/*.cpp constants.cpp)
 
-project(magickscience)
+project(msci_chemistry)
 
-add_library(magickscience ${TARGET_SRC})
-target_link_libraries(magickscience boost_locale-mt boost_system-mt boost_thread-mt iconv)
+add_library(msci_chemistry ${TARGET_SRC})
+target_link_libraries(msci_chemistry boost_locale-mt boost_system-mt boost_thread-mt iconv scifir_units)
 
-install(TARGETS magickscience ARCHIVE DESTINATION lib)
-install(FILES ${TARGET_LOCAL_H} DESTINATION include/magickscience)
-install(DIRECTORY ${TARGET_H} DESTINATION include/magickscience
+install(TARGETS msci_chemistry ARCHIVE DESTINATION lib)
+install(FILES chemistry.hpp DESTINATION include/msci)
+install(FILES ${TARGET_LOCAL_H} DESTINATION include/msci/chemistry)
+install(DIRECTORY ${TARGET_H} DESTINATION include/msci/chemistry
 	FILES_MATCHING PATTERN "*.hpp")

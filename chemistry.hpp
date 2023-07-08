@@ -1,17 +1,13 @@
-#ifndef CHEMISTRY_HPP_INCLUDED
-#define CHEMISTRY_HPP_INCLUDED
+#ifndef MSCI_CHEMISTRY_CHEMISTRY_HPP_INCLUDED
+#define MSCI_CHEMISTRY_CHEMISTRY_HPP_INCLUDED
 
-#include "chemistry/general/atoms.hpp"
+#include "molecules/atomic_bond.hpp"
+#include "molecules/molecule.hpp"
+#include "molecules/normal_molecule.hpp"
+#include "molecules/bit_molecule.hpp"
+#include "molecules/chemical_reaction.hpp"
 
-#include "chemistry/general/molecules/atomic_bond.hpp"
-#include "chemistry/general/molecules/molecule.hpp"
-#include "chemistry/general/molecules/normal_molecule.hpp"
-#include "chemistry/general/molecules/bit_molecule.hpp"
-#include "chemistry/general/molecules/chemical_reaction.hpp"
+#include "scifir/units/units.hpp"
+#include "substances/substance.hpp"
 
-#include "chemistry/general/substance/units.hpp"
-#include "chemistry/general/substance/substance.hpp"
-
-#include "chemistry/biochemistry/units.hpp"
-
-#endif // CHEMISTRY_HPP_INCLUDED
+#endif // MSCI_CHEMISTRY_CHEMISTRY_HPP_INCLUDED

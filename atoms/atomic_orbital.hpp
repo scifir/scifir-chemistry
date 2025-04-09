@@ -1,7 +1,7 @@
 #ifndef SCIFIR_CHEMISTRY_ATOMS_ATOMIC_ORBITAL_HPP_INCLUDED
 #define SCIFIR_CHEMISTRY_ATOMS_ATOMIC_ORBITAL_HPP_INCLUDED
 
-#include "particles/electron.hpp"
+#include "../particles/electron.hpp"
 
 #include <string>
 #include <vector>

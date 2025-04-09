@@ -17,22 +17,11 @@ namespace scifir
 			aminoacid(aminoacid::type);
 			aminoacid(const string&);
 
-			inline aminoacid::type& get_type()
-			{
-				return aminoacid_type;
-			}
-
-			inline const aminoacid::type& get_type() const
-			{
-				return aminoacid_type;
-			}
-
 			bool is_valid() const;
 
 			string get_name() const;
 			string get_abbreviation() const;
 
-		private:
 			aminoacid::type aminoacid_type;
 	};
 

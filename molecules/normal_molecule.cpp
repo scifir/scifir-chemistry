@@ -1,14 +1,12 @@
-#include "molecules/normal_molecule.hpp"
-#include "atoms/atom.hpp"
+#include "./normal_molecule.hpp"
+#include "../atoms/atom.hpp"
 
 #include "boost/algorithm/string.hpp"
-#include "rapidxml/rapidxml.hpp"
 
 #include <iostream>
 #include <fstream>
 #include <sstream>
 
-using namespace rapidxml;
 using namespace std;
 
 namespace scifir
@@ -19,7 +17,7 @@ namespace scifir
 
 	normal_molecule::normal_molecule(string new_file) : molecule(),atoms(),bonds()
 	{
-		xml_document<> doc;
+		/*xml_document<> doc;
 		if (new_file.substr(0,10) == "<molecule>")
 		{
 			string cstr;
@@ -79,98 +77,20 @@ namespace scifir
 						atom2_index = stoi(atom2) - 1;
 					}
 				}
-				if (!atoms[atom1_index]->bonded_to(*atoms[atom2_index]))
+				/*if (!atoms[atom1_index]->bonded_to(*atoms[atom2_index]))
 				{
 					shared_ptr<atomic_bond> new_atomic_bond = make_shared<atomic_bond>(atoms[atom1_index],atoms[atom2_index],weight);
 					bonds.push_back(new_atomic_bond);
 					atoms[atom1_index]->add_bond(new_atomic_bond);
 					atoms[atom2_index]->add_bond(new_atomic_bond);
-				}
-				atom2_index++;
+				}*/
+				/*atom2_index++;
 			}
 			atom1_index++;
-		}
+		}*/
 	}
 
 	normal_molecule::normal_molecule(vector<shared_ptr<atom>> new_atoms,vector<shared_ptr<atomic_bond>> new_bonds) : molecule(),atoms(new_atoms),bonds(new_bonds)
 	{
-	}
-
-	vector<shared_ptr<atom>> normal_molecule::get_atoms() const
-	{
-		return atoms;
-	}
-
-	vector<shared_ptr<atomic_bond>> normal_molecule::get_bonds() const
-	{
-		return bonds;
-	}
-
-	int normal_molecule::get_total_atoms() const
-	{
-		return atoms.size();
-	}
-
-	void normal_molecule::add_atom(const atom& x)
-	{
-
-	}
-
-	void normal_molecule::save(const string& file_path,const string& file_name) const
-	{
-		ostringstream file_content;
-		file_content << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
-		file_content << "\n<molecule>";
-		file_content << "\n\t<atoms>";
-		unsigned int atoms_count = 0;
-		for (const auto& atom : atoms)
-		{
-			//file_content << atom->get_file_format();
-			atoms_count++;
-			if (atoms_count < atoms.size())
-			{
-				file_content << " ";
-			}
-		}
-		file_content << "<atoms>";
-		file_content << "\n\t<bonds>";
-		unsigned int atom1_index = 0;
-		for (const auto& atom1 : atoms)
-		{
-			int atom2_index = 0;
-			int bonds_count = 0;
-			for (const auto& atom2 : atoms)
-			{
-				if (atom1->bonded_to(*atom2))
-				{
-					file_content << (atom2_index + 1);
-					shared_ptr<atomic_bond> atom_bond = atom1->get_bond_of(*atom2);
-					if (atom_bond->is_double())
-					{
-						file_content << "d";
-					}
-					else if (atom_bond->is_triple())
-					{
-						file_content << "t";
-					}
-					bonds_count++;
-					if (bonds_count < atom1->get_bonds_number())
-					{
-						file_content << " ";
-					}
-				}
-				atom2_index++;
-			}
-			atom1_index++;
-			if (atom1_index != atoms.size())
-			{
-				file_content << ";";
-			}
-		}
-		file_content << "</bonds>";
-		file_content << "\n</molecule>";
-		FILE* new_file = fopen(file_name.c_str(),"w");
-		fputs(file_content.str().c_str(),new_file);
-		fclose(new_file);
 	}
 }

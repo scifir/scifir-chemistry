@@ -1,4 +1,4 @@
-#include "protein.hpp"
+#include "./protein.hpp"
 
 using namespace std;
 

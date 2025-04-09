@@ -1,4 +1,4 @@
-#include "atoms/atomic_orbital.hpp"
+#include "./atomic_orbital.hpp"
 
 #include <sstream>
 #include <vector>

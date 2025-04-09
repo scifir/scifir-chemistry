@@ -1,4 +1,4 @@
-#include "particles/electron.hpp"
+#include "./electron.hpp"
 
 #include <iostream>
 using namespace std;

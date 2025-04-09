@@ -1,6 +1,6 @@
-#include "particles/proton.hpp"
+#include "./proton.hpp"
 
-#include "scifir/units/units.hpp"
+#include "scifir/units.hpp"
 
 namespace scifir
 {

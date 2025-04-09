@@ -1,6 +1,6 @@
-#include "molecules/atomic_bond.hpp"
+#include "./atomic_bond.hpp"
 
-#include "scifir/units/units.hpp"
+#include "scifir/units.hpp"
 
 using namespace std;
 
@@ -37,6 +37,7 @@ namespace scifir
 		}
 		shared_ptr<atom> atom1_lock = atom1.lock();
 		shared_ptr<atom> atom2_lock = atom2.lock();
+		return false;
 		/*if ((x[0] == atom1_lock->get_symbol() and x[2] == atom2_lock->get_symbol()) or (x[2] == atom1_lock->get_symbol() and x[0] == atom2_lock->get_symbol()))
 		{
 			if((x[1] == '-' and weight == atomic_bond_weight::single) or (x[1] == '=' and weight == atomic_bond_weight::dual) or (x[1] == '≡' and weight == atomic_bond_weight::triple))

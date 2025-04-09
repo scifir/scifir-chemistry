@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 
-#include "scifir/units/units.hpp"
+#include "scifir/units.hpp"
 
 using namespace std;
 
@@ -19,7 +19,7 @@ namespace scifir
 
 	enum class atomic_pattern {none,line,prepicated_line,wave_line,prepicated_wave_line,circles};
 
-	enum class molecular_geometry {linear,trigonal_planar,bent,tetrahedral,trigonal_pyramidal,trigonal_bipyramidal,seesaw,t_shaped,octahedral,square_pyramidal,square_planar,pentagonal_bipyramidal,pentagonal_pyramidal,planar_pentagonal,square_antipristamic,tricapped_trigonal_prismatic};
+	enum class molecular_geometry {NONE, linear,trigonal_planar,bent,tetrahedral,trigonal_pyramidal,trigonal_bipyramidal,seesaw,t_shaped,octahedral,square_pyramidal,square_planar,pentagonal_bipyramidal,pentagonal_pyramidal,planar_pentagonal,square_antipristamic,tricapped_trigonal_prismatic};
 
 	enum class edge_position {linear,bent,trigonal_planar,trigonal_pyramidal,t_shaped_ax,t_shaped_eq,tetrahedral,seesaw_ax,seesaw_eq,square_planar,trigonal_bipyramidal_ax,trigonal_bipyramidal_eq,square_pyramidal_ax,square_pyramidal_eq,planar_pentagonal,octahedral,pentagonal_pyramidal_ax,pentagonal_pyramidal_eq,pentagonal_bipyramidal_ax,pentagonal_bipyramidal_eq,square_antipristamic,tricapped_trigonal_prismatic};
 
@@ -35,15 +35,13 @@ namespace scifir
 
 	extern vector<vector<int>> electronic_configuration_order;
 
-	class atomic_bond;
-
 	class atom
 	{
 		public:
 
-			enum specimen {H, He, Li, Be, B, C, N, O, F, Ne, Na, Mg, Al, Si, P, S, Cl, Ar, K, Ca, Sc, Ti, V, Cr, Mn, Fe, Co, Ni, Cu, Zn, Ga, Ge, As, Se, Br, Kr, Rb, Sr, Y, Zr, Nb, Mo, Tc, Ru, Rh, Pd, Ag, Cd, In, Sn, Sb, Te, I, Xe, Cs, Ba, La, Ce, Pr, Nd, Pm, Sm, Eu, Gd, Tb, Dy, Ho, Er, Tm, Yb, Lu, Hf, Ta, W, Re, Os, Ir, Pt, Au, Hg, Tl, Pb, Bi, Po, At, Rn, Fr, Ra, Ac, Th, Pa, U, Np, Pu, Am, Cm, Bk, Cf, Es, Fm, Md, No, Lr, Rf, Db, Sg, Bh, Hs, Mt, Ds, Rg, Cn, Nh, Fl, Mc, Lv, Ts, Og, CUSTOM_ATOM};
+			enum atomic_species {NO_SPECIES, H, D, T, He, Li, Be, B, C, N, O, F, Ne, Na, Mg, Al, Si, P, S, Cl, Ar, K, Ca, Sc, Ti, V, Cr, Mn, Fe, Co, Ni, Cu, Zn, Ga, Ge, As, Se, Br, Kr, Rb, Sr, Y, Zr, Nb, Mo, Tc, Ru, Rh, Pd, Ag, Cd, In, Sn, Sb, Te, I, Xe, Cs, Ba, La, Ce, Pr, Nd, Pm, Sm, Eu, Gd, Tb, Dy, Ho, Er, Tm, Yb, Lu, Hf, Ta, W, Re, Os, Ir, Pt, Au, Hg, Tl, Pb, Bi, Po, At, Rn, Fr, Ra, Ac, Th, Pa, U, Np, Pu, Am, Cm, Bk, Cf, Es, Fm, Md, No, Lr, Rf, Db, Sg, Bh, Hs, Mt, Ds, Rg, Cn, Nh, Fl, Mc, Lv, Ts, Og, CUSTOM_ATOMIC_SPECIES};
 
-			enum group {IA, IIA, IIIA, IVA, VA, VIA, VIIA, VIIIA, IB, IIB, IIIB, IVB, VB, VIB, VIIB, VIIIB, LA, AC};
+			enum atomic_group {NO_GROUP, IA, IIA, IIIA, IVA, VA, VIA, VIIA, VIIIA, IB, IIB, IIIB, IVB, VB, VIB, VIIB, VIIIB, LA, AC};
 
 			class orbital_configuration
 			{
@@ -59,18 +57,18 @@ namespace scifir
 			};
 
 			atom();
-			atom(atom::specimen);
-			atom(const string&);
+			explicit atom(atom::atomic_species);
+			explicit atom(const string&);
 
-			inline atom::specimen get_specimen() const
+			inline atom::atomic_species get_specimen() const
 			{
-				return atom_specimen;
+				return species;
 			}
 
 			string get_name() const;
 			string get_symbol() const;
 
-			atom::group get_atomic_group() const;
+			atom::atomic_group get_atomic_group() const;
 			int get_period() const;
 			//virtual const atomic_block& get_atomic_block() const = 0;
 
@@ -100,30 +98,14 @@ namespace scifir
 			virtual const thermal_conductivity& get_thermal_conductivity() const = 0;
 			virtual const magnetic_ordering& get_magnetic_ordering() const = 0;
 			virtual const magnetic_susceptibility& get_magnetic_susceptibility() const = 0;*/
-			cas_number get_cas_number() const;
+			//cas_number get_cas_number() const;
 
-			inline const vector<weak_ptr<atomic_bond>>& get_bonds() const
+			inline bool is_atom_specimen(atom::atomic_species x) const
 			{
-				return bonds;
-			}
-
-			inline int get_bonds_number() const
-			{
-				return get_bonds().size();
-			}
-
-			inline bool is_atom_specimen(atom::specimen x) const
-			{
-				return (x == atom_specimen);
+				return (x == species);
 			}
 
 			//bool is_factible() const;
-
-			void add_bond(const shared_ptr<atomic_bond>&);
-
-			bool bonded_to(const atom&) const;
-
-			shared_ptr<atomic_bond> get_bond_of(const atom&) const;
 
 			int get_ionic_charge() const;
 
@@ -262,7 +244,7 @@ namespace scifir
 
             inline mass get_total_mass() const
             {
-            	return get_real_mass() + get_electrons_mass();
+            	return mass(get_real_mass() + get_electrons_mass());
             }
 
             inline bool is_common_isotope() const
@@ -282,7 +264,7 @@ namespace scifir
 
 			atomic_pattern get_atomic_pattern() const;
 
-			molecular_geometry get_molecular_geometry() const;
+			molecular_geometry get_molecular_geometry(int) const;
 
 			bool is_valence_full() const;
 
@@ -307,8 +289,9 @@ namespace scifir
 			}*/
 
 		private:
-			vector<weak_ptr<atomic_bond>> bonds;
-			const atom::specimen atom_specimen;
+			atom::atomic_species species;
+			int8_t charge;
+			int8_t neutrons;
 
 			static vector<atom::orbital_configuration> electronic_configuration;
 	};
@@ -321,12 +304,12 @@ namespace scifir
 	bool same_element(const atom&,const atom&);
 	bool same_specimen(const atom&,const atom&);
 
-	string to_string(const atom::specimen&);
-	string to_string(const atom::group&);
+	string to_string(const atom::atomic_species&);
+	string to_string(const atom::atomic_group&);
 	string to_string(const atomic_block&);
 	string to_string(const atomic_orbital_type);
 
-	atom::specimen create_atom_specimen(const string&);
+	atom::atomic_species create_atomic_species(const string&);
 }
 
 bool operator ==(const scifir::atom&,const scifir::atom&);

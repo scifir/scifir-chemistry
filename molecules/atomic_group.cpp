@@ -1,4 +1,4 @@
-#include "molecules/atomic_group.hpp"
+#include "./atomic_group.hpp"
 
 using namespace std;
 

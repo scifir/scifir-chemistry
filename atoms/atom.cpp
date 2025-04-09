@@ -1,7 +1,7 @@
-#include "atom.hpp"
+#include "./atom.hpp"
 
-#include "molecules/atomic_bond.hpp"
-#include "constants.hpp"
+#include "../molecules/atomic_bond.hpp"
+#include "../constants.hpp"
 
 #include <cmath>
 #include <iostream>
@@ -74,271 +74,277 @@ namespace scifir
 		atom::orbital_configuration(7,atomic_orbital_f,14)
 	};
 
-	atom::atom() : bonds(),atom_specimen()
-	{
-	}
+	atom::atom() : species()
+	{}
 
-	atom::atom(atom::specimen new_specimen) : bonds(),atom_specimen(new_specimen)
-	{
-	}
+	atom::atom(atom::atomic_species new_atomic_species) : species(new_atomic_species)
+	{}
 
-	atom::atom(const string& new_specimen) : bonds(),atom_specimen(create_atom_specimen(new_specimen))
-	{
-	}
+	atom::atom(const string& new_atomic_species) : species(create_atomic_species(new_atomic_species))
+	{}
 
 	string atom::get_name() const
 	{
-		switch (atom_specimen)
+		switch (species)
 		{
 			case atom::H:
-				return "Hydrogen";
+				return "hydrogen";
+			case atom::D:
+				return "deuterium";
+			case atom::T:
+				return "tritium";
 			case atom::He:
-				return "He";
+				return "helium";
 			case atom::Li:
-				return "Li";
+				return "lithium";
 			case atom::Be:
-				return "Be";
+				return "beryllium";
 			case atom::B:
-				return "B";
+				return "boron";
 			case atom::C:
-				return "C";
+				return "carbon";
 			case atom::N:
-				return "N";
+				return "nitrogen";
 			case atom::O:
-				return "O";
+				return "oxygen";
 			case atom::F:
-				return "F";
+				return "fluorine";
 			case atom::Ne:
-				return "Ne";
+				return "neon";
 			case atom::Na:
-				return "Na";
+				return "sodium";
 			case atom::Mg:
-				return "Mg";
+				return "magnesium";
 			case atom::Al:
-				return "Al";
+				return "aluminum";
 			case atom::Si:
-				return "Si";
+				return "silicon";
 			case atom::P:
-				return "P";
+				return "phosphorus";
 			case atom::S:
-				return "S";
+				return "sulfur";
 			case atom::Cl:
-				return "Cl";
+				return "chlorine";
 			case atom::Ar:
-				return "Ar";
+				return "argon";
 			case atom::K:
-				return "K";
+				return "potassium";
 			case atom::Ca:
-				return "Ca";
+				return "calcium";
 			case atom::Sc:
-				return "Sc";
+				return "scandium";
 			case atom::Ti:
-				return "Ti";
+				return "titanium";
 			case atom::V:
-				return "V";
+				return "vanadium";
 			case atom::Cr:
-				return "Cr";
+				return "chromium";
 			case atom::Mn:
-				return "Mn";
+				return "manganese";
 			case atom::Fe:
-				return "Fe";
+				return "iron";
 			case atom::Co:
-				return "Co";
+				return "cobalt";
 			case atom::Ni:
-				return "Ni";
+				return "nickel";
 			case atom::Cu:
-				return "Cu";
+				return "copper";
 			case atom::Zn:
-				return "Zn";
+				return "zinc";
 			case atom::Ga:
-				return "Ga";
+				return "gallium";
 			case atom::Ge:
-				return "Ge";
+				return "germanium";
 			case atom::As:
-				return "As";
+				return "arsenic";
 			case atom::Se:
-				return "Se";
+				return "selenium";
 			case atom::Br:
-				return "Br";
+				return "bromine";
 			case atom::Kr:
-				return "Kr";
+				return "krypton";
 			case atom::Rb:
-				return "Rb";
+				return "rubidium";
 			case atom::Sr:
-				return "Sr";
+				return "strontium";
 			case atom::Y:
-				return "Y";
+				return "yttrium";
 			case atom::Zr:
-				return "Zr";
+				return "zirconium";
 			case atom::Nb:
-				return "Nb";
+				return "niobium";
 			case atom::Mo:
-				return "Mo";
+				return "molybdenum";
 			case atom::Tc:
-				return "Tc";
+				return "technetium";
 			case atom::Ru:
-				return "Ru";
+				return "ruthenium";
 			case atom::Rh:
-				return "Rh";
+				return "rhodium";
 			case atom::Pd:
-				return "Pd";
+				return "palladium";
 			case atom::Ag:
-				return "Ag";
+				return "silver";
 			case atom::Cd:
-				return "Cd";
+				return "cadmium";
 			case atom::In:
-				return "In";
+				return "indium";
 			case atom::Sn:
-				return "Sn";
+				return "tin";
 			case atom::Sb:
-				return "Sb";
+				return "antomony";
 			case atom::Te:
-				return "Te";
+				return "tellurium";
 			case atom::I:
-				return "I";
+				return "iodine";
 			case atom::Xe:
-				return "Xe";
+				return "xenon";
 			case atom::Cs:
-				return "Cs";
+				return "cesium";
 			case atom::Ba:
-				return "Ba";
+				return "barium";
 			case atom::La:
-				return "La";
+				return "lanthanum";
 			case atom::Ce:
-				return "Ce";
+				return "cerium";
 			case atom::Pr:
-				return "Pr";
+				return "praseodymium";
 			case atom::Nd:
-				return "Nd";
+				return "neodymium";
 			case atom::Pm:
-				return "Pm";
+				return "promethium";
 			case atom::Sm:
-				return "Sm";
+				return "samarium";
 			case atom::Eu:
-				return "Eu";
+				return "europium";
 			case atom::Gd:
-				return "Gd";
+				return "gadolinium";
 			case atom::Tb:
-				return "Tb";
+				return "terbium";
 			case atom::Dy:
-				return "Dy";
+				return "dysprosium";
 			case atom::Ho:
-				return "Ho";
+				return "holmium";
 			case atom::Er:
-				return "Er";
+				return "erbium";
 			case atom::Tm:
-				return "Tm";
+				return "thulium";
 			case atom::Yb:
-				return "Yb";
+				return "ytterbium";
 			case atom::Lu:
-				return "Lu";
+				return "lutetium";
 			case atom::Hf:
-				return "Hf";
+				return "hafnium";
 			case atom::Ta:
-				return "Ta";
+				return "tantalum";
 			case atom::W:
-				return "W";
+				return "tungsten";
 			case atom::Re:
-				return "Re";
+				return "rhenium";
 			case atom::Os:
-				return "Os";
+				return "osmium";
 			case atom::Ir:
-				return "Ir";
+				return "iridium";
 			case atom::Pt:
-				return "Pt";
+				return "platinum";
 			case atom::Au:
-				return "Au";
+				return "gold";
 			case atom::Hg:
-				return "Hg";
+				return "mercury";
 			case atom::Tl:
-				return "Tl";
+				return "thallium";
 			case atom::Pb:
-				return "Pb";
+				return "lead";
 			case atom::Bi:
-				return "Bi";
+				return "bismuth";
 			case atom::Po:
-				return "Po";
+				return "polonium";
 			case atom::At:
-				return "At";
+				return "astatine";
 			case atom::Rn:
-				return "Rn";
+				return "radon";
 			case atom::Fr:
-				return "Fr";
+				return "francium";
 			case atom::Ra:
-				return "Ra";
+				return "radium";
 			case atom::Ac:
-				return "Ac";
+				return "actinium";
 			case atom::Th:
-				return "Th";
+				return "thorium";
 			case atom::Pa:
-				return "Pa";
+				return "protactinium";
 			case atom::U:
-				return "U";
+				return "uranium";
 			case atom::Np:
-				return "Np";
+				return "neptunium";
 			case atom::Pu:
-				return "Pu";
+				return "plutonium";
 			case atom::Am:
-				return "Am";
+				return "americium";
 			case atom::Cm:
-				return "Cm";
+				return "curium";
 			case atom::Bk:
-				return "Bk";
+				return "berkelium";
 			case atom::Cf:
-				return "Cf";
+				return "californium";
 			case atom::Es:
-				return "Es";
+				return "einsteinium";
 			case atom::Fm:
-				return "Fm";
+				return "fermium";
 			case atom::Md:
-				return "Md";
+				return "mendelevium";
 			case atom::No:
-				return "No";
+				return "nobelium";
 			case atom::Lr:
-				return "Lr";
+				return "lawrencium";
 			case atom::Rf:
-				return "Rf";
+				return "rutherfordium";
 			case atom::Db:
-				return "Db";
+				return "dubnium";
 			case atom::Sg:
-				return "Sg";
+				return "seaborgium";
 			case atom::Bh:
-				return "Bh";
+				return "bohrium";
 			case atom::Hs:
-				return "Hs";
+				return "hassium";
 			case atom::Mt:
-				return "Mt";
+				return "meitnerium";
 			case atom::Ds:
-				return "Ds";
+				return "darmstadtium";
 			case atom::Rg:
-				return "Rg";
+				return "roentgenium";
 			case atom::Cn:
-				return "Cn";
+				return "copernicium";
 			case atom::Nh:
-				return "Nh";
+				return "nihonium";
 			case atom::Fl:
-				return "Fl";
+				return "flerovium";
 			case atom::Mc:
-				return "Mc";
+				return "moscovium";
 			case atom::Lv:
-				return "Lv";
+				return "livermorium";
 			case atom::Ts:
-				return "Ts";
+				return "tennessine";
 			case atom::Og:
-				return "Og";
+				return "oganesson";
 		}
+		return "";
 	}
 
 	string atom::get_symbol() const
 	{
-		return std::to_string(atom_specimen);
+		return std::to_string(species);
 	}
 
-	atom::group atom::get_atomic_group() const
+	atom::atomic_group atom::get_atomic_group() const
 	{
-		switch (atom_specimen)
+		switch (species)
 		{
 			case atom::H:
+				return atom::IA;
+			case atom::D:
+				return atom::IA;
+			case atom::T:
 				return atom::IA;
 			case atom::He:
 				return atom::VIIIA;
@@ -575,45 +581,51 @@ namespace scifir
 			case atom::Og:
 				return atom::VIIIA;
 		}
+		return atom::NO_GROUP;
 	}
 
 	int atom::get_period() const
 	{
-		if (atom_specimen == atom::H or atom_specimen == atom::He)
+		if (species == atom::H or species == atom::D or species == atom::T or species == atom::He)
 		{
 			return 1;
 		}
-		else if (atom_specimen == atom::Li or atom_specimen == atom::Be or atom_specimen == atom::B or atom_specimen == atom::C or atom_specimen == atom::N or atom_specimen == atom::O or atom_specimen == atom::F or atom_specimen == atom::Ne)
+		else if (species == atom::Li or species == atom::Be or species == atom::B or species == atom::C or species == atom::N or species == atom::O or species == atom::F or species == atom::Ne)
 		{
 			return 2;
 		}
-		else if (atom_specimen == atom::Na or atom_specimen == atom::Mg or atom_specimen == atom::Al or atom_specimen == atom::Si or atom_specimen == atom::P or atom_specimen == atom::S or atom_specimen == atom::Cl or atom_specimen == atom::Ar)
+		else if (species == atom::Na or species == atom::Mg or species == atom::Al or species == atom::Si or species == atom::P or species == atom::S or species == atom::Cl or species == atom::Ar)
 		{
 			return 3;
 		}
-		else if (atom_specimen == atom::K or atom_specimen == atom::Ca or atom_specimen == atom::Sc or atom_specimen == atom::Ti or atom_specimen == atom::V or atom_specimen == atom::Cr or atom_specimen == atom::Mn or atom_specimen == atom::Fe or atom_specimen == atom::Co or atom_specimen == atom::Ni or atom_specimen == atom::Cu or atom_specimen == atom::Zn or atom_specimen == atom::Ga or atom_specimen == atom::Ge or atom_specimen == atom::As or atom_specimen == atom::Se or atom_specimen == atom::Br or atom_specimen == atom::Kr)
+		else if (species == atom::K or species == atom::Ca or species == atom::Sc or species == atom::Ti or species == atom::V or species == atom::Cr or species == atom::Mn or species == atom::Fe or species == atom::Co or species == atom::Ni or species == atom::Cu or species == atom::Zn or species == atom::Ga or species == atom::Ge or species == atom::As or species == atom::Se or species == atom::Br or species == atom::Kr)
 		{
 			return 4;
 		}
-		else if (atom_specimen == atom::Rb or atom_specimen == atom::Sr or atom_specimen == atom::Y or atom_specimen == atom::Zr or atom_specimen == atom::Nb or atom_specimen == atom::Mo or atom_specimen == atom::Tc or atom_specimen == atom::Ru or atom_specimen == atom::Rh or atom_specimen == atom::Pd or atom_specimen == atom::Ag or atom_specimen == atom::Cd or atom_specimen == atom::In or atom_specimen == atom::Sn or atom_specimen == atom::Sb or atom_specimen == atom::Te or atom_specimen == atom::I or atom_specimen == atom::Xe)
+		else if (species == atom::Rb or species == atom::Sr or species == atom::Y or species == atom::Zr or species == atom::Nb or species == atom::Mo or species == atom::Tc or species == atom::Ru or species == atom::Rh or species == atom::Pd or species == atom::Ag or species == atom::Cd or species == atom::In or species == atom::Sn or species == atom::Sb or species == atom::Te or species == atom::I or species == atom::Xe)
 		{
 			return 5;
 		}
-		else if (atom_specimen == atom::Cs or atom_specimen == atom::Ba or atom_specimen == atom::La or atom_specimen == atom::Ce or atom_specimen == atom::Pr or atom_specimen == atom::Nd or atom_specimen == atom::Pm or atom_specimen == atom::Sm or atom_specimen == atom::Eu or atom_specimen == atom::Gd or atom_specimen == atom::Tb or atom_specimen == atom::Dy or atom_specimen == atom::Ho or atom_specimen == atom::Er or atom_specimen == atom::Tm or atom_specimen == atom::Yb or atom_specimen == atom::Lu or atom_specimen == atom::Hf or atom_specimen == atom::Ta or atom_specimen == atom::W or atom_specimen == atom::Re or atom_specimen == atom::Os or atom_specimen == atom::Ir or atom_specimen == atom::Pt or atom_specimen == atom::Au or atom_specimen == atom::Hg or atom_specimen == atom::Tl or atom_specimen == atom::Pb or atom_specimen == atom::Bi or atom_specimen == atom::Po or atom_specimen == atom::At or atom_specimen == atom::Rn)
+		else if (species == atom::Cs or species == atom::Ba or species == atom::La or species == atom::Ce or species == atom::Pr or species == atom::Nd or species == atom::Pm or species == atom::Sm or species == atom::Eu or species == atom::Gd or species == atom::Tb or species == atom::Dy or species == atom::Ho or species == atom::Er or species == atom::Tm or species == atom::Yb or species == atom::Lu or species == atom::Hf or species == atom::Ta or species == atom::W or species == atom::Re or species == atom::Os or species == atom::Ir or species == atom::Pt or species == atom::Au or species == atom::Hg or species == atom::Tl or species == atom::Pb or species == atom::Bi or species == atom::Po or species == atom::At or species == atom::Rn)
 		{
 			return 6;
 		}
-		else if (atom_specimen == atom::Fr or atom_specimen == atom::Ra or atom_specimen == atom::Ac or atom_specimen == atom::Th or atom_specimen == atom::Pa or atom_specimen == atom::U or atom_specimen == atom::Np or atom_specimen == atom::Pu or atom_specimen == atom::Am or atom_specimen == atom::Cm or atom_specimen == atom::Bk or atom_specimen == atom::Cf or atom_specimen == atom::Es or atom_specimen == atom::Fm or atom_specimen == atom::Md or atom_specimen == atom::No or atom_specimen == atom::Lr or atom_specimen == atom::Rf or atom_specimen == atom::Db or atom_specimen == atom::Sg or atom_specimen == atom::Bh or atom_specimen == atom::Hs or atom_specimen == atom::Mt or atom_specimen == atom::Ds or atom_specimen == atom::Rg or atom_specimen == atom::Cn or atom_specimen == atom::Nh or atom_specimen == atom::Fl or atom_specimen == atom::Mc or atom_specimen == atom::Lv or atom_specimen == atom::Ts or atom_specimen == atom::Og)
+		else if (species == atom::Fr or species == atom::Ra or species == atom::Ac or species == atom::Th or species == atom::Pa or species == atom::U or species == atom::Np or species == atom::Pu or species == atom::Am or species == atom::Cm or species == atom::Bk or species == atom::Cf or species == atom::Es or species == atom::Fm or species == atom::Md or species == atom::No or species == atom::Lr or species == atom::Rf or species == atom::Db or species == atom::Sg or species == atom::Bh or species == atom::Hs or species == atom::Mt or species == atom::Ds or species == atom::Rg or species == atom::Cn or species == atom::Nh or species == atom::Fl or species == atom::Mc or species == atom::Lv or species == atom::Ts or species == atom::Og)
 		{
 			return 7;
 		}
+		return 0;
 	}
 
 	int atom::get_z() const
 	{
-		switch (atom_specimen)
+		switch (species)
 		{
 			case atom::H:
+				return 1;
+			case atom::D:
+				return 1;
+			case atom::T:
 				return 1;
 			case atom::He:
 				return 2;
@@ -850,50 +862,56 @@ namespace scifir
 			case atom::Og:
 				return 118;
 		}
+		return 0;
 	}
 
 	int atom::get_valence_number() const
 	{
-		if (atom_specimen == atom::H or atom_specimen == atom::Li or atom_specimen == atom::Na or atom_specimen == atom::K or atom_specimen == atom::Rb or atom_specimen == atom::Cs or atom_specimen == atom::Fr)
+		if (species == atom::H or species == atom::D or species == atom::T or species == atom::Li or species == atom::Na or species == atom::K or species == atom::Rb or species == atom::Cs or species == atom::Fr)
 		{
 			return 1;
 		}
-		else if (atom_specimen == atom::Be or atom_specimen == atom::Mg or atom_specimen == atom::Ca or atom_specimen == atom::Sr or atom_specimen == atom::Ba or atom_specimen == atom::Ra)
+		else if (species == atom::Be or species == atom::Mg or species == atom::Ca or species == atom::Sr or species == atom::Ba or species == atom::Ra)
 		{
 			return 2;
 		}
-		else if (atom_specimen == atom::B or atom_specimen == atom::Al or atom_specimen == atom::Ga or atom_specimen == atom::In or atom_specimen == atom::Tl or atom_specimen == atom::Nh)
+		else if (species == atom::B or species == atom::Al or species == atom::Ga or species == atom::In or species == atom::Tl or species == atom::Nh)
 		{
 			return 3;
 		}
-		else if (atom_specimen == atom::C or atom_specimen == atom::Si or atom_specimen == atom::Ge or atom_specimen == atom::Sn or atom_specimen == atom::Pb or atom_specimen == atom::Fl)
+		else if (species == atom::C or species == atom::Si or species == atom::Ge or species == atom::Sn or species == atom::Pb or species == atom::Fl)
 		{
 			return 4;
 		}
-		else if (atom_specimen == atom::N or atom_specimen == atom::P or atom_specimen == atom::As or atom_specimen == atom::Sb or atom_specimen == atom::Bi or atom_specimen == atom::Mc)
+		else if (species == atom::N or species == atom::P or species == atom::As or species == atom::Sb or species == atom::Bi or species == atom::Mc)
 		{
 			return 5;
 		}
-		else if (atom_specimen == atom::O or atom_specimen == atom::S or atom_specimen == atom::Se or atom_specimen == atom::Te or atom_specimen == atom::Po or atom_specimen == atom::Lv)
+		else if (species == atom::O or species == atom::S or species == atom::Se or species == atom::Te or species == atom::Po or species == atom::Lv)
 		{
 			return 6;
 		}
-		else if (atom_specimen == atom::F or atom_specimen == atom::Cl or atom_specimen == atom::Br or atom_specimen == atom::I or atom_specimen == atom::At or atom_specimen == atom::Ts)
+		else if (species == atom::F or species == atom::Cl or species == atom::Br or species == atom::I or species == atom::At or species == atom::Ts)
 		{
 			return 7;
 		}
-		else if (atom_specimen == atom::He or atom_specimen == atom::Ne or atom_specimen == atom::Ar or atom_specimen == atom::Kr or atom_specimen == atom::Xe or atom_specimen == atom::Rn or atom_specimen == atom::Og)
+		else if (species == atom::He or species == atom::Ne or species == atom::Ar or species == atom::Kr or species == atom::Xe or species == atom::Rn or species == atom::Og)
 		{
 			return 8;
 		}
+		return 0;
 	}
 
 	int atom::get_mass_number() const
 	{
-		switch (atom_specimen)
+		switch (species)
 		{
 			case atom::H:
 				return 0;
+			case atom::D:
+				return 1;
+			case atom::T:
+				return 2;
 			case atom::He:
 				return 2;
 			case atom::Li:
@@ -1129,14 +1147,19 @@ namespace scifir
 			case atom::Og:
 				return 176;
 		}
+		return 0;
 	}
 
 	length atom::get_atomic_radius() const
 	{
-		switch (atom_specimen)
+		switch (species)
 		{
 			case atom::H:
-				return 1.09_angstrom;
+				return 1.09_Å;
+			case atom::D:
+				return 2.12562_fm;
+			case atom::T:
+				return 1.7591_fm;
 			case atom::He:
 				return 0_m;
 			case atom::Li:
@@ -1372,13 +1395,18 @@ namespace scifir
 			case atom::Og:
 				return 0_pm;
 		}
+		return 0_pm;
 	}
 
 	mass atom::get_standard_atomic_mass() const
 	{
-		switch (atom_specimen)
+		switch (species)
 		{
 			case atom::H:
+				return 1.008_amu;
+			case atom::D:
+				return 1.008_amu;
+			case atom::T:
 				return 1.008_amu;
 			case atom::He:
 				return 4.003_amu;
@@ -1615,249 +1643,257 @@ namespace scifir
 			case atom::Og:
 				return 0_amu;
 		}
+		return 0_amu;
 	}
 
 	float atom::get_electronegativity() const
 	{
-		switch (atom_specimen)
+		switch (species)
 		{
 			case atom::H:
-				return 2.2;
+				return 4.0f;
+			case atom::D:
+				return 2.0f;
+			case atom::T:
+				return 0.8f;
 			case atom::He:
-				return 0;
+				return 0.0f;
 			case atom::Li:
-				return 0.98;
+				return 0.98f;
 			case atom::Be:
-				return 1.57;
+				return 1.57f;
 			case atom::B:
-				return 2.04;
+				return 2.04f;
 			case atom::C:
-				return 2.55;
+				return 2.55f;
 			case atom::N:
-				return 3.04;
+				return 3.04f;
 			case atom::O:
-				return 3.44;
+				return 3.44f;
 			case atom::F:
-				return 3.98;
+				return 3.98f;
 			case atom::Ne:
-				return 0;
+				return 0.0f;
 			case atom::Na:
-				return 0.93;
+				return 0.93f;
 			case atom::Mg:
-				return 1.31;
+				return 1.31f;
 			case atom::Al:
-				return 1.61;
+				return 1.61f;
 			case atom::Si:
-				return 1.90;
+				return 1.90f;
 			case atom::P:
-				return 2.19;
+				return 2.19f;
 			case atom::S:
-				return 2.58;
+				return 2.58f;
 			case atom::Cl:
-				return 3.16;
+				return 3.16f;
 			case atom::Ar:
-				return 0;
+				return 0.0f;
 			case atom::K:
-				return 0.82;
+				return 0.82f;
 			case atom::Ca:
-				return 1;
+				return 1.0f;
 			case atom::Sc:
-				return 1.36;
+				return 1.36f;
 			case atom::Ti:
-				return 1.54;
+				return 1.54f;
 			case atom::V:
-				return 1.63;
+				return 1.63f;
 			case atom::Cr:
-				return 1.66;
+				return 1.66f;
 			case atom::Mn:
-				return 1.55;
+				return 1.55f;
 			case atom::Fe:
-				return 1.83;
+				return 1.83f;
 			case atom::Co:
-				return 1.88;
+				return 1.88f;
 			case atom::Ni:
-				return 1.91;
+				return 1.91f;
 			case atom::Cu:
-				return 1.90;
+				return 1.90f;
 			case atom::Zn:
-				return 1.65;
+				return 1.65f;
 			case atom::Ga:
-				return 1.81;
+				return 1.81f;
 			case atom::Ge:
-				return 2.01;
+				return 2.01f;
 			case atom::As:
-				return 2.18;
+				return 2.18f;
 			case atom::Se:
-				return 2.55;
+				return 2.55f;
 			case atom::Br:
-				return 2.96;
+				return 2.96f;
 			case atom::Kr:
-				return 3.00;
+				return 3.00f;
 			case atom::Rb:
-				return 0.82;
+				return 0.82f;
 			case atom::Sr:
-				return 0.95;
+				return 0.95f;
 			case atom::Y:
-				return 1.22;
+				return 1.22f;
 			case atom::Zr:
-				return 1.33;
+				return 1.33f;
 			case atom::Nb:
-				return 1.6;
+				return 1.6f;
 			case atom::Mo:
-				return 2.16;
+				return 2.16f;
 			case atom::Tc:
-				return 1.9;
+				return 1.9f;
 			case atom::Ru:
-				return 2.2;
+				return 2.2f;
 			case atom::Rh:
-				return 2.28;
+				return 2.28f;
 			case atom::Pd:
-				return 2.20;
+				return 2.20f;
 			case atom::Ag:
-				return 1.93;
+				return 1.93f;
 			case atom::Cd:
-				return 1.69;
+				return 1.69f;
 			case atom::In:
-				return 1.78;
+				return 1.78f;
 			case atom::Sn:
-				return 1.96;
+				return 1.96f;
 			case atom::Sb:
-				return 2.05;
+				return 2.05f;
 			case atom::Te:
-				return 2.1;
+				return 2.1f;
 			case atom::I:
-				return 2.66;
+				return 2.66f;
 			case atom::Xe:
-				return 2.6;
+				return 2.6f;
 			case atom::Cs:
-				return 0.79;
+				return 0.79f;
 			case atom::Ba:
-				return 0.89;
+				return 0.89f;
 			case atom::La:
-				return 1.10;
+				return 1.10f;
 			case atom::Ce:
-				return 1.12;
+				return 1.12f;
 			case atom::Pr:
-				return 1.13;
+				return 1.13f;
 			case atom::Nd:
-				return 1.14;
+				return 1.14f;
 			case atom::Pm:
-				return 1.13;
+				return 1.13f;
 			case atom::Sm:
-				return 1.17;
+				return 1.17f;
 			case atom::Eu:
-				return 1.2;
+				return 1.2f;
 			case atom::Gd:
-				return 1.20;
+				return 1.20f;
 			case atom::Tb:
-				return 1.2;
+				return 1.2f;
 			case atom::Dy:
-				return 1.22;
+				return 1.22f;
 			case atom::Ho:
-				return 1.23;
+				return 1.23f;
 			case atom::Er:
-				return 1.24;
+				return 1.24f;
 			case atom::Tm:
-				return 1.25;
+				return 1.25f;
 			case atom::Yb:
-				return 1.1;
+				return 1.1f;
 			case atom::Lu:
-				return 1.27;
+				return 1.27f;
 			case atom::Hf:
-				return 1.3;
+				return 1.3f;
 			case atom::Ta:
-				return 1.5;
+				return 1.5f;
 			case atom::W:
-				return 2.36;
+				return 2.36f;
 			case atom::Re:
-				return 1.9;
+				return 1.9f;
 			case atom::Os:
-				return 2.2;
+				return 2.2f;
 			case atom::Ir:
-				return 2.20;
+				return 2.20f;
 			case atom::Pt:
-				return 2.28;
+				return 2.28f;
 			case atom::Au:
-				return 2.54;
+				return 2.54f;
 			case atom::Hg:
-				return 2.00;
+				return 2.00f;
 			case atom::Tl:
-				return 1.62;
+				return 1.62f;
 			case atom::Pb:
-				return 1.87;
+				return 1.87f;
 			case atom::Bi:
-				return 2.02;
+				return 2.02f;
 			case atom::Po:
-				return 2.0;
+				return 2.0f;
 			case atom::At:
-				return 2.2;
+				return 2.2f;
 			case atom::Rn:
-				return 2.2;
+				return 2.2f;
 			case atom::Fr:
-				return 0.79;
+				return 0.79f;
 			case atom::Ra:
-				return 0.9;
+				return 0.9f;
 			case atom::Ac:
-				return 1.1;
+				return 1.1f;
 			case atom::Th:
-				return 1.3;
+				return 1.3f;
 			case atom::Pa:
-				return 1.5;
+				return 1.5f;
 			case atom::U:
-				return 1.38;
+				return 1.38f;
 			case atom::Np:
-				return 1.36;
+				return 1.36f;
 			case atom::Pu:
-				return 1.28;
+				return 1.28f;
 			case atom::Am:
-				return 1.3;
+				return 1.3f;
 			case atom::Cm:
-				return 1.3;
+				return 1.3f;
 			case atom::Bk:
-				return 1.3;
+				return 1.3f;
 			case atom::Cf:
-				return 1.3;
+				return 1.3f;
 			case atom::Es:
-				return 1.3;
+				return 1.3f;
 			case atom::Fm:
-				return 1.3;
+				return 1.3f;
 			case atom::Md:
-				return 1.3;
+				return 1.3f;
 			case atom::No:
-				return 1.3;
+				return 1.3f;
 			case atom::Lr:
-				return 1.3;
+				return 1.3f;
 			case atom::Rf:
-				return 0;
+				return 0.0f;
 			case atom::Db:
-				return 0;
+				return 0.0f;
 			case atom::Sg:
-				return 0;
+				return 0.0f;
 			case atom::Bh:
-				return 0;
+				return 0.0f;
 			case atom::Hs:
-				return 0;
+				return 0.0f;
 			case atom::Mt:
-				return 0;
+				return 0.0f;
 			case atom::Ds:
-				return 0;
+				return 0.0f;
 			case atom::Rg:
-				return 0;
+				return 0.0f;
 			case atom::Cn:
-				return 0;
+				return 0.0f;
 			case atom::Nh:
-				return 0;
+				return 0.0f;
 			case atom::Fl:
-				return 0;
+				return 0.0f;
 			case atom::Mc:
-				return 0;
+				return 0.0f;
 			case atom::Lv:
-				return 0;
+				return 0.0f;
 			case atom::Ts:
-				return 0;
+				return 0.0f;
 			case atom::Og:
-				return 0;
+				return 0.0f;
+			case atom::NO_SPECIES:
+				return 0.0f;
 		}
+		return 0.0f;
 	}
 
 	bool atom::is_radioactive() const
@@ -1874,9 +1910,13 @@ namespace scifir
 
 	molar_energy atom::get_ionization_energy() const
 	{
-		switch (atom_specimen)
+		switch (species)
 		{
 			case atom::H:
+				return molar_energy("1312 kJ/mol");
+			case atom::D:
+				return molar_energy("1312 kJ/mol");
+			case atom::T:
 				return molar_energy("1312 kJ/mol");
 			case atom::He:
 				return molar_energy("2372.3 kJ/mol");
@@ -2113,13 +2153,18 @@ namespace scifir
 			case atom::Og:
 				return molar_energy("839.4 kJ/mol");
 		}
+		return molar_energy();
 	}
 
 	length atom::get_covalent_radius() const
 	{
-		switch (atom_specimen)
+		switch (species)
 		{
 			case atom::H:
+				return 31_pm;
+			case atom::D:
+				return 31_pm;
+			case atom::T:
 				return 31_pm;
 			case atom::He:
 				return 28_pm;
@@ -2356,13 +2401,18 @@ namespace scifir
 			case atom::Og:
 				return 157_pm;
 		}
+		return 0.0_pm;
 	}
 
 	length atom::get_van_der_waals_radius() const
 	{
-		switch (atom_specimen)
+		switch (species)
 		{
 			case atom::H:
+				return 120_pm;
+			case atom::D:
+				return 120_pm;
+			case atom::T:
 				return 120_pm;
 			case atom::He:
 				return 140_pm;
@@ -2599,14 +2649,19 @@ namespace scifir
 			case atom::Og:
 				return 0_pm;
 		}
+		return 0.0_pm;
 	}
 
-	cas_number atom::get_cas_number() const
+	/*cas_number atom::get_cas_number() const
 	{
-		switch (atom_specimen)
+		switch (species)
 		{
 			case atom::H:
 				return cas_number("12385-13-6");
+			case atom::D:
+				return cas_number("7782-39-0");
+			case atom::T:
+				return cas_number("10028-17-8");
 			case atom::He:
 				return cas_number("7440-59-7");
 			case atom::Li:
@@ -2842,95 +2897,34 @@ namespace scifir
 			case atom::Og:
 				return cas_number("54144-19-3");
 		}
-	}
-
-	void atom::add_bond(const shared_ptr<atomic_bond>& x)
-	{
-		shared_ptr<atom> bond_atom1 = x->get_atom1().lock();
-		shared_ptr<atom> bond_atom2 = x->get_atom2().lock();
-		if (this == &*bond_atom1 or this == &*bond_atom2)
-		{
-			bonds.push_back(weak_ptr<atomic_bond>(x));
-		}
-	}
-
-	bool atom::bonded_to(const atom& x) const
-	{
-		if (this == &x)
-		{
-			return false;
-		}
-		for (const auto& bond : bonds)
-		{
-			shared_ptr<atomic_bond> bond_lock = bond.lock();
-			shared_ptr<atom> atom1_lock = bond_lock->get_atom1().lock();
-			shared_ptr<atom> atom2_lock = bond_lock->get_atom2().lock();
-			if (&x == &*atom1_lock or &x == &*atom2_lock)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-
-	shared_ptr<atomic_bond> atom::get_bond_of(const atom& x) const
-	{
-		if (this == &x)
-		{
-			return nullptr;
-		}
-		for (const auto& bond : bonds)
-		{
-			shared_ptr<atomic_bond> bond_lock = bond.lock();
-			shared_ptr<atom> atom1_lock = bond_lock->get_atom1().lock();
-			shared_ptr<atom> atom2_lock = bond_lock->get_atom2().lock();
-			if (&x == &*atom1_lock or &x == &*atom2_lock)
-			{
-				return bond_lock;
-			}
-		}
-		return nullptr;
-	}
+		return cas_number();
+	}*/
 
 	int atom::get_ionic_charge() const
 	{
-		atom::group x_atomic_group = get_atomic_group();
-		if (x_atomic_group == atom::IA)
+		atom::atomic_group x_atomic_group = get_atomic_group();
+		switch (x_atomic_group)
 		{
-			return 1;
+			case atom::IA:
+				return 1;
+			case atom::IIA:
+				return 2;
+			case atom::IIIA:
+				return 3;
+			case atom::IVA:
+				return 4;
+			case atom::VA:
+				return -3;
+			case atom::VIA:
+				return -2;
+			case atom::VIIA:
+				return -1;
+			case atom::VIIIA:
+				return 0;
+			default:
+				return 0;
 		}
-		else if (x_atomic_group == atom::IIA)
-		{
-			return 2;
-		}
-		else if (x_atomic_group == atom::IIIA)
-		{
-			return 3;
-		}
-		else if (x_atomic_group == atom::IVA)
-		{
-			return 4;
-		}
-		else if (x_atomic_group == atom::VA)
-		{
-			return -3;
-		}
-		else if (x_atomic_group == atom::VIA)
-		{
-			return -2;
-		}
-		else if (x_atomic_group == atom::VIIA)
-		{
-			return -1;
-		}
-		else if (x_atomic_group == atom::VIIIA)
-		{
-			return 0;
-		}
-		else
-		{
-			return 0;
-		}
+		return 0;
 	}
 
 	int atom::get_electrons_number() const
@@ -2978,7 +2972,7 @@ namespace scifir
 
 	int atom::get_lone_pairs() const
 	{
-		atom::group x_atomic_group = get_atomic_group();
+		atom::atomic_group x_atomic_group = get_atomic_group();
 		if (x_atomic_group == atom::IA or x_atomic_group == atom::IIA or x_atomic_group == atom::IIIA or x_atomic_group == atom::IVA)
 		{
 			return 0;
@@ -2999,6 +2993,7 @@ namespace scifir
 		{
 			return 4;
 		}
+		return 0;
 	}
 
 	mass atom::get_real_mass() const
@@ -3022,20 +3017,20 @@ namespace scifir
 		}
 		switch(get_atomic_group())
 		{
-		case IA:
-			return scifir::color(244,212,66);
-		case IIA:
-			return scifir::color(244,128,66);
-		case IIIA:
-			return scifir::color(66,197,244);
-		case IVA:
-			return scifir::color(40,40,40);
-		case VA:
-			return scifir::color(43,145,79);
-		case VIA:
-			return scifir::color(244,66,66);
-		case VIIA:
-			return scifir::color(244,66,220);
+			case IA:
+				return scifir::color(244,212,66);
+			case IIA:
+				return scifir::color(244,128,66);
+			case IIIA:
+				return scifir::color(66,197,244);
+			case IVA:
+				return scifir::color(40,40,40);
+			case VA:
+				return scifir::color(43,145,79);
+			case VIA:
+				return scifir::color(244,66,66);
+			case VIIA:
+				return scifir::color(244,66,220);
 		}
 		return scifir::color(70,70,70);
     }
@@ -3062,10 +3057,10 @@ namespace scifir
 		return atomic_pattern::none;
 	}
 
-	molecular_geometry atom::get_molecular_geometry() const
+	molecular_geometry atom::get_molecular_geometry(int bonds_number) const
 	{
 		// Check number of bonds and of unpaired electrons
-		if (get_bonds_number() == 2)
+		if (bonds_number == 2)
 		{
 			if(get_lone_pairs() == 0)
 			{
@@ -3084,7 +3079,7 @@ namespace scifir
 				return molecular_geometry::linear;
 			}
 		}
-		else if(get_bonds_number() == 3)
+		else if(bonds_number == 3)
 		{
 			if(get_lone_pairs() == 0)
 			{
@@ -3099,7 +3094,7 @@ namespace scifir
 				return molecular_geometry::t_shaped;
 			}
 		}
-		else if(get_bonds_number() == 4)
+		else if(bonds_number == 4)
 		{
 			if(get_lone_pairs() == 0)
 			{
@@ -3114,7 +3109,7 @@ namespace scifir
 				return molecular_geometry::square_planar;
 			}
 		}
-		else if(get_bonds_number() == 5)
+		else if(bonds_number == 5)
 		{
 			if(get_lone_pairs() == 0)
 			{
@@ -3129,7 +3124,7 @@ namespace scifir
 				return molecular_geometry::planar_pentagonal;
 			}
 		}
-		else if(get_bonds_number() == 6)
+		else if(bonds_number == 6)
 		{
 			if(get_lone_pairs() == 0)
 			{
@@ -3140,35 +3135,35 @@ namespace scifir
 				return molecular_geometry::pentagonal_pyramidal;
 			}
 		}
-		else if(get_bonds_number() == 7)
+		else if(bonds_number == 7)
 		{
 			if(get_lone_pairs() == 0)
 			{
 				return molecular_geometry::pentagonal_bipyramidal;
 			}
 		}
-		else if(get_bonds_number() == 8)
+		else if(bonds_number == 8)
 		{
 			if(get_lone_pairs() == 0)
 			{
 				return molecular_geometry::square_antipristamic;
 			}
 		}
-		else if(get_bonds_number() == 9)
+		else if(bonds_number == 9)
 		{
 			if(get_lone_pairs() == 0)
 			{
 				return molecular_geometry::tricapped_trigonal_prismatic;
 			}
 		}
-		throw "No atomic geometry found. Bonds number: " + std::to_string(get_bonds_number()) + ", lone pairs: " + std::to_string(get_lone_pairs());
+		return molecular_geometry::NONE;
 	}
 
 	bool atom::is_valence_full() const
 	{
 		if(is_atomic_group_a())
 		{
-			if((is_atom_specimen(atom::H) or is_atom_specimen(atom::He)) and get_valence_electrons_number() == 2)
+			if((get_z() == 1 or get_z() == 2) and get_valence_electrons_number() == 2)
 			{
 				return true;
 			}
@@ -3271,96 +3266,96 @@ namespace scifir
 
 	scifir::angle get_molecular_geometry_angle(const atom& x,edge_position position1,edge_position position2)
 	{
-		switch (x.get_molecular_geometry())
+		switch (x.get_molecular_geometry(1))
 		{
-		case molecular_geometry::linear:
-			return scifir::angle(180);
-		case molecular_geometry::bent:
-			if (x.get_lone_pairs() == 1)
-			{
-				return scifir::angle(120);
-			}
-			else if(x.get_lone_pairs() == 2)
-			{
+			case molecular_geometry::linear:
+				return scifir::angle(180.0f);
+			case molecular_geometry::bent:
+				if (x.get_lone_pairs() == 1)
+				{
+					return scifir::angle(120.0f);
+				}
+				else if(x.get_lone_pairs() == 2)
+				{
+					return scifir::angle(109.5);
+				}
+			case molecular_geometry::trigonal_planar:
+				return scifir::angle(120.0f);
+			case molecular_geometry::trigonal_pyramidal:
 				return scifir::angle(109.5);
-			}
-		case molecular_geometry::trigonal_planar:
-			return scifir::angle(120);
-		case molecular_geometry::trigonal_pyramidal:
-			return scifir::angle(109.5);
-		case molecular_geometry::t_shaped:
-			if ((position1 == edge_position::t_shaped_ax and position2 == edge_position::t_shaped_eq) or (position1 == edge_position::t_shaped_eq and position2 == edge_position::t_shaped_ax))
-			{
-				return scifir::angle(90);
-			}
-			else if (position1 == edge_position::t_shaped_ax and position2 == edge_position::t_shaped_ax)
-			{
-				return scifir::angle(180);
-			}
-		case molecular_geometry::tetrahedral:
-			return scifir::angle(109.5);
-		case molecular_geometry::seesaw:
-			if (position1 == edge_position::seesaw_ax and position2 == edge_position::seesaw_ax)
-			{
-				return scifir::angle(173.1);
-			}
-			else if (position1 == edge_position::seesaw_eq and position2 == edge_position::seesaw_eq)
-			{
-				return scifir::angle(101.6);
-			}
-			else if ((position1 == edge_position::seesaw_ax and position2 == edge_position::seesaw_eq) or (position2 == edge_position::seesaw_ax and position1 == edge_position::seesaw_eq))
-			{
-				return scifir::angle(90);
-			}
-		case molecular_geometry::square_planar:
-			return scifir::angle(90);
-		case molecular_geometry::trigonal_bipyramidal:
-			if (position1 == edge_position::trigonal_bipyramidal_ax and position2 == edge_position::trigonal_bipyramidal_ax)
-			{
-				return scifir::angle(180);
-			}
-			else if ((position1 == edge_position::trigonal_bipyramidal_ax and position2 == edge_position::trigonal_bipyramidal_eq) or (position1 == edge_position::trigonal_bipyramidal_eq and position2 == edge_position::trigonal_bipyramidal_ax))
-			{
-				return scifir::angle(90);
-			}
-			else if (position1 == edge_position::trigonal_bipyramidal_eq and position2 == edge_position::trigonal_bipyramidal_eq)
-			{
-				return scifir::angle(120);
-			}
-		case molecular_geometry::square_pyramidal:
-			return scifir::angle(90);
-		case molecular_geometry::planar_pentagonal:
-			return scifir::angle(72);
-		case molecular_geometry::octahedral:
-			return scifir::angle(90);
-		case molecular_geometry::pentagonal_pyramidal:
-			if ((position1 == edge_position::pentagonal_pyramidal_ax and position2 == edge_position::pentagonal_pyramidal_eq) or (position1 == edge_position::pentagonal_pyramidal_eq and position2 == edge_position::pentagonal_pyramidal_ax))
-			{
-				return scifir::angle(90);
-			}
-			else if (position1 == edge_position::pentagonal_pyramidal_eq and position2 == edge_position::pentagonal_pyramidal_eq)
-			{
-				return scifir::angle(72);
-			}
-		case molecular_geometry::pentagonal_bipyramidal:
-			if (position1 == edge_position::pentagonal_bipyramidal_ax and position2 == edge_position::pentagonal_bipyramidal_ax)
-			{
-				return scifir::angle(180);
-			}
-			else if (position1 == edge_position::pentagonal_bipyramidal_eq and position2 == edge_position::pentagonal_bipyramidal_eq)
-			{
-				return scifir::angle(72);
-			}
-			else if ((position1 == edge_position::pentagonal_bipyramidal_ax and position2 == edge_position::pentagonal_bipyramidal_eq) or (position1 == edge_position::pentagonal_bipyramidal_eq and position2 == edge_position::pentagonal_bipyramidal_ax))
-			{
-				return scifir::angle(90);
-			}
-		case molecular_geometry::square_antipristamic:
-			return scifir::angle(50);
-		case molecular_geometry::tricapped_trigonal_prismatic:
-			return scifir::angle(50);
+			case molecular_geometry::t_shaped:
+				if ((position1 == edge_position::t_shaped_ax and position2 == edge_position::t_shaped_eq) or (position1 == edge_position::t_shaped_eq and position2 == edge_position::t_shaped_ax))
+				{
+					return scifir::angle(90.0f);
+				}
+				else if (position1 == edge_position::t_shaped_ax and position2 == edge_position::t_shaped_ax)
+				{
+					return scifir::angle(180.0f);
+				}
+			case molecular_geometry::tetrahedral:
+				return scifir::angle(109.5);
+			case molecular_geometry::seesaw:
+				if (position1 == edge_position::seesaw_ax and position2 == edge_position::seesaw_ax)
+				{
+					return scifir::angle(173.1f);
+				}
+				else if (position1 == edge_position::seesaw_eq and position2 == edge_position::seesaw_eq)
+				{
+					return scifir::angle(101.6f);
+				}
+				else if ((position1 == edge_position::seesaw_ax and position2 == edge_position::seesaw_eq) or (position2 == edge_position::seesaw_ax and position1 == edge_position::seesaw_eq))
+				{
+					return scifir::angle(90.0f);
+				}
+			case molecular_geometry::square_planar:
+				return scifir::angle(90.0f);
+			case molecular_geometry::trigonal_bipyramidal:
+				if (position1 == edge_position::trigonal_bipyramidal_ax and position2 == edge_position::trigonal_bipyramidal_ax)
+				{
+					return scifir::angle(180.0f);
+				}
+				else if ((position1 == edge_position::trigonal_bipyramidal_ax and position2 == edge_position::trigonal_bipyramidal_eq) or (position1 == edge_position::trigonal_bipyramidal_eq and position2 == edge_position::trigonal_bipyramidal_ax))
+				{
+					return scifir::angle(90.0f);
+				}
+				else if (position1 == edge_position::trigonal_bipyramidal_eq and position2 == edge_position::trigonal_bipyramidal_eq)
+				{
+					return scifir::angle(120.0f);
+				}
+			case molecular_geometry::square_pyramidal:
+				return scifir::angle(90.0f);
+			case molecular_geometry::planar_pentagonal:
+				return scifir::angle(72.0f);
+			case molecular_geometry::octahedral:
+				return scifir::angle(90.0f);
+			case molecular_geometry::pentagonal_pyramidal:
+				if ((position1 == edge_position::pentagonal_pyramidal_ax and position2 == edge_position::pentagonal_pyramidal_eq) or (position1 == edge_position::pentagonal_pyramidal_eq and position2 == edge_position::pentagonal_pyramidal_ax))
+				{
+					return scifir::angle(90.0f);
+				}
+				else if (position1 == edge_position::pentagonal_pyramidal_eq and position2 == edge_position::pentagonal_pyramidal_eq)
+				{
+					return scifir::angle(72.0f);
+				}
+			case molecular_geometry::pentagonal_bipyramidal:
+				if (position1 == edge_position::pentagonal_bipyramidal_ax and position2 == edge_position::pentagonal_bipyramidal_ax)
+				{
+					return scifir::angle(180.0f);
+				}
+				else if (position1 == edge_position::pentagonal_bipyramidal_eq and position2 == edge_position::pentagonal_bipyramidal_eq)
+				{
+					return scifir::angle(72.0f);
+				}
+				else if ((position1 == edge_position::pentagonal_bipyramidal_ax and position2 == edge_position::pentagonal_bipyramidal_eq) or (position1 == edge_position::pentagonal_bipyramidal_eq and position2 == edge_position::pentagonal_bipyramidal_ax))
+				{
+					return scifir::angle(90.0f);
+				}
+			case molecular_geometry::square_antipristamic:
+				return scifir::angle(50.0f);
+			case molecular_geometry::tricapped_trigonal_prismatic:
+				return scifir::angle(50.0f);
 		}
-		return scifir::angle(180);
+		return scifir::angle(180.0f);
 	}
 
 	bool are_isotopes(const atom& x,const atom& y)
@@ -3388,12 +3383,16 @@ namespace scifir
 		return (x.get_specimen() == y.get_specimen());
 	}
 
-	string to_string(const atom::specimen& x)
+	string to_string(const atom::atomic_species& x)
 	{
 		switch (x)
 		{
 			case atom::H:
 				return "H";
+			case atom::D:
+				return "D";
+			case atom::T:
+				return "T";
 			case atom::He:
 				return "He";
 			case atom::Li:
@@ -3629,9 +3628,10 @@ namespace scifir
 			case atom::Og:
 				return "Og";
 		}
+		return "";
 	}
 
-	string to_string(const atom::group& x)
+	string to_string(const atom::atomic_group& x)
 	{
 		switch (x)
 		{
@@ -3671,7 +3671,10 @@ namespace scifir
 				return "AC";
 			case atom::LA:
 				return "LA";
+			case atom::NO_GROUP:
+				return "NO_GROUP";
 		}
+		return "NO_GROUP";
 	}
 
 	string to_string(const atomic_block& x)
@@ -3687,6 +3690,7 @@ namespace scifir
 			case atomic_block::f:
 				return "f";
 		}
+		return "";
 	}
 
 	string to_string(const atomic_orbital_type x)
@@ -3702,14 +3706,16 @@ namespace scifir
 			case atomic_orbital_f:
 				return "f";
 		}
+		return "";
 	}
 
-	atom::specimen create_atom_specimen(const string& x)
+	atom::atomic_species create_atomic_species(const string& x)
 	{
 		if (x == "H")
 		{
 			return atom::H;
 		}
+		return atom::NO_SPECIES;
 	}
 }
 

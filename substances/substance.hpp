@@ -1,10 +1,12 @@
 #ifndef SCIFIR_CHEMISTRY_SUBSTANCES_SUBSTANCE_HPP_INCLUDED
 #define SCIFIR_CHEMISTRY_SUBSTANCES_SUBSTANCE_HPP_INCLUDED
 
-#include "analytical/crystallograph.hpp"
-#include "analytical/spectrometer.hpp"
+#include "./substance_constituent.hpp"
+#include "../molecules/molecule.hpp"
 
-#include "scifir/units/units.hpp"
+#include "scifir/units.hpp"
+
+#include <vector>
 
 using namespace std;
 
@@ -14,23 +16,19 @@ namespace scifir
 	{
 		public:
 			substance();
-			substance(spectrometer_data, crystallographic_data);
+			substance(const substance&);
+			substance(substance&&);
 
-			const density& get_density() const;
-			const volume& get_volume() const;
-			const mass& get_mass() const;
+			substance& operator=(const substance&);
+			substance& operator=(substance&&);
 
-			const spectrometer_data& get_spectrometer_data() const;
-			const crystallographic_data& get_crystallographic_data() const;
+			bool is_element() const;
+			bool is_compound() const;
+			bool is_alloy() const;
 
-			bool is_homogeneous() const;
-			bool is_mixture() const;
+			mass get_mass() const;
 
-		private:
-			volume V;
-			mass m;
-			spectrometer_data substance_spectrometer_data;
-			crystallographic_data substance_crystallographic_data;
+			vector<substance_constituent> constituents;
 	};
 }
 

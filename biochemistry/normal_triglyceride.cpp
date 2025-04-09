@@ -1,4 +1,4 @@
-#include "biochemistry/normal_triglyceride.hpp"
+#include "./normal_triglyceride.hpp"
 
 using namespace std;
 

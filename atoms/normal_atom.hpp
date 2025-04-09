@@ -1,10 +1,9 @@
 #ifndef SCIFIR_CHEMISTRY_ATOMS_NORMAL_ATOM_HPP_INCLUDED
 #define SCIFIR_CHEMISTRY_ATOMS_NORMAL_ATOM_HPP_INCLUDED
 
-#include "atoms/atom.hpp"
+#include "./atom.hpp"
 
-#include "scifir/units/units.hpp"
-#include "particles.hpp"
+#include "scifir/units.hpp"
 
 #include <cmath>
 #include <cstdint>

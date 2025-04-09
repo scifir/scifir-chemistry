@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-#include "molecules/molecule.hpp"
+#include "./molecule.hpp"
 
 using namespace std;
 

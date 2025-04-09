@@ -3,8 +3,8 @@
 
 #include <memory>
 
-#include "atoms/atom.hpp"
-#include "scifir/units/units.hpp"
+#include "../atoms/atom.hpp"
+#include "scifir/units.hpp"
 
 using namespace std;
 

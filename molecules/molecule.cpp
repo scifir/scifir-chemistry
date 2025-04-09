@@ -1,11 +1,88 @@
-#include "molecules/molecule.hpp"
+#include "./molecule.hpp"
 
 using namespace std;
 
 namespace scifir
 {
 	molecule::molecule()
+	{}
+
+	vector<shared_ptr<atom>> molecule::get_atoms() const
 	{
+		return atoms;
+	}
+
+	vector<shared_ptr<atomic_bond>> molecule::get_bonds() const
+	{
+		return bonds;
+	}
+
+	int molecule::get_total_atoms() const
+	{
+		return atoms.size();
+	}
+
+	void molecule::add_atom(const atom& x)
+	{
+
+	}
+
+	void molecule::save(const string& file_path,const string& file_name) const
+	{
+		ostringstream file_content;
+		file_content << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+		file_content << "\n<molecule>";
+		file_content << "\n\t<atoms>";
+		unsigned int atoms_count = 0;
+		for (const auto& atom : atoms)
+		{
+			//file_content << atom->get_file_format();
+			atoms_count++;
+			if (atoms_count < atoms.size())
+			{
+				file_content << " ";
+			}
+		}
+		file_content << "<atoms>";
+		file_content << "\n\t<bonds>";
+		unsigned int atom1_index = 0;
+		for (const auto& atom1 : atoms)
+		{
+			int atom2_index = 0;
+			int bonds_count = 0;
+			for (const auto& atom2 : atoms)
+			{
+				/*if (atom1->bonded_to(*atom2))
+				{
+					file_content << (atom2_index + 1);
+					shared_ptr<atomic_bond> atom_bond = atom1->get_bond_of(*atom2);
+					if (atom_bond->is_double())
+					{
+						file_content << "d";
+					}
+					else if (atom_bond->is_triple())
+					{
+						file_content << "t";
+					}
+					bonds_count++;
+					if (bonds_count < atom1->get_bonds_number())
+					{
+						file_content << " ";
+					}
+				}*/
+				atom2_index++;
+			}
+			atom1_index++;
+			if (atom1_index != atoms.size())
+			{
+				file_content << ";";
+			}
+		}
+		file_content << "</bonds>";
+		file_content << "\n</molecule>";
+		FILE* new_file = fopen(file_name.c_str(),"w");
+		fputs(file_content.str().c_str(),new_file);
+		fclose(new_file);
 	}
 
 	bool molecule::is_factible() const
@@ -173,7 +250,7 @@ namespace scifir
 		return true;
 	}
 
-	bool molecule::has_atom(atom::specimen x) const
+	bool molecule::has_atom(atom::atomic_species x) const
 	{
 		vector<shared_ptr<atom>> atoms = get_atoms();
 		for (const auto& atom: atoms)
@@ -210,6 +287,7 @@ namespace scifir
 		{
 			return has_bond("C=0");
 		}
+		return false;
 	}
 
 	bool molecule::is_cyclical() const
@@ -297,32 +375,33 @@ namespace scifir
 
     }
 
-	tuple<shared_ptr<atom>,scifir::point_3d<>> molecule::get_image_3d_calculate_atom_position(shared_ptr<atom> new_atom,tuple<shared_ptr<atom>,scifir::point_3d<>> previous_atom,tuple<shared_ptr<atom>,scifir::point_3d<>> previous_atom2) const
+	tuple<shared_ptr<atom>,scifir::coordinates_3d<>> molecule::get_image_3d_calculate_atom_position(shared_ptr<atom> new_atom,tuple<shared_ptr<atom>,scifir::coordinates_3d<>> previous_atom,tuple<shared_ptr<atom>,scifir::coordinates_3d<>> previous_atom2) const
     {
 		// Calculate the position based on the geometry of the previous_atom, each geometry gives a different position to calculate of, based on the angle of the two bonds (the new and the previous one)
-		vector<weak_ptr<atomic_bond>> bonds = new_atom->get_bonds();
-		for (const auto& bond : bonds)
-		{
-			//tuple<shared_ptr<atom>,scifir::point_3d<>> get_image_3d_calculate_atom_position();
-		}
+		//vector<weak_ptr<atomic_bond>> bonds = new_atom->get_bonds();
+		//for (const auto& bond : bonds)
+		//{
+			//tuple<shared_ptr<atom>,scifir::coordinates_3d<>> get_image_3d_calculate_atom_position();
+		//}
+		return tuple<shared_ptr<atom>,scifir::coordinates_3d<>>();
     }
 
-    void molecule::get_atoms_image_3d(vector<tuple<shared_ptr<atom>,scifir::point_3d<>>> atom_positions) const
+    void molecule::get_atoms_image_3d(vector<tuple<shared_ptr<atom>,scifir::coordinates_3d<>>> atom_positions) const
 	{
 		vector<shared_ptr<atom>> atoms = get_atoms();
 		for (const auto& atom : atoms)
 		{
 			// get atom 3d image calling atom.get_image_3d() or similar
-			// use the vector<scifir::point_3d> to position the image related to the full image
+			// use the vector<scifir::coordinates_3d> to position the image related to the full image
 		}
 	}
 
-	/*void molecule::get_unpaired_electrons_image_3d(vector<tuple<scifir::point_3d,math_vector>> electron_positions) const
+	/*void molecule::get_unpaired_electrons_image_3d(vector<tuple<scifir::coordinates_3d,math_vector>> electron_positions) const
 	{
 		// the math_vector is for directions
 	}*/
 
-	void molecule::get_bonds_image_3d(vector<tuple<shared_ptr<atom>,scifir::point_3d<>>> atom_positions) const
+	void molecule::get_bonds_image_3d(vector<tuple<shared_ptr<atom>,scifir::coordinates_3d<>>> atom_positions) const
 	{
 		vector<shared_ptr<atomic_bond>> bonds = get_bonds();
 		for (const auto& bond: bonds)

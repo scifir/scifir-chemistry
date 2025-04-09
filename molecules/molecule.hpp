@@ -2,16 +2,16 @@
 #define SCIFIR_CHEMISTRY_MOLECULES_MOLECULE_HPP_INCLUDED
 
 #include <iostream>
+#include <memory>
 #include <sstream>
 #include <string>
 #include <tuple>
 #include <vector>
 
-#include "scifir/units/units.hpp"
-#include "atoms/atom.hpp"
-#include "molecules/atomic_bond.hpp"
+#include "../atoms/atom.hpp"
+#include "./atomic_bond.hpp"
 
-#include "scifir/units/units.hpp"
+#include "scifir/units.hpp"
 
 using namespace std;
 
@@ -24,9 +24,9 @@ namespace scifir
 		public:
 			molecule();
 
-			virtual vector<shared_ptr<atom>> get_atoms() const = 0;
-			virtual vector<shared_ptr<atomic_bond>> get_bonds() const = 0;
-			virtual int get_total_atoms() const = 0;
+			virtual vector<shared_ptr<atom>> get_atoms() const;
+			virtual vector<shared_ptr<atomic_bond>> get_bonds() const;
+			virtual int get_total_atoms() const;
 
 			bool is_factible() const;
 
@@ -37,7 +37,7 @@ namespace scifir
 
 			inline mass get_total_mass() const
             {
-            	return get_real_mass() + get_electrons_mass();
+            	return mass(get_real_mass() + get_electrons_mass());
             }
 
             string get_name() const;
@@ -57,12 +57,12 @@ namespace scifir
 
             //dipole get_dipole() const;
 
-            bool has_atom(atom::specimen) const;
+            bool has_atom(atom::atomic_species) const;
             bool has_bond(const string&) const;
             bool has_bond_group(const string&) const;
             bool has_functional_group(functional_group) const;
 
-            virtual void add_atom(const atom&) = 0;
+            virtual void add_atom(const atom&);
 
             virtual bool is_cyclical() const;
             virtual bool is_acyclical() const;
@@ -96,13 +96,16 @@ namespace scifir
             void print_image_2d() const;
             void print_image_3d() const;
 
-            virtual void save(const string&,const string&) const = 0;
+            virtual void save(const string&,const string&) const;
 
 		private:
-			tuple<shared_ptr<atom>,scifir::point_3d<>> get_image_3d_calculate_atom_position(shared_ptr<atom>,tuple<shared_ptr<atom>,scifir::point_3d<>>,tuple<shared_ptr<atom>,scifir::point_3d<>>) const;
-			void get_atoms_image_3d(vector<tuple<shared_ptr<atom>,scifir::point_3d<>>>) const;
-			//void get_unpaired_electrons_image_3d(vector<tuple<scifir::point_3d,math_vector>>) const;
-			void get_bonds_image_3d(vector<tuple<shared_ptr<atom>,scifir::point_3d<>>>) const;
+			tuple<shared_ptr<atom>,scifir::coordinates_3d<>> get_image_3d_calculate_atom_position(shared_ptr<atom>,tuple<shared_ptr<atom>,scifir::coordinates_3d<>>,tuple<shared_ptr<atom>,scifir::coordinates_3d<>>) const;
+			void get_atoms_image_3d(vector<tuple<shared_ptr<atom>,scifir::coordinates_3d<>>>) const;
+			//void get_unpaired_electrons_image_3d(vector<tuple<scifir::coordinates_3d,math_vector>>) const;
+			void get_bonds_image_3d(vector<tuple<shared_ptr<atom>,scifir::coordinates_3d<>>>) const;
+			
+			vector<shared_ptr<atom>> atoms;
+			vector<shared_ptr<atomic_bond>> bonds;
 	};
 
 	bool are_isomers(const molecule&,const molecule&);

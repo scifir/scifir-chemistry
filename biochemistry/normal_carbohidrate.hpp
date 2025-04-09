@@ -1,7 +1,7 @@
 #ifndef SCIFIR_CHEMISTRY_BIOCHEMISTRY_NORMAL_CARBOHIDRATE_HPP_INCLUDED
 #define SCIFIR_CHEMISTRY_BIOCHEMISTRY_NORMAL_CARBOHIDRATE_HPP_INCLUDED
 
-#include "biochemistry/carbohidrate.hpp"
+#include "./carbohidrate.hpp"
 
 #include <iostream>
 #include <string>

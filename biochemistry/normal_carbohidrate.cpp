@@ -1,4 +1,4 @@
-#include "biochemistry/normal_carbohidrate.hpp"
+#include "./normal_carbohidrate.hpp"
 
 using namespace std;
 

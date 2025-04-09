@@ -1,8 +1,8 @@
 #ifndef SCIFIR_CHEMISTRY_BIOCHEMISTRY_ULTIMATE_AMINOACID_HPP_INCLUDED
 #define SCIFIR_CHEMISTRY_BIOCHEMISTRY_ULTIMATE_AMINOACID_HPP_INCLUDED
 
-#include "biochemistry/aminoacid.hpp"
-#include "biochemistry/full_ultimate_aminoacid.hpp"
+#include "./aminoacid.hpp"
+#include "./full_ultimate_aminoacid.hpp"
 
 #include <map>
 #include <string>

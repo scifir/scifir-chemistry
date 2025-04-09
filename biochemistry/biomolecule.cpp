@@ -1,4 +1,4 @@
-#include "biochemistry/biomolecule.hpp"
+#include "./biomolecule.hpp"
 
 using namespace std;
 

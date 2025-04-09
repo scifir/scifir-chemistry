@@ -1,4 +1,4 @@
-#include "biochemistry/normal_protein.hpp"
+#include "./normal_protein.hpp"
 
 #include <sstream>
 

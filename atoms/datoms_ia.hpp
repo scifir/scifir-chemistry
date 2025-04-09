@@ -1,7 +1,7 @@
 #ifndef SCIFIR_CHEMISTRY_ATOMS_DATOMS_IA_HPP_INCLUDED
 #define SCIFIR_CHEMISTRY_ATOMS_DATOMS_IA_HPP_INCLUDED
 
-#include "atoms/datom.hpp"
+#include "./datom.hpp"
 
 using namespace std;
 

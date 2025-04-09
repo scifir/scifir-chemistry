@@ -1,4 +1,4 @@
-#include "biochemistry/full_ultimate_aminoacid.hpp"
+#include "./full_ultimate_aminoacid.hpp"
 
 using namespace std;
 

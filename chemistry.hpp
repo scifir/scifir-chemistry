@@ -1,16 +1,16 @@
 #ifndef SCIFIR_CHEMISTRY_CHEMISTRY_HPP_INCLUDED
 #define SCIFIR_CHEMISTRY_CHEMISTRY_HPP_INCLUDED
 
-#include "particles/proton.hpp"
-#include "particles/electron.hpp"
+#include "scifir/units.hpp"
 
-#include "molecules/atomic_bond.hpp"
-#include "molecules/molecule.hpp"
-#include "molecules/normal_molecule.hpp"
-#include "molecules/bit_molecule.hpp"
-#include "molecules/chemical_reaction.hpp"
+#include "./chemistry/particles/proton.hpp"
+#include "./chemistry/particles/electron.hpp"
 
-#include "scifir/units/units.hpp"
-#include "substances/substance.hpp"
+#include "./chemistry/molecules/atomic_bond.hpp"
+#include "./chemistry/molecules/molecule.hpp"
+#include "./chemistry/molecules/normal_molecule.hpp"
+#include "./chemistry/molecules/chemical_reaction.hpp"
+
+#include "./chemistry/substances/substance.hpp"
 
 #endif // SCIFIR_CHEMISTRY_CHEMISTRY_HPP_INCLUDED

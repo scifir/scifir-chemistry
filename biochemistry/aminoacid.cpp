@@ -1,5 +1,5 @@
-#include "biochemistry/aminoacid.hpp"
-#include "biochemistry/ultimate_aminoacid.hpp"
+#include "./aminoacid.hpp"
+#include "./ultimate_aminoacid.hpp"
 
 using namespace std;
 

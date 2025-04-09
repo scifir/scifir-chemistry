@@ -1,10 +1,10 @@
 #ifndef SICIF_CHEMISTRY_MOLECULES_CHEMICAL_REACTION_HPP_INCLUDED
 #define SICIF_CHEMISTRY_MOLECULES_CHEMICAL_REACTION_HPP_INCLUDED
 
-#include "atoms/atom.hpp"
-#include "molecules/molecule.hpp"
+#include "../atoms/atom.hpp"
+#include "./molecule.hpp"
 
-#include "scifir/units/units.hpp"
+#include "scifir/units.hpp"
 #include "boost/variant.hpp"
 
 using namespace std;
@@ -26,7 +26,7 @@ namespace scifir
 				return products;
 			}
 
-			scifir::enthalpy get_enthalpy_change() const;
+			scifir::energy get_enthalpy_change() const;
 			scifir::entropy get_entropy_change() const;
 
 		private:

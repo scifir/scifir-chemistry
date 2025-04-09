@@ -1,8 +1,8 @@
 #ifndef SCIFIR_CHEMISTRY_BIOCHEMISTRY_NORMAL_PROTEIN_HPP_INCLUDED
 #define SCIFIR_CHEMISTRY_BIOCHEMISTRY_NORMAL_PROTEIN_HPP_INCLUDED
 
-#include "biochemistry/aminoacid.hpp"
-#include "biochemistry/protein.hpp"
+#include "./aminoacid.hpp"
+#include "./protein.hpp"
 
 #include <iostream>
 #include <string>

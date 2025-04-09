@@ -1,4 +1,4 @@
-#include "atoms/datom.hpp"
+#include "./datom.hpp"
 
 using namespace std;
 

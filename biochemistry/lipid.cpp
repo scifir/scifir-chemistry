@@ -1,4 +1,4 @@
-#include "biochemistry/lipid.hpp"
+#include "./lipid.hpp"
 
 using namespace std;
 

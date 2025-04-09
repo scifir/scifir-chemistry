@@ -1,7 +1,7 @@
 #ifndef SCIFIR_CHEMISTRY_PARTICLES_ELECTRON_HPP_INCLUDED
 #define SCIFIR_CHEMISTRY_PARTICLES_ELECTRON_HPP_INCLUDED
 
-#include "scifir/units/units.hpp"
+#include "scifir/units.hpp"
 
 namespace scifir
 {

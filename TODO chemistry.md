@@ -107,6 +107,7 @@
 - TODO: protein class, with special format to store and load it
 - TODO: molecule::is_biochemical()
 - TODO: Store the proteins only one time, and to calculate a lot of them use that unique instead for the data purpose. For movement modeling, with one instance is enough, and use position coordinates and rotation coordinates to store the data of each protein
+- TODO: add abbreviation of one letter to aminoacids
 
 ## MATTER (1)
 
@@ -151,3 +152,4 @@
 ## FUTURE (1)
 
 - TODO: bit_molecule class maybe has sense for some cases
+- TODO: maybe the spectrometer and/or the crystallographer can need some generic class that should be inside scifir-chemistry

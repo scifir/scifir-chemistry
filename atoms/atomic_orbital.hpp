@@ -15,12 +15,14 @@ namespace scifir
 	class orbital
 	{
 		public:
+			enum type {s,p,d,f};
+
+			orbital(orbital_symbol, int, int);
+
 			orbital_symbol orbital_specie;
 			string name;
 			vector<scifir::electron> electrons;
 			int period;
-
-			orbital(orbital_symbol, int, int);
 	};
 
 	class orbital_s : public orbital

@@ -69,21 +69,21 @@ namespace scifir
 			{
 				if (atom1.lock()->is_non_metal() and atom2.lock()->is_metallic())
 				{
-					return atomic_bond_type::ionic;
+					return atomic_bond_type::IONIC;
 				}
 				else if(atom1.lock()->is_non_metal() and atom2.lock()->is_non_metal())
 				{
-					return atomic_bond_type::covalent;
+					return atomic_bond_type::COVALENT;
 				}
 				else if(atom1.lock()->is_metallic() and atom2.lock()->is_metallic())
 				{
-					return atomic_bond_type::metallic;
+					return atomic_bond_type::METALLIC;
 				}
 			}
 
 			inline bool is_flexible() const
 			{
-				return (weight == atomic_bond_weight::single);
+				return (weight == atomic_bond_weight::SINGLE);
 			}
 
 			inline bool is_rigid() const
@@ -93,17 +93,17 @@ namespace scifir
 
 			inline bool is_single() const
 			{
-				return (weight == atomic_bond_weight::single);
+				return (weight == atomic_bond_weight::SINGLE);
 			}
 
 			inline bool is_double() const
 			{
-				return (weight == atomic_bond_weight::dual);
+				return (weight == atomic_bond_weight::DUAL);
 			}
 
 			inline bool is_triple() const
 			{
-				return (weight == atomic_bond_weight::triple);
+				return (weight == atomic_bond_weight::TRIPLE);
 			}
 
 			int get_total_electrons() const;

@@ -15,32 +15,32 @@ namespace scifir
 {
 	vector<vector<int>> electronic_configuration_order
 	{
-		{1, atomic_orbital_s},
-		{2, atomic_orbital_s},
-		{2, atomic_orbital_p},
-		{3, atomic_orbital_s},
-		{3, atomic_orbital_p},
-		{4, atomic_orbital_s},
-		{3, atomic_orbital_d},
-		{4, atomic_orbital_p},
-		{5, atomic_orbital_s},
-		{4, atomic_orbital_d},
-		{5, atomic_orbital_p},
-		{6, atomic_orbital_s},
-		{4, atomic_orbital_f},
-		{5, atomic_orbital_d},
-		{6, atomic_orbital_p},
-		{7, atomic_orbital_s},
-		{5, atomic_orbital_f},
-		{6, atomic_orbital_d},
-		{7, atomic_orbital_p}
+		{1, orbital::s},
+		{2, orbital::s},
+		{2, orbital::p},
+		{3, orbital::s},
+		{3, orbital::p},
+		{4, orbital::s},
+		{3, orbital::d},
+		{4, orbital::p},
+		{5, orbital::s},
+		{4, orbital::d},
+		{5, orbital::p},
+		{6, orbital::s},
+		{4, orbital::f},
+		{5, orbital::d},
+		{6, orbital::p},
+		{7, orbital::s},
+		{5, orbital::f},
+		{6, orbital::d},
+		{7, orbital::p}
 	};
 
 	atom::orbital_configuration::orbital_configuration() : period(),orbital_type(),electrons()
 	{
 	}
 
-	atom::orbital_configuration::orbital_configuration(int new_period,atomic_orbital_type new_orbital_type,int new_electrons) : period(new_period),orbital_type(new_orbital_type),electrons(new_electrons)
+	atom::orbital_configuration::orbital_configuration(int new_period,orbital::type new_orbital_type,int new_electrons) : period(new_period),orbital_type(new_orbital_type),electrons(new_electrons)
 	{
 	}
 
@@ -50,28 +50,28 @@ namespace scifir
 	}
 
 	vector<atom::orbital_configuration> atom::electronic_configuration = {
-		atom::orbital_configuration(1,atomic_orbital_s,2),
-		atom::orbital_configuration(2,atomic_orbital_s,2),
-		atom::orbital_configuration(2,atomic_orbital_p,6),
-		atom::orbital_configuration(3,atomic_orbital_s,2),
-		atom::orbital_configuration(3,atomic_orbital_p,6),
-		atom::orbital_configuration(4,atomic_orbital_s,2),
-		atom::orbital_configuration(3,atomic_orbital_d,10),
-		atom::orbital_configuration(4,atomic_orbital_p,6),
-		atom::orbital_configuration(5,atomic_orbital_s,2),
-		atom::orbital_configuration(4,atomic_orbital_d,10),
-		atom::orbital_configuration(5,atomic_orbital_p,6),
-		atom::orbital_configuration(6,atomic_orbital_s,2),
-		atom::orbital_configuration(4,atomic_orbital_f,14),
-		atom::orbital_configuration(5,atomic_orbital_d,10),
-		atom::orbital_configuration(6,atomic_orbital_p,6),
-		atom::orbital_configuration(7,atomic_orbital_s,2),
-		atom::orbital_configuration(5,atomic_orbital_f,14),
-		atom::orbital_configuration(6,atomic_orbital_d,10),
-		atom::orbital_configuration(7,atomic_orbital_p,6),
-		atom::orbital_configuration(6,atomic_orbital_f,14),
-		atom::orbital_configuration(7,atomic_orbital_d,10),
-		atom::orbital_configuration(7,atomic_orbital_f,14)
+		atom::orbital_configuration(1,orbital::s,2),
+		atom::orbital_configuration(2,orbital::s,2),
+		atom::orbital_configuration(2,orbital::p,6),
+		atom::orbital_configuration(3,orbital::s,2),
+		atom::orbital_configuration(3,orbital::p,6),
+		atom::orbital_configuration(4,orbital::s,2),
+		atom::orbital_configuration(3,orbital::d,10),
+		atom::orbital_configuration(4,orbital::p,6),
+		atom::orbital_configuration(5,orbital::s,2),
+		atom::orbital_configuration(4,orbital::d,10),
+		atom::orbital_configuration(5,orbital::p,6),
+		atom::orbital_configuration(6,orbital::s,2),
+		atom::orbital_configuration(4,orbital::f,14),
+		atom::orbital_configuration(5,orbital::d,10),
+		atom::orbital_configuration(6,orbital::p,6),
+		atom::orbital_configuration(7,orbital::s,2),
+		atom::orbital_configuration(5,orbital::f,14),
+		atom::orbital_configuration(6,orbital::d,10),
+		atom::orbital_configuration(7,orbital::p,6),
+		atom::orbital_configuration(6,orbital::f,14),
+		atom::orbital_configuration(7,orbital::d,10),
+		atom::orbital_configuration(7,orbital::f,14)
 	};
 
 	atom::atom() : species()
@@ -3035,26 +3035,26 @@ namespace scifir
 		return scifir::color(70,70,70);
     }
 
-	atomic_pattern atom::get_atomic_pattern() const
+	atomic_drawing atom::get_atomic_pattern() const
 	{
 		switch(get_period())
 		{
 		case 1:
-			return atomic_pattern::none;
+			return atomic_drawing::NONE;
 		case 2:
-			return atomic_pattern::none;
+			return atomic_drawing::NONE;
 		case 3:
-			return atomic_pattern::line;
+			return atomic_drawing::LINE;
 		case 4:
-			return atomic_pattern::prepicated_line;
+			return atomic_drawing::PREPICATED_LINE;
 		case 5:
-			return atomic_pattern::wave_line;
+			return atomic_drawing::WAVE_LINE;
 		case 6:
-			return atomic_pattern::prepicated_wave_line;
+			return atomic_drawing::PREPICATED_WAVE_LINE;
 		case 7:
-			return atomic_pattern::circles;
+			return atomic_drawing::CIRCLES;
 		}
-		return atomic_pattern::none;
+		return atomic_drawing::NONE;
 	}
 
 	molecular_geometry atom::get_molecular_geometry(int bonds_number) const
@@ -3064,96 +3064,96 @@ namespace scifir
 		{
 			if(get_lone_pairs() == 0)
 			{
-				return molecular_geometry::linear;
+				return molecular_geometry::LINEAR;
 			}
 			else if(get_lone_pairs() == 1)
 			{
-				return molecular_geometry::bent;
+				return molecular_geometry::BENT;
 			}
 			else if(get_lone_pairs() == 2)
 			{
-				return molecular_geometry::bent;
+				return molecular_geometry::BENT;
 			}
 			else if(get_lone_pairs() == 3)
 			{
-				return molecular_geometry::linear;
+				return molecular_geometry::LINEAR;
 			}
 		}
 		else if(bonds_number == 3)
 		{
 			if(get_lone_pairs() == 0)
 			{
-				return molecular_geometry::trigonal_planar;
+				return molecular_geometry::TRIGONAL_PLANAR;
 			}
 			else if(get_lone_pairs() == 1)
 			{
-				return molecular_geometry::trigonal_pyramidal;
+				return molecular_geometry::TRIGONAL_PYRAMIDAL;
 			}
 			else if(get_lone_pairs() == 2)
 			{
-				return molecular_geometry::t_shaped;
+				return molecular_geometry::T_SHAPED;
 			}
 		}
 		else if(bonds_number == 4)
 		{
 			if(get_lone_pairs() == 0)
 			{
-				return molecular_geometry::tetrahedral;
+				return molecular_geometry::TETRAHEDRAL;
 			}
 			else if(get_lone_pairs() == 1)
 			{
-				return molecular_geometry::seesaw;
+				return molecular_geometry::SEESAW;
 			}
 			else if(get_lone_pairs() == 2)
 			{
-				return molecular_geometry::square_planar;
+				return molecular_geometry::SQUARE_PLANAR;
 			}
 		}
 		else if(bonds_number == 5)
 		{
 			if(get_lone_pairs() == 0)
 			{
-				return molecular_geometry::trigonal_bipyramidal;
+				return molecular_geometry::TRIGONAL_BIPYRAMIDAL;
 			}
 			else if(get_lone_pairs() == 1)
 			{
-				return molecular_geometry::square_pyramidal;
+				return molecular_geometry::SQUARE_PYRAMIDAL;
 			}
 			else if(get_lone_pairs() == 2)
 			{
-				return molecular_geometry::planar_pentagonal;
+				return molecular_geometry::PLANAR_PENTAGONAL;
 			}
 		}
 		else if(bonds_number == 6)
 		{
 			if(get_lone_pairs() == 0)
 			{
-				return molecular_geometry::octahedral;
+				return molecular_geometry::OCTAHEDRAL;
 			}
 			else if(get_lone_pairs() == 1)
 			{
-				return molecular_geometry::pentagonal_pyramidal;
+				return molecular_geometry::PENTAGONAL_PYRAMIDAL;
 			}
 		}
 		else if(bonds_number == 7)
 		{
 			if(get_lone_pairs() == 0)
 			{
-				return molecular_geometry::pentagonal_bipyramidal;
+				return molecular_geometry::PENTAGONAL_BIPYRAMIDAL;
 			}
 		}
 		else if(bonds_number == 8)
 		{
 			if(get_lone_pairs() == 0)
 			{
-				return molecular_geometry::square_antipristamic;
+				return molecular_geometry::SQUARE_ANTIPRISTAMIC;
 			}
 		}
 		else if(bonds_number == 9)
 		{
 			if(get_lone_pairs() == 0)
 			{
-				return molecular_geometry::tricapped_trigonal_prismatic;
+				return molecular_geometry::TRICAPPED_TRIGONAL_PRISMATIC;
 			}
 		}
 		return molecular_geometry::NONE;
@@ -3264,13 +3264,13 @@ namespace scifir
 		return 1;
 	}
 
-	scifir::angle get_molecular_geometry_angle(const atom& x,edge_position position1,edge_position position2)
+	scifir::angle get_molecular_geometry_angle(const atom& x,molecular_geometry_position position1,molecular_geometry_position position2)
 	{
 		switch (x.get_molecular_geometry(1))
 		{
-			case molecular_geometry::linear:
+			case molecular_geometry::LINEAR:
 				return scifir::angle(180.0f);
-			case molecular_geometry::bent:
+			case molecular_geometry::BENT:
 				if (x.get_lone_pairs() == 1)
 				{
 					return scifir::angle(120.0f);
@@ -3279,80 +3279,80 @@ namespace scifir
 				{
 					return scifir::angle(109.5);
 				}
-			case molecular_geometry::trigonal_planar:
+			case molecular_geometry::TRIGONAL_PLANAR:
 				return scifir::angle(120.0f);
-			case molecular_geometry::trigonal_pyramidal:
+			case molecular_geometry::TRIGONAL_PYRAMIDAL:
 				return scifir::angle(109.5);
-			case molecular_geometry::t_shaped:
-				if ((position1 == edge_position::t_shaped_ax and position2 == edge_position::t_shaped_eq) or (position1 == edge_position::t_shaped_eq and position2 == edge_position::t_shaped_ax))
+			case molecular_geometry::T_SHAPED:
+				if ((position1 == molecular_geometry_position::T_SHAPED_AX and position2 == molecular_geometry_position::T_SHAPED_EQ) or (position1 == molecular_geometry_position::T_SHAPED_EQ and position2 == molecular_geometry_position::T_SHAPED_AX))
 				{
 					return scifir::angle(90.0f);
 				}
-				else if (position1 == edge_position::t_shaped_ax and position2 == edge_position::t_shaped_ax)
+				else if (position1 == molecular_geometry_position::T_SHAPED_AX and position2 == molecular_geometry_position::T_SHAPED_AX)
 				{
 					return scifir::angle(180.0f);
 				}
-			case molecular_geometry::tetrahedral:
+			case molecular_geometry::TETRAHEDRAL:
 				return scifir::angle(109.5);
-			case molecular_geometry::seesaw:
-				if (position1 == edge_position::seesaw_ax and position2 == edge_position::seesaw_ax)
+			case molecular_geometry::SEESAW:
+				if (position1 == molecular_geometry_position::SEESAW_AX and position2 == molecular_geometry_position::SEESAW_AX)
 				{
 					return scifir::angle(173.1f);
 				}
-				else if (position1 == edge_position::seesaw_eq and position2 == edge_position::seesaw_eq)
+				else if (position1 == molecular_geometry_position::SEESAW_EQ and position2 == molecular_geometry_position::SEESAW_EQ)
 				{
 					return scifir::angle(101.6f);
 				}
-				else if ((position1 == edge_position::seesaw_ax and position2 == edge_position::seesaw_eq) or (position2 == edge_position::seesaw_ax and position1 == edge_position::seesaw_eq))
+				else if ((position1 == molecular_geometry_position::SEESAW_AX and position2 == molecular_geometry_position::SEESAW_EQ) or (position2 == molecular_geometry_position::SEESAW_AX and position1 == molecular_geometry_position::SEESAW_EQ))
 				{
 					return scifir::angle(90.0f);
 				}
-			case molecular_geometry::square_planar:
+			case molecular_geometry::SQUARE_PLANAR:
 				return scifir::angle(90.0f);
-			case molecular_geometry::trigonal_bipyramidal:
-				if (position1 == edge_position::trigonal_bipyramidal_ax and position2 == edge_position::trigonal_bipyramidal_ax)
+			case molecular_geometry::TRIGONAL_BIPYRAMIDAL:
+				if (position1 == molecular_geometry_position::TRIGONAL_BIPYRAMIDAL_AX and position2 == molecular_geometry_position::TRIGONAL_BIPYRAMIDAL_AX)
 				{
 					return scifir::angle(180.0f);
 				}
-				else if ((position1 == edge_position::trigonal_bipyramidal_ax and position2 == edge_position::trigonal_bipyramidal_eq) or (position1 == edge_position::trigonal_bipyramidal_eq and position2 == edge_position::trigonal_bipyramidal_ax))
+				else if ((position1 == molecular_geometry_position::TRIGONAL_BIPYRAMIDAL_AX and position2 == molecular_geometry_position::TRIGONAL_BIPYRAMIDAL_EQ) or (position1 == molecular_geometry_position::TRIGONAL_BIPYRAMIDAL_EQ and position2 == molecular_geometry_position::TRIGONAL_BIPYRAMIDAL_AX))
 				{
 					return scifir::angle(90.0f);
 				}
-				else if (position1 == edge_position::trigonal_bipyramidal_eq and position2 == edge_position::trigonal_bipyramidal_eq)
+				else if (position1 == molecular_geometry_position::TRIGONAL_BIPYRAMIDAL_EQ and position2 == molecular_geometry_position::TRIGONAL_BIPYRAMIDAL_EQ)
 				{
 					return scifir::angle(120.0f);
 				}
-			case molecular_geometry::square_pyramidal:
+			case molecular_geometry::SQUARE_PYRAMIDAL:
 				return scifir::angle(90.0f);
-			case molecular_geometry::planar_pentagonal:
+			case molecular_geometry::PLANAR_PENTAGONAL:
 				return scifir::angle(72.0f);
-			case molecular_geometry::octahedral:
+			case molecular_geometry::OCTAHEDRAL:
 				return scifir::angle(90.0f);
-			case molecular_geometry::pentagonal_pyramidal:
-				if ((position1 == edge_position::pentagonal_pyramidal_ax and position2 == edge_position::pentagonal_pyramidal_eq) or (position1 == edge_position::pentagonal_pyramidal_eq and position2 == edge_position::pentagonal_pyramidal_ax))
+			case molecular_geometry::PENTAGONAL_PYRAMIDAL:
+				if ((position1 == molecular_geometry_position::PENTAGONAL_PYRAMIDAL_AX and position2 == molecular_geometry_position::PENTAGONAL_PYRAMIDAL_EQ) or (position1 == molecular_geometry_position::PENTAGONAL_PYRAMIDAL_EQ and position2 == molecular_geometry_position::PENTAGONAL_PYRAMIDAL_AX))
 				{
 					return scifir::angle(90.0f);
 				}
-				else if (position1 == edge_position::pentagonal_pyramidal_eq and position2 == edge_position::pentagonal_pyramidal_eq)
+				else if (position1 == molecular_geometry_position::PENTAGONAL_PYRAMIDAL_EQ and position2 == molecular_geometry_position::PENTAGONAL_PYRAMIDAL_EQ)
 				{
 					return scifir::angle(72.0f);
 				}
-			case molecular_geometry::pentagonal_bipyramidal:
-				if (position1 == edge_position::pentagonal_bipyramidal_ax and position2 == edge_position::pentagonal_bipyramidal_ax)
+			case molecular_geometry::PENTAGONAL_BIPYRAMIDAL:
+				if (position1 == molecular_geometry_position::PENTAGONAL_BIPYRAMIDAL_AX and position2 == molecular_geometry_position::PENTAGONAL_BIPYRAMIDAL_AX)
 				{
 					return scifir::angle(180.0f);
 				}
-				else if (position1 == edge_position::pentagonal_bipyramidal_eq and position2 == edge_position::pentagonal_bipyramidal_eq)
+				else if (position1 == molecular_geometry_position::PENTAGONAL_BIPYRAMIDAL_EQ and position2 == molecular_geometry_position::PENTAGONAL_BIPYRAMIDAL_EQ)
 				{
 					return scifir::angle(72.0f);
 				}
-				else if ((position1 == edge_position::pentagonal_bipyramidal_ax and position2 == edge_position::pentagonal_bipyramidal_eq) or (position1 == edge_position::pentagonal_bipyramidal_eq and position2 == edge_position::pentagonal_bipyramidal_ax))
+				else if ((position1 == molecular_geometry_position::PENTAGONAL_BIPYRAMIDAL_AX and position2 == molecular_geometry_position::PENTAGONAL_BIPYRAMIDAL_EQ) or (position1 == molecular_geometry_position::PENTAGONAL_BIPYRAMIDAL_EQ and position2 == molecular_geometry_position::PENTAGONAL_BIPYRAMIDAL_AX))
 				{
 					return scifir::angle(90.0f);
 				}
-			case molecular_geometry::square_antipristamic:
+			case molecular_geometry::SQUARE_ANTIPRISTAMIC:
 				return scifir::angle(50.0f);
-			case molecular_geometry::tricapped_trigonal_prismatic:
+			case molecular_geometry::TRICAPPED_TRIGONAL_PRISMATIC:
 				return scifir::angle(50.0f);
 		}
 		return scifir::angle(180.0f);
@@ -3693,17 +3693,17 @@ namespace scifir
 		return "";
 	}
 
-	string to_string(const atomic_orbital_type x)
+	string to_string(const orbital::type x)
 	{
 		switch (x)
 		{
-			case atomic_orbital_s:
+			case orbital::s:
 				return "s";
-			case atomic_orbital_p:
+			case orbital::p:
 				return "p";
-			case atomic_orbital_d:
+			case orbital::d:
 				return "d";
-			case atomic_orbital_f:
+			case orbital::f:
 				return "f";
 		}
 		return "";

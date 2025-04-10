@@ -11,27 +11,27 @@
 
 #include "scifir/units.hpp"
 
+#include "atomic_orbital.hpp"
+
 using namespace std;
 
 namespace scifir
 {
 	enum class atomic_block {s,p,d,f};
 
-	enum class atomic_pattern {none,line,prepicated_line,wave_line,prepicated_wave_line,circles};
-
-	enum class molecular_geometry {NONE, linear,trigonal_planar,bent,tetrahedral,trigonal_pyramidal,trigonal_bipyramidal,seesaw,t_shaped,octahedral,square_pyramidal,square_planar,pentagonal_bipyramidal,pentagonal_pyramidal,planar_pentagonal,square_antipristamic,tricapped_trigonal_prismatic};
-
-	enum class edge_position {linear,bent,trigonal_planar,trigonal_pyramidal,t_shaped_ax,t_shaped_eq,tetrahedral,seesaw_ax,seesaw_eq,square_planar,trigonal_bipyramidal_ax,trigonal_bipyramidal_eq,square_pyramidal_ax,square_pyramidal_eq,planar_pentagonal,octahedral,pentagonal_pyramidal_ax,pentagonal_pyramidal_eq,pentagonal_bipyramidal_ax,pentagonal_bipyramidal_eq,square_antipristamic,tricapped_trigonal_prismatic};
-
-	enum atomic_orbital_type {atomic_orbital_s,atomic_orbital_p,atomic_orbital_d,atomic_orbital_f};
-
-	enum class atomic_bond_type {ionic,covalent,metallic};
-
-	enum class atomic_bond_weight {single,dual,triple};
-
-	enum class crystal_structure {bcc,hexagonal};
-
-	enum class magnetic_ordering {diamagnetic,paramagnetic};
+	enum class molecular_geometry {NONE, LINEAR,TRIGONAL_PLANAR,BENT,TETRAHEDRAL,TRIGONAL_PYRAMIDAL,TRIGONAL_BIPYRAMIDAL,SEESAW,T_SHAPED,OCTAHEDRAL,SQUARE_PYRAMIDAL,SQUARE_PLANAR,PENTAGONAL_BIPYRAMIDAL,PENTAGONAL_PYRAMIDAL,PLANAR_PENTAGONAL,SQUARE_ANTIPRISTAMIC,TRICAPPED_TRIGONAL_PRISMATIC};
+	
+	enum class molecular_geometry_position {LINEAR,BENT,TRIGONAL_PLANAR,TRIGONAL_PYRAMIDAL,T_SHAPED_AX,T_SHAPED_EQ,TETRAHEDRAL,SEESAW_AX,SEESAW_EQ,SQUARE_PLANAR,TRIGONAL_BIPYRAMIDAL_AX,TRIGONAL_BIPYRAMIDAL_EQ,SQUARE_PYRAMIDAL_AX,SQUARE_PYRAMIDAL_EQ,PLANAR_PENTAGONAL,OCTAHEDRAL,PENTAGONAL_PYRAMIDAL_AX,PENTAGONAL_PYRAMIDAL_EQ,PENTAGONAL_BIPYRAMIDAL_AX,PENTAGONAL_BIPYRAMIDAL_EQ,SQUARE_ANTIPRISTAMIC,TRICAPPED_TRIGONAL_PRISMATIC};
+	
+	enum class atomic_bond_type {IONIC,COVALENT,METALLIC};
+	
+	enum class atomic_bond_weight {SINGLE,DUAL,TRIPLE};
+	
+	enum class crystal_structure {BCC,HEXAGONAL};
+	
+	enum class magnetic_ordering {DIAMAGNETIC,PARAMAGNETIC};
+	
+	enum class atomic_drawing {NONE,LINE,PREPICATED_LINE,WAVE_LINE,PREPICATED_WAVE_LINE,CIRCLES}; // This definition has been created in Scifir to give to each atom species a different drawing style that allows to differentiate it from other atoms of other species
 
 	extern vector<vector<int>> electronic_configuration_order;
 
@@ -47,12 +47,12 @@ namespace scifir
 			{
 				public:
 					orbital_configuration();
-					orbital_configuration(int,atomic_orbital_type,int);
+					orbital_configuration(int,orbital::type,int);
 
 					string display() const;
 
 					int period;
-					atomic_orbital_type orbital_type;
+					orbital::type orbital_type;
 					int electrons;
 			};
 
@@ -262,7 +262,7 @@ namespace scifir
 
             scifir::color get_atomic_color() const;
 
-			atomic_pattern get_atomic_pattern() const;
+			atomic_drawing get_atomic_pattern() const;
 
 			molecular_geometry get_molecular_geometry(int) const;
 
@@ -307,7 +307,7 @@ namespace scifir
 	string to_string(const atom::atomic_species&);
 	string to_string(const atom::atomic_group&);
 	string to_string(const atomic_block&);
-	string to_string(const atomic_orbital_type);
+	string to_string(const orbital::type);
 
 	atom::atomic_species create_atomic_species(const string&);
 }

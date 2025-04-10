@@ -18,11 +18,11 @@ namespace scifir
 	{
 		switch(weight)
 		{
-		case atomic_bond_weight::single:
+		case atomic_bond_weight::SINGLE:
 			return 2;
-		case atomic_bond_weight::dual:
+		case atomic_bond_weight::DUAL:
 			return 4;
-		case atomic_bond_weight::triple:
+		case atomic_bond_weight::TRIPLE:
 			return 6;
 		default:
 			return 2;

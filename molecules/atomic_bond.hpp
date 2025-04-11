@@ -16,12 +16,12 @@ namespace scifir
 			atomic_bond();
 			atomic_bond(const shared_ptr<atom>&,const shared_ptr<atom>&,atomic_bond_weight);
 
-			inline const weak_ptr<atom>& get_atom1() const
+			inline const shared_ptr<atom>& get_atom1() const
 			{
 				return atom1;
 			}
 
-			inline const weak_ptr<atom>& get_atom2() const
+			inline const shared_ptr<atom>& get_atom2() const
 			{
 				return atom2;
 			}
@@ -53,29 +53,25 @@ namespace scifir
 
 			inline bool is_covalent_apolar() const
 			{
-				shared_ptr<atom> atom1_lock = atom1.lock();
-				shared_ptr<atom> atom2_lock = atom2.lock();
-				return (atom1_lock->get_electronegativity() == atom2_lock->get_electronegativity());
+				return (atom1->get_electronegativity() == atom2->get_electronegativity());
 			}
 
 			inline bool is_ionic() const
 			{
-				shared_ptr<atom> atom1_lock = atom1.lock();
-				shared_ptr<atom> atom2_lock = atom2.lock();
-				return ((atom1_lock->get_electronegativity() - atom2_lock->get_electronegativity()) >= 2);
+				return ((atom1->get_electronegativity() - atom2->get_electronegativity()) >= 2);
 			}
 
 			inline atomic_bond_type get_atomic_bond_type()
 			{
-				if (atom1.lock()->is_non_metal() and atom2.lock()->is_metallic())
+				if (atom1->is_non_metal() and atom2->is_metallic())
 				{
 					return atomic_bond_type::IONIC;
 				}
-				else if(atom1.lock()->is_non_metal() and atom2.lock()->is_non_metal())
+				else if(atom1->is_non_metal() and atom2->is_non_metal())
 				{
 					return atomic_bond_type::COVALENT;
 				}
-				else if(atom1.lock()->is_metallic() and atom2.lock()->is_metallic())
+				else if(atom1->is_metallic() and atom2->is_metallic())
 				{
 					return atomic_bond_type::METALLIC;
 				}
@@ -110,8 +106,8 @@ namespace scifir
 			bool is_bond(const string&) const;
 
 		private:
-			weak_ptr<atom> atom1;
-			weak_ptr<atom> atom2;
+			shared_ptr<atom> atom1;
+			shared_ptr<atom> atom2;
 			atomic_bond_weight weight;
 			length bond_length;
 			//enthalpy bond_enthalpy;

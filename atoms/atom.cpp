@@ -74,14 +74,36 @@ namespace scifir
 		atom::orbital_configuration(7,orbital::f,14)
 	};
 
-	atom::atom() : species()
+	atom::atom() : species(),charge(),neutrons()
 	{}
 
-	atom::atom(atom::atomic_species new_atomic_species) : species(new_atomic_species)
+	atom::atom(const atom& x) : species(x.get_species()),charge(x.get_ionic_charge()),neutrons(x.get_mass_number())
+	{}
+	
+	atom::atom(atom&& x) : species(std::move(x.get_species())),charge(std::move(x.get_ionic_charge())),neutrons(std::move(x.get_mass_number()))
 	{}
 
-	atom::atom(const string& new_atomic_species) : species(create_atomic_species(new_atomic_species))
+	atom::atom(atom::atomic_species new_atomic_species) : species(new_atomic_species),charge(),neutrons()
 	{}
+
+	atom::atom(const string& new_atomic_species) : species(create_atomic_species(new_atomic_species)),charge(),neutrons()
+	{}
+
+	atom& atom::operator =(const atom& x)
+	{
+		species = x.get_species();
+		charge = x.get_ionic_charge();
+		neutrons = x.get_mass_number();
+		return *this;
+	}
+
+	atom& atom::operator =(atom&& x)
+	{
+		species = std::move(x.get_species());
+		charge = std::move(x.get_ionic_charge());
+		neutrons = std::move(x.get_mass_number());
+		return *this;
+	}
 
 	string atom::get_name() const
 	{
@@ -3366,7 +3388,7 @@ namespace scifir
 
 	bool same_specimen(const atom& x,const atom& y)
 	{
-		return (x.get_specimen() == y.get_specimen());
+		return (x.get_species() == y.get_species());
 	}
 
 	string to_string(const atom::atomic_species& x)

@@ -57,10 +57,15 @@ namespace scifir
 			};
 
 			atom();
+			atom(const atom&);
+			atom(atom&&);
 			explicit atom(atom::atomic_species);
 			explicit atom(const string&);
 
-			inline atom::atomic_species get_specimen() const
+			atom& operator =(const atom&);
+			atom& operator =(atom&&);
+
+			inline atom::atomic_species get_species() const
 			{
 				return species;
 			}

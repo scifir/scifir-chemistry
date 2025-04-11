@@ -4,8 +4,20 @@ using namespace std;
 
 namespace scifir
 {
-	molecule::molecule()
+	molecule::molecule() : atoms(),bonds()
 	{}
+
+	molecule::molecule(const vector<atom>& new_atoms,const vector<atomic_bond_builder>& new_atomic_bonds) : atoms(),bonds()
+	{
+		for (const atom& new_atom : new_atoms)
+		{
+			//atoms.push_back(make_shared<atom>(new_atom));
+		}
+		for (const atomic_bond_builder& new_atomic_bond : new_atomic_bonds)
+		{
+			//bonds.push_back(make_shared<atomic_bond>(atoms[new_atomic_bond.atom1],atoms[new_atomic_bond.atom2],new_atomic_bond.weight));
+		}
+	}
 
 	vector<shared_ptr<atom>> molecule::get_atoms() const
 	{
@@ -100,7 +112,7 @@ namespace scifir
 	mass molecule::get_standard_atomic_mass() const
 	{
 		vector<shared_ptr<atom>> atoms = get_atoms();
-		mass atoms_mass = 0_g;
+		mass atoms_mass = 0.0_g;
 		for (const auto& atom: atoms)
 		{
 			atoms_mass += atom->get_standard_atomic_mass();
@@ -111,7 +123,7 @@ namespace scifir
 	mass molecule::get_real_mass() const
 	{
 		vector<shared_ptr<atom>> atoms = get_atoms();
-		mass atoms_mass = 0_g;
+		mass atoms_mass = 0.0_g;
 		for (const auto& atom: atoms)
 		{
 			atoms_mass += atom->get_real_mass();
@@ -122,7 +134,7 @@ namespace scifir
 	mass molecule::get_real_mass_simplified() const
 	{
 		vector<shared_ptr<atom>> atoms = get_atoms();
-		mass atoms_mass = 0_g;
+		mass atoms_mass = 0.0_g;
 		for (const auto& atom: atoms)
 		{
 			atoms_mass += atom->get_real_mass_simplified();
@@ -133,7 +145,7 @@ namespace scifir
 	mass molecule::get_electrons_mass() const
 	{
 		vector<shared_ptr<atom>> atoms = get_atoms();
-		mass atoms_mass = 0_g;
+		mass atoms_mass = 0.0_g;
 		for (const auto& atom: atoms)
 		{
 			atoms_mass += atom->get_electrons_mass();
@@ -188,60 +200,55 @@ namespace scifir
 
 	int molecule::get_ionic_charge() const
 	{
-		vector<shared_ptr<atom>> atoms = get_atoms();
 		int ionic_charge = 0;
-		for (const auto& atom : atoms)
+		for (const shared_ptr<atom>& x_atom : atoms)
 		{
-			ionic_charge += atom->get_ionic_charge();
+			ionic_charge += x_atom->get_ionic_charge();
 		}
 		return ionic_charge;
 	}
 
 	bool molecule::is_ion() const
 	{
-		vector<shared_ptr<atom>> atoms = get_atoms();
-		for (const auto& atom : atoms)
+		for (const shared_ptr<atom>& x_atom : atoms)
 		{
-			if (!atom->is_ion())
+			if (x_atom->is_ion())
 			{
-				return false;
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 
 	bool molecule::is_anion() const
 	{
-		vector<shared_ptr<atom>> atoms = get_atoms();
-		for (const auto& atom : atoms)
+		for (const shared_ptr<atom>& x_atom : atoms)
 		{
-			if (!atom->is_anion())
+			if (x_atom->is_anion())
 			{
-				return false;
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 
 	bool molecule::is_cation() const
 	{
-		vector<shared_ptr<atom>> atoms = get_atoms();
-		for (const auto& atom : atoms)
+		for (const shared_ptr<atom>& x_atom : atoms)
 		{
-			if (!atom->is_cation())
+			if (x_atom->is_cation())
 			{
-				return false;
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 
 	bool molecule::is_neutral() const
 	{
-		vector<shared_ptr<atom>> atoms = get_atoms();
-		for (const auto& atom : atoms)
+		for (const shared_ptr<atom>& x_atom : atoms)
 		{
-			if (!atom->is_neutral())
+			if (!x_atom->is_neutral())
 			{
 				return false;
 			}
@@ -251,10 +258,9 @@ namespace scifir
 
 	bool molecule::has_atom(atom::atomic_species x) const
 	{
-		vector<shared_ptr<atom>> atoms = get_atoms();
-		for (const auto& atom: atoms)
+		for (const shared_ptr<atom>& x_atom: atoms)
 		{
-			if (atom->is_atom_specimen(x))
+			if (x_atom->is_atom_specimen(x))
 			{
 				return true;
 			}
@@ -264,8 +270,7 @@ namespace scifir
 
 	bool molecule::has_bond(const string& x) const
 	{
-		vector<shared_ptr<atomic_bond>> bonds = get_bonds();
-		for (const auto& bond : bonds)
+		for (const shared_ptr<atomic_bond>& bond : bonds)
 		{
 			if (bond->is_bond(x))
 			{

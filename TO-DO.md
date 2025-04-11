@@ -48,8 +48,9 @@
 - TODO: document that the unfinished atoms doesn't have their values actually calculated. Document which values and atoms aren't completed
 - TODO: document that normal_atom template-class isn't an abstract class because it's not intended to be used directly
 
-## MOLECULES (14)
+## MOLECULES (15)
 
+- TODO: atomi_bond_weight name is bad
 - TODO: atomic_bond should have a child class for the atomic bonds that are not geometrically identical but have different angles based on the position
 - TODO: implement the bond_length inside atomic_bond class
 - TODO: handling of molecule_literals (valid_molecule_literal-with error messages)

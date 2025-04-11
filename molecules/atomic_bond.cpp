@@ -10,7 +10,7 @@ namespace scifir
 	{
 	}
 
-	atomic_bond::atomic_bond(const shared_ptr<atom>& x,const shared_ptr<atom>& y,atomic_bond_weight new_atomic_bond_weight) : atom1(weak_ptr<atom>(x)),atom2(weak_ptr<atom>(y)),weight(new_atomic_bond_weight),bond_length("1 mm")
+	atomic_bond::atomic_bond(const shared_ptr<atom>& x,const shared_ptr<atom>& y,atomic_bond_weight new_atomic_bond_weight) : atom1(x),atom2(y),weight(new_atomic_bond_weight),bond_length("1 mm")
 	{
 	}
 
@@ -35,8 +35,6 @@ namespace scifir
 		{
 			return false;
 		}
-		shared_ptr<atom> atom1_lock = atom1.lock();
-		shared_ptr<atom> atom2_lock = atom2.lock();
 		return false;
 		/*if ((x[0] == atom1_lock->get_symbol() and x[2] == atom2_lock->get_symbol()) or (x[2] == atom1_lock->get_symbol() and x[0] == atom2_lock->get_symbol()))
 		{

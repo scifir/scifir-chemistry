@@ -10,6 +10,7 @@
 
 #include "../atoms/atom.hpp"
 #include "./atomic_bond.hpp"
+#include "./atomic_bond_builder.hpp"
 
 #include "scifir/units.hpp"
 
@@ -23,6 +24,7 @@ namespace scifir
 	{
 		public:
 			molecule();
+			explicit molecule(const vector<atom>& new_atoms,const vector<atomic_bond_builder>& new_atomic_bonds);
 
 			virtual vector<shared_ptr<atom>> get_atoms() const;
 			virtual vector<shared_ptr<atomic_bond>> get_bonds() const;

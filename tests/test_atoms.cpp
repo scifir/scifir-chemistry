@@ -10,7 +10,7 @@
 using namespace std;
 
 TEST_CASE("atom class","Full test of atom class") {
-	scifir::atom a = scifir::atom(scifir::atom::H);
+	scifir::atom a(scifir::atom::H);
 	
 }
 

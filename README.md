@@ -10,21 +10,22 @@ scifir-chemistry has atoms and molecules to use inside scientific software! It's
 
 scifir-chemistry is developed by [Ismael Correa](https://github.com/Iarfen/), a software developer of 34 years old. You can email if you find bugs, request new features, or have any other need, at ismael.correa.castro@gmail.com.
 
-# Core features
+## Core features
 
-## Molecules
+### Molecules
 
 The molecule class handles all molecules, and, also, any other, as defined by the IUPAC, **molecular entity**. So, although in general they represent molecules, a molecule object can represent a single atom, an ion, a radical, and any other related molecular entity. A molecule represents an atom when it contains no bonds and contains a single atom.
 
-## Substance
+### Substance
 
 The substance class handles all chemical substances, which can be any set of molecular entities with a defined amount of moles. So, a substance represents X moles of a given set of molecular entities. The difference between a substance an a mixture is that the mixture can be separated in different substances. Then, only non-separable molecular entities can conform a substance.
 
-## Matter
+### Matter
 
 The matter class handles any kind of matter in the universe. It can be any object, technology, life form, liquid, gas, or astronomical object present in the universe. To accomplish that, the matter class contains a set of substances, each of those forming part of the matter.
 
 The types available for the matter class are the following:
+
 - **substance:** A substance is any chemical substance that is not composed of parts separable by physical means.
 - **mixture:** A mixture is composed of two or more substances.
 - **artificial_object:** An artificial object is any object of artificial origin, created by humans or by another life form.
@@ -41,3 +42,7 @@ The types available for the matter class are the following:
 - **electronic_circuit:** Any electronic circuit that is not a device.
 - **astronomical_object:** Any astronomical object, like planets and moons. All astronomical objects have to be classified with this type, they can be classified as **natural_object**.
 - **astronomical_body:** Any astronomical body, like galaxies.
+
+### References
+
+- Functional groups: https://en.wikipedia.org/wiki/Functional_group

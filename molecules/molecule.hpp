@@ -17,7 +17,7 @@ using namespace std;
 
 namespace scifir
 {
-	enum class functional_group {carbonyl};
+	enum class functional_group {CARBONYL, AMINE, NITRILE, CARBOXYLIC_ACID, ESTER, ALCOHOL, ETHER, PHENYL};
 
 	class molecule
 	{
@@ -89,12 +89,6 @@ namespace scifir
             int number_of_enantiomers() const;
 
             bool is_eter() const;
-
-            //c_canvas_t get_image_2d() const;
-            //GLObject get_image_3d() const;
-            void print() const;
-            void print_image_2d() const;
-            void print_image_3d() const;
 
             virtual void save(const string&,const string&) const;
 

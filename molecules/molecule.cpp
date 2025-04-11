@@ -370,11 +370,6 @@ namespace scifir
 
     }*/
 
-    void molecule::print_image_3d() const
-    {
-
-    }
-
 	tuple<shared_ptr<atom>,scifir::coordinates_3d<>> molecule::get_image_3d_calculate_atom_position(shared_ptr<atom> new_atom,tuple<shared_ptr<atom>,scifir::coordinates_3d<>> previous_atom,tuple<shared_ptr<atom>,scifir::coordinates_3d<>> previous_atom2) const
     {
 		// Calculate the position based on the geometry of the previous_atom, each geometry gives a different position to calculate of, based on the angle of the two bonds (the new and the previous one)

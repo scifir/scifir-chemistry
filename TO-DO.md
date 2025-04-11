@@ -1,16 +1,12 @@
 # TO-DO - scifir-chemistry
 
-- **Number of TO-DOs:** 55
-
-## CURRENT (1)
-
-- TODO: if it's correct to use get_name() and get_abbreviation() with override for the ultimate_aminoacid class cause that can maybe increase the size of each instance
+- **Number of TO-DOs:** 54
 
 ## IMPORTANT (1)
 
 - TODO: use molecule_literal where it's needed instead of another name for the respective variable
 
-## ATOMS (16)
+## ATOMS (17)
 
 - TODO: atom::get_molecular_geometry_angle() needs good the square_antipristamic and tricapped_trigonal_prismatic values
 - TODO: finish atom::get_atomic_color() using an enum for all colors
@@ -35,6 +31,8 @@
 - TODO: add sqlite to save and get data of atoms and molecules
 - TODO: create triple_point and melting_point (maybe point classes)
 
+- TODO: in scifir-units add ionic_charge
+
 ## AFTER NEW ATOMS (5)
 
 - TODO: use a better criteria than the atomic number to determine radioactivity
@@ -50,7 +48,7 @@
 - TODO: document that the unfinished atoms doesn't have their values actually calculated. Document which values and atoms aren't completed
 - TODO: document that normal_atom template-class isn't an abstract class because it's not intended to be used directly
 
-## MOLECULES (15)
+## MOLECULES (14)
 
 - TODO: atomic_bond should have a child class for the atomic bonds that are not geometrically identical but have different angles based on the position
 - TODO: implement the bond_length inside atomic_bond class
@@ -64,16 +62,15 @@
 - TODO: is_ether(), and all the others of those functions
 - TODO: molecule::get_formula(),operator << of molecule
 - TODO: operator == and operator != of molecule
-- TODO: ether, carboxilic_acid, and all the other molecule subclasses of normal_molecule in order to have the same clarity as with units length, mass, etc.
 - TODO: ordering for molecules
 - TODO: .msm should have \<atom\> with nick attribute to abbreviate special atoms
 
 ## BIOCHEMISTRY (5)
 
-- TODO: global carbohidrates pointing to the molecule object
-- TODO: protein class, with special format to store and load it
+- TODO: creation of carbohidrates as instance of molecule class
+- TODO: protein class with special format to store and load it
 - TODO: molecule::is_biochemical()
-- TODO: Store the proteins only one time, and to calculate a lot of them use that unique instead for the data purpose. For movement modeling, with one instance is enough, and use position coordinates and rotation coordinates to store the data of each protein
+- TODO: think and implement this: store the proteins only one time, and to calculate a lot of them use that unique instead for the data purpose. For movement modeling, with one instance is enough, and use position coordinates and rotation coordinates to store the data of each protein
 - TODO: add abbreviation of one letter to aminoacids
 
 ## MATTER (1)

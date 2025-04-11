@@ -1,4 +1,6 @@
-# TODO - scifir-chemistry
+# TO-DO - scifir-chemistry
+
+- **Number of TO-DOs:** 55
 
 ## CURRENT (1)
 
@@ -66,9 +68,8 @@
 - TODO: ordering for molecules
 - TODO: .msm should have \<atom\> with nick attribute to abbreviate special atoms
 
-## BIOCHEMISTRY (6)
+## BIOCHEMISTRY (5)
 
-- TODO: find out if the better way to store new ultimate aminoacids is with the global variable map or if it's better another approach
 - TODO: global carbohidrates pointing to the molecule object
 - TODO: protein class, with special format to store and load it
 - TODO: molecule::is_biochemical()
@@ -119,6 +120,10 @@
 
 - TODO: bit_molecule class maybe has sense for some cases
 - TODO: maybe the spectrometer and/or the crystallographer can need some generic class that should be inside scifir-chemistry
+
+## FUTURE - BIOCHEMISTRY (1)
+
+- TODO: find out if the better way to store new extended aminoacids is with the global variable map or if it's better another approach
 
 ## FUTURE - GRAPHICS (4)
 

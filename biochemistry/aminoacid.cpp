@@ -1,5 +1,5 @@
 #include "./aminoacid.hpp"
-#include "./ultimate_aminoacid.hpp"
+#include "./extended_aminoacid.hpp"
 
 using namespace std;
 
@@ -21,38 +21,38 @@ namespace scifir
 		}
 		else
 		{
-			aminoacid_type = aminoacid::Err;
+			aminoacid_type = aminoacid::ERROR;
 		}
 	}
 
 	bool aminoacid::is_valid() const
 	{
-		return (aminoacid_type != aminoacid::Err);
+		return (aminoacid_type != aminoacid::ERROR);
 	}
 
 	string aminoacid::get_name() const
 	{
-		if (get_type() != aminoacid::Other)
+		if (aminoacid_type != aminoacid::OTHER)
 		{
-			return aminoacid_name(get_type());
+			return aminoacid_name(aminoacid_type);
 		}
 		else
 		{
-			ultimate_aminoacid x_ultimate = reinterpret_cast<const ultimate_aminoacid&>(*this);
-			return ultimate_aminoacids[x_ultimate.get_number()].get_name();
+			extended_aminoacid x_ultimate = reinterpret_cast<const extended_aminoacid&>(*this);
+			return extended_aminoacids[x_ultimate.get_number()].get_name();
 		}
 	}
 
 	string aminoacid::get_abbreviation() const
 	{
-		if (get_type() != aminoacid::Other)
+		if (aminoacid_type != aminoacid::OTHER)
 		{
-			return aminoacid_abbreviation(get_type());
+			return aminoacid_abbreviation(aminoacid_type);
 		}
 		else
 		{
-			ultimate_aminoacid x_ultimate = reinterpret_cast<const ultimate_aminoacid&>(*this);
-			return ultimate_aminoacids[x_ultimate.get_number()].get_abbreviation();
+			extended_aminoacid x_ultimate = reinterpret_cast<const extended_aminoacid&>(*this);
+			return extended_aminoacids[x_ultimate.get_number()].get_abbreviation();
 		}
 	}
 
@@ -146,14 +146,15 @@ namespace scifir
 		{
 			return "Valine";
 		}
-		else if (x == aminoacid::Err)
+		else if (x == aminoacid::ERROR)
 		{
 			return "Error";
 		}
-		else if (x == aminoacid::Other)
+		else if (x == aminoacid::OTHER)
 		{
 			return "Other";
 		}
+		return "";
 	}
 
 	string aminoacid_abbreviation(aminoacid::type x)
@@ -246,14 +247,15 @@ namespace scifir
 		{
 			return "Val";
 		}
-		else if (x == aminoacid::Err)
+		else if (x == aminoacid::ERROR)
 		{
 			return "Err";
 		}
-		else if (x == aminoacid::Other)
+		else if (x == aminoacid::OTHER)
 		{
 			return "000";
 		}
+		return "";
 	}
 
 	aminoacid::type create_aminoacid_type(const string& x)
@@ -348,7 +350,7 @@ namespace scifir
 		}
 		else
 		{
-			return aminoacid::Other;
+			return aminoacid::OTHER;
 		}
 	}
 
@@ -367,7 +369,7 @@ namespace scifir
 
 bool operator == (const scifir::aminoacid& x,const scifir::aminoacid& y)
 {
-	return (x.get_type() == y.get_type());
+	return (x.aminoacid_type == y.aminoacid_type);
 }
 
 bool operator != (const scifir::aminoacid& x,const scifir::aminoacid& y)

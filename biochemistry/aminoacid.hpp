@@ -11,7 +11,7 @@ namespace scifir
 	class aminoacid
 	{
 		public:
-			enum type {Ala,Arg,Asn,Asp,Cys,Glu,Gln,Gly,His,Ile,Leu,Lys,Met,Phe,Pro,Pyl,Sec,Ser,Thr,Trp,Tyr,Val,Other,Err};
+			enum type {Ala,Arg,Asn,Asp,Cys,Glu,Gln,Gly,His,Ile,Leu,Lys,Met,Phe,Pro,Pyl,Sec,Ser,Thr,Trp,Tyr,Val,OTHER,ERROR};
 
 			aminoacid();
 			aminoacid(aminoacid::type);

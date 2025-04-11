@@ -10,7 +10,7 @@ using namespace std;
 
 namespace scifir
 {
-	enum class carbohidrate_type {glucose,lactose,galactose,maltose,sacarose,fructose};
+	enum class carbohidrate_type {GLUCOSE,LACTOSE,GALACTOSE,MALTOSE,SACAROSE,FRUCTOSE};
 
 	class carbohidrate
 	{

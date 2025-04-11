@@ -5,36 +5,34 @@ using namespace std;
 namespace scifir
 {
 	carbohidrate::carbohidrate() : type()
-	{
-	}
+	{}
 
 	carbohidrate::carbohidrate(carbohidrate_type x) : type(x)
-	{
-	}
+	{}
 
 	string carbohidrate_name(carbohidrate_type x)
 	{
-		if (x == carbohidrate_type::glucose)
+		if (x == carbohidrate_type::GLUCOSE)
 		{
 			return "glucose";
 		}
-		else if (x == carbohidrate_type::lactose)
+		else if (x == carbohidrate_type::LACTOSE)
 		{
 			return "lactose";
 		}
-		else if (x == carbohidrate_type::galactose)
+		else if (x == carbohidrate_type::GALACTOSE)
 		{
 			return "galactose";
 		}
-		else if (x == carbohidrate_type::maltose)
+		else if (x == carbohidrate_type::MALTOSE)
 		{
 			return "maltose";
 		}
-		else if (x == carbohidrate_type::sacarose)
+		else if (x == carbohidrate_type::SACAROSE)
 		{
 			return "sacarose";
 		}
-		else if (x == carbohidrate_type::fructose)
+		else if (x == carbohidrate_type::FRUCTOSE)
 		{
 			return "fructose";
 		}

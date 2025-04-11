@@ -8,8 +8,13 @@
 
 #include "./chemistry/molecules/atomic_bond.hpp"
 #include "./chemistry/molecules/molecule.hpp"
-#include "./chemistry/molecules/normal_molecule.hpp"
 #include "./chemistry/molecules/chemical_reaction.hpp"
+
+#include "./chemistry/biochemistry/aminoacid.hpp"
+#include "./chemistry/biochemistry/biomolecule.hpp"
+#include "./chemistry/biochemistry/carbohidrate.hpp"
+#include "./chemistry/biochemistry/lipid.hpp"
+#include "./chemistry/biochemistry/protein.hpp"
 
 #include "./chemistry/substances/substance.hpp"
 

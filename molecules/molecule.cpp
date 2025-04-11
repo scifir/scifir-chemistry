@@ -36,7 +36,7 @@ namespace scifir
 		unsigned int atoms_count = 0;
 		for (const auto& atom : atoms)
 		{
-			//file_content << atom->get_file_format();
+			file_content << atom->save();
 			atoms_count++;
 			if (atoms_count < atoms.size())
 			{

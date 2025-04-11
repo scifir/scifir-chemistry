@@ -93,10 +93,10 @@ namespace scifir
             virtual void save(const string&,const string&) const;
 
 		private:
-			tuple<shared_ptr<atom>,scifir::coordinates_3d<>> get_image_3d_calculate_atom_position(shared_ptr<atom>,tuple<shared_ptr<atom>,scifir::coordinates_3d<>>,tuple<shared_ptr<atom>,scifir::coordinates_3d<>>) const;
-			void get_atoms_image_3d(vector<tuple<shared_ptr<atom>,scifir::coordinates_3d<>>>) const;
+			///tuple<shared_ptr<atom>,scifir::coordinates_3d<>> get_image_3d_calculate_atom_position(shared_ptr<atom>,tuple<shared_ptr<atom>,scifir::coordinates_3d<>>,tuple<shared_ptr<atom>,scifir::coordinates_3d<>>) const;
+			//void get_atoms_image_3d(vector<tuple<shared_ptr<atom>,scifir::coordinates_3d<>>>) const;
 			//void get_unpaired_electrons_image_3d(vector<tuple<scifir::coordinates_3d,math_vector>>) const;
-			void get_bonds_image_3d(vector<tuple<shared_ptr<atom>,scifir::coordinates_3d<>>>) const;
+			//void get_bonds_image_3d(vector<tuple<shared_ptr<atom>,scifir::coordinates_3d<>>>) const;
 			
 			vector<shared_ptr<atom>> atoms;
 			vector<shared_ptr<atomic_bond>> bonds;

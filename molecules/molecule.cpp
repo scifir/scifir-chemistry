@@ -87,13 +87,12 @@ namespace scifir
 
 	bool molecule::is_factible() const
 	{
-		vector<shared_ptr<atom>> atoms = get_atoms();
 		for (const auto& atom: atoms)
 		{
-			/*if (!atom->is_factible())
+			if (!atom->is_factible())
 			{
 				return false;
-			}*/
+			}
 		}
 		return true;
 	}
@@ -283,7 +282,7 @@ namespace scifir
 
 	bool molecule::has_functional_group(functional_group x) const
 	{
-		if (x == functional_group::carbonyl)
+		if (x == functional_group::CARBONYL)
 		{
 			return has_bond("C=0");
 		}
@@ -370,7 +369,7 @@ namespace scifir
 
     }*/
 
-	tuple<shared_ptr<atom>,scifir::coordinates_3d<>> molecule::get_image_3d_calculate_atom_position(shared_ptr<atom> new_atom,tuple<shared_ptr<atom>,scifir::coordinates_3d<>> previous_atom,tuple<shared_ptr<atom>,scifir::coordinates_3d<>> previous_atom2) const
+	/*tuple<shared_ptr<atom>,scifir::coordinates_3d<>> molecule::get_image_3d_calculate_atom_position(shared_ptr<atom> new_atom,tuple<shared_ptr<atom>,scifir::coordinates_3d<>> previous_atom,tuple<shared_ptr<atom>,scifir::coordinates_3d<>> previous_atom2) const
     {
 		// Calculate the position based on the geometry of the previous_atom, each geometry gives a different position to calculate of, based on the angle of the two bonds (the new and the previous one)
 		//vector<weak_ptr<atomic_bond>> bonds = new_atom->get_bonds();
@@ -379,9 +378,9 @@ namespace scifir
 			//tuple<shared_ptr<atom>,scifir::coordinates_3d<>> get_image_3d_calculate_atom_position();
 		//}
 		return tuple<shared_ptr<atom>,scifir::coordinates_3d<>>();
-    }
+    }*/
 
-    void molecule::get_atoms_image_3d(vector<tuple<shared_ptr<atom>,scifir::coordinates_3d<>>> atom_positions) const
+    /*void molecule::get_atoms_image_3d(vector<tuple<shared_ptr<atom>,scifir::coordinates_3d<>>> atom_positions) const
 	{
 		vector<shared_ptr<atom>> atoms = get_atoms();
 		for (const auto& atom : atoms)
@@ -389,21 +388,21 @@ namespace scifir
 			// get atom 3d image calling atom.get_image_3d() or similar
 			// use the vector<scifir::coordinates_3d> to position the image related to the full image
 		}
-	}
+	}*/
 
 	/*void molecule::get_unpaired_electrons_image_3d(vector<tuple<scifir::coordinates_3d,math_vector>> electron_positions) const
 	{
 		// the math_vector is for directions
 	}*/
 
-	void molecule::get_bonds_image_3d(vector<tuple<shared_ptr<atom>,scifir::coordinates_3d<>>> atom_positions) const
+	/*void molecule::get_bonds_image_3d(vector<tuple<shared_ptr<atom>,scifir::coordinates_3d<>>> atom_positions) const
 	{
 		vector<shared_ptr<atomic_bond>> bonds = get_bonds();
 		for (const auto& bond: bonds)
 		{
 			// get atomic bond 3d image by creating a cillinder and connecting it between the two centers of the atoms
 		}
-	}
+	}*/
 
 	string generate_hash(const molecule& x)
 	{

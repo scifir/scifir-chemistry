@@ -106,7 +106,7 @@ namespace scifir
 				return (x == species);
 			}
 
-			//bool is_factible() const;
+			bool is_factible() const;
 
 			int get_ionic_charge() const;
 
@@ -250,7 +250,7 @@ namespace scifir
 
             inline bool is_common_isotope() const
             {
-            	return (get_mass_number() == neutrons);
+            	return (get_common_mass_number() == neutrons);
             }
 
             inline bool is_uncommon_isotope() const
@@ -279,6 +279,8 @@ namespace scifir
 			{
 
 			}*/
+
+			string save() const;
 
 		private:
 			atom::atomic_species species;

@@ -2948,6 +2948,32 @@ namespace scifir
 		return cas_number();
 	}*/
 
+	bool atom::is_factible() const
+	{
+		if (get_ionic_charge() > get_z())
+		{
+			return false;
+		}
+		if (atom::is_atomic_group_a())
+		{
+			if (atom::is_atom_specimen(atom::H) or atom::is_atom_specimen(atom::He))
+			{
+				if ((get_ionic_charge() < 0) and (std::abs(get_ionic_charge()) > (2 - get_z())))
+				{
+					return false;
+				}
+			}
+			else
+			{
+				if ((get_ionic_charge() < 0) and (std::abs(get_ionic_charge()) > (8 - get_z())))
+				{
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
 	int atom::get_ionic_charge() const
 	{
 		atom::atomic_group x_atomic_group = get_atomic_group();
@@ -3211,6 +3237,17 @@ namespace scifir
 	bool atom::is_chiral() const
 	{
 		return true;
+	}
+
+	string atom::save() const
+	{
+		ostringstream output;
+		output << get_symbol();
+		if (is_uncommon_isotope())
+		{
+			output << "[" << neutrons << "]";
+		}
+		return output.str();
 	}
 
 	scifir::angle get_molecular_geometry_angle(const atom& x,molecular_geometry_position position1,molecular_geometry_position position2)

@@ -7,11 +7,11 @@ using namespace std;
 
 namespace scifir
 {
-	class detailed_atom
+	class extended_atom
 	{
 		public:
-			detailed_atom();
-			detailed_atom(const string&);
+			extended_atom();
+			extended_atom(const string&);
 	};
 }
 

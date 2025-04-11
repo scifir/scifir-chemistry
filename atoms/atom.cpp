@@ -867,42 +867,90 @@ namespace scifir
 
 	int atom::get_valence_number() const
 	{
-		if (species == atom::H or species == atom::D or species == atom::T or species == atom::Li or species == atom::Na or species == atom::K or species == atom::Rb or species == atom::Cs or species == atom::Fr)
+		if (get_atomic_group() == IA)
 		{
 			return 1;
 		}
-		else if (species == atom::Be or species == atom::Mg or species == atom::Ca or species == atom::Sr or species == atom::Ba or species == atom::Ra)
+		else if(get_atomic_group() == IIA)
 		{
 			return 2;
 		}
-		else if (species == atom::B or species == atom::Al or species == atom::Ga or species == atom::In or species == atom::Tl or species == atom::Nh)
+		else if(get_atomic_group() == IIIA)
 		{
 			return 3;
 		}
-		else if (species == atom::C or species == atom::Si or species == atom::Ge or species == atom::Sn or species == atom::Pb or species == atom::Fl)
+		else if(get_atomic_group() == IVA)
 		{
 			return 4;
 		}
-		else if (species == atom::N or species == atom::P or species == atom::As or species == atom::Sb or species == atom::Bi or species == atom::Mc)
+		else if(get_atomic_group() == VA)
 		{
 			return 5;
 		}
-		else if (species == atom::O or species == atom::S or species == atom::Se or species == atom::Te or species == atom::Po or species == atom::Lv)
+		else if(get_atomic_group() == VIA)
 		{
 			return 6;
 		}
-		else if (species == atom::F or species == atom::Cl or species == atom::Br or species == atom::I or species == atom::At or species == atom::Ts)
+		else if(get_atomic_group() == VIIA)
 		{
 			return 7;
 		}
-		else if (species == atom::He or species == atom::Ne or species == atom::Ar or species == atom::Kr or species == atom::Xe or species == atom::Rn or species == atom::Og)
+		else if(get_atomic_group() == VIIIA)
 		{
 			return 8;
 		}
-		return 0;
+		if (get_atomic_group() == IIIB)
+		{
+			return 3;
+		}
+		else if (get_atomic_group() == IVB)
+		{
+			return 4;
+		}
+		else if (get_atomic_group() == VB)
+		{
+			return 5;
+		}
+		else if (get_atomic_group() == VIB)
+		{
+			return 6;
+		}
+		else if (get_atomic_group() == VIIB)
+		{
+			return 7;
+		}
+		else if (get_atomic_group() == VIIIB)
+		{
+			if (get_z() == 26 or get_z() == 44 or get_z() == 76 or get_z() == 108)
+			{
+				return 8;
+			}
+			else if (get_z() == 27 or get_z() == 45 or get_z() == 77 or get_z() == 109)
+			{
+				return 9;
+			}
+			else if (get_z() == 28 or get_z() == 46 or get_z() == 78 or get_z() == 110)
+			{
+				return 10;
+			}
+		}
+		else if (get_atomic_group() == IB)
+		{
+			return 11;
+		}
+		else if (get_atomic_group() == IIB)
+		{
+			return 12;
+		}
+		return 1;
 	}
 
 	int atom::get_mass_number() const
+	{
+		return neutrons;
+	}
+
+	int atom::get_common_mass_number() const
 	{
 		switch (species)
 		{
@@ -2906,30 +2954,30 @@ namespace scifir
 		switch (x_atomic_group)
 		{
 			case atom::IA:
-				return 1;
+				return 1 + charge;
 			case atom::IIA:
-				return 2;
+				return 2 + charge;
 			case atom::IIIA:
-				return 3;
+				return 3 + charge;
 			case atom::IVA:
-				return 4;
+				return 4 + charge;
 			case atom::VA:
-				return -3;
+				return -3 + charge;
 			case atom::VIA:
-				return -2;
+				return -2 + charge;
 			case atom::VIIA:
-				return -1;
+				return -1 + charge;
 			case atom::VIIIA:
-				return 0;
+				return 0 + charge;
 			default:
-				return 0;
+				return 0 + charge;
 		}
-		return 0;
+		return 0 + charge;
 	}
 
 	int atom::get_electrons_number() const
 	{
-		return get_z();
+		return get_z() - charge;
 	}
 
 	vector<atom::orbital_configuration> atom::get_electronic_configuration() const
@@ -2972,41 +3020,22 @@ namespace scifir
 
 	int atom::get_lone_pairs() const
 	{
-		atom::atomic_group x_atomic_group = get_atomic_group();
-		if (x_atomic_group == atom::IA or x_atomic_group == atom::IIA or x_atomic_group == atom::IIIA or x_atomic_group == atom::IVA)
-		{
-			return 0;
-		}
-		else if (x_atomic_group == atom::VA)
-		{
-			return 1;
-		}
-		else if (x_atomic_group == atom::VIA)
-		{
-			return 2;
-		}
-		else if (x_atomic_group == atom::VIIA)
-		{
-			return 3;
-		}
-		else if (x_atomic_group == atom::VIIIA)
-		{
-			return 4;
-		}
-		return 0;
+		return (get_valence_number() - charge) / 2;
 	}
 
 	mass atom::get_real_mass() const
 	{
-		return scifir::mass();
-		//return get_z() * proton_mass + get_mass_number() * neutron_mass;
+		return mass(get_z() * scifir::proton_mass + get_mass_number() * scifir::neutron_mass);
 	}
 
 	mass atom::get_electrons_mass() const
 	{
-		//int electrons_number = get_electrons_number();
-		//return electrons_number * electron_mass;
-		return scifir::mass();
+		return mass(get_electrons_number() * scifir::electron_mass);
+	}
+
+	bool atom::is_exotic() const
+	{
+		return false;
 	}
 
 	scifir::color atom::get_atomic_color() const
@@ -3182,86 +3211,6 @@ namespace scifir
 	bool atom::is_chiral() const
 	{
 		return true;
-	}
-
-	int atom::valence_number() const
-	{
-		if (get_atomic_group() == IA)
-		{
-			return 1;
-		}
-		else if(get_atomic_group() == IIA)
-		{
-			return 2;
-		}
-		else if(get_atomic_group() == IIIA)
-		{
-			return 3;
-		}
-		else if(get_atomic_group() == IVA)
-		{
-			return 4;
-		}
-		else if(get_atomic_group() == VA)
-		{
-			return 5;
-		}
-		else if(get_atomic_group() == VIA)
-		{
-			return 6;
-		}
-		else if(get_atomic_group() == VIIA)
-		{
-			return 7;
-		}
-		else if(get_atomic_group() == VIIIA)
-		{
-			return 8;
-		}
-		if (get_atomic_group() == IIIB)
-		{
-			return 3;
-		}
-		else if (get_atomic_group() == IVB)
-		{
-			return 4;
-		}
-		else if (get_atomic_group() == VB)
-		{
-			return 5;
-		}
-		else if (get_atomic_group() == VIB)
-		{
-			return 6;
-		}
-		else if (get_atomic_group() == VIIB)
-		{
-			return 7;
-		}
-		else if (get_atomic_group() == VIIIB)
-		{
-			if (get_z() == 26 or get_z() == 44 or get_z() == 76 or get_z() == 108)
-			{
-				return 8;
-			}
-			else if (get_z() == 27 or get_z() == 45 or get_z() == 77 or get_z() == 109)
-			{
-				return 9;
-			}
-			else if (get_z() == 28 or get_z() == 46 or get_z() == 78 or get_z() == 110)
-			{
-				return 10;
-			}
-		}
-		else if (get_atomic_group() == IB)
-		{
-			return 11;
-		}
-		else if (get_atomic_group() == IIB)
-		{
-			return 12;
-		}
-		return 1;
 	}
 
 	scifir::angle get_molecular_geometry_angle(const atom& x,molecular_geometry_position position1,molecular_geometry_position position2)
@@ -3711,9 +3660,489 @@ namespace scifir
 
 	atom::atomic_species create_atomic_species(const string& x)
 	{
-		if (x == "H")
+		if (x == "NO_SPECIES")
+		{
+			return atom::NO_SPECIES;
+		}
+		else if (x == "H")
 		{
 			return atom::H;
+		}
+		else if (x == "D")
+		{
+			return atom::D;
+		}
+		else if (x == "T")
+		{
+			return atom::T;
+		}
+		else if (x == "He")
+		{
+			return atom::He;
+		}
+		else if (x == "Li")
+		{
+			return atom::Li;
+		}
+		else if (x == "Be")
+		{
+			return atom::Be;
+		}
+		else if (x == "B")
+		{
+			return atom::B;
+		}
+		else if (x == "C")
+		{
+			return atom::C;
+		}
+		else if (x == "N")
+		{
+			return atom::N;
+		}
+		else if (x == "O")
+		{
+			return atom::O;
+		}
+		else if (x == "F")
+		{
+			return atom::F;
+		}
+		else if (x == "Ne")
+		{
+			return atom::Ne;
+		}
+		else if (x == "Na")
+		{
+			return atom::Na;
+		}
+		else if (x == "Mg")
+		{
+			return atom::Mg;
+		}
+		else if (x == "Al")
+		{
+			return atom::Al;
+		}
+		else if (x == "Si")
+		{
+			return atom::Si;
+		}
+		else if (x == "P")
+		{
+			return atom::P;
+		}
+		else if (x == "S")
+		{
+			return atom::S;
+		}
+		else if (x == "Cl")
+		{
+			return atom::Cl;
+		}
+		else if (x == "Ar")
+		{
+			return atom::Ar;
+		}
+		else if (x == "K")
+		{
+			return atom::K;
+		}
+		else if (x == "Ca")
+		{
+			return atom::Ca;
+		}
+		else if (x == "Sc")
+		{
+			return atom::Sc;
+		}
+		else if (x == "Ti")
+		{
+			return atom::Ti;
+		}
+		else if (x == "V")
+		{
+			return atom::V;
+		}
+		else if (x == "Cr")
+		{
+			return atom::Cr;
+		}
+		else if (x == "Mn")
+		{
+			return atom::Mn;
+		}
+		else if (x == "Fe")
+		{
+			return atom::Fe;
+		}
+		else if (x == "Co")
+		{
+			return atom::Co;
+		}
+		else if (x == "Ni")
+		{
+			return atom::Ni;
+		}
+		else if (x == "Cu")
+		{
+			return atom::Cu;
+		}
+		else if (x == "Zn")
+		{
+			return atom::Zn;
+		}
+		else if (x == "Ga")
+		{
+			return atom::Ga;
+		}
+		else if (x == "Ge")
+		{
+			return atom::Ge;
+		}
+		else if (x == "As")
+		{
+			return atom::As;
+		}
+		else if (x == "Se")
+		{
+			return atom::Se;
+		}
+		else if (x == "Br")
+		{
+			return atom::Br;
+		}
+		else if (x == "Kr")
+		{
+			return atom::Kr;
+		}
+		else if (x == "Rb")
+		{
+			return atom::Rb;
+		}
+		else if (x == "Sr")
+		{
+			return atom::Sr;
+		}
+		else if (x == "Y")
+		{
+			return atom::Y;
+		}
+		else if (x == "Zr")
+		{
+			return atom::Zr;
+		}
+		else if (x == "Nb")
+		{
+			return atom::Nb;
+		}
+		else if (x == "Mo")
+		{
+			return atom::Mo;
+		}
+		else if (x == "Tc")
+		{
+			return atom::Tc;
+		}
+		else if (x == "Ru")
+		{
+			return atom::Ru;
+		}
+		else if (x == "Rh")
+		{
+			return atom::Rh;
+		}
+		else if (x == "Pd")
+		{
+			return atom::Pd;
+		}
+		else if (x == "Ag")
+		{
+			return atom::Ag;
+		}
+		else if (x == "Cd")
+		{
+			return atom::Cd;
+		}
+		else if (x == "In")
+		{
+			return atom::In;
+		}
+		else if (x == "Sn")
+		{
+			return atom::Sn;
+		}
+		else if (x == "Sb")
+		{
+			return atom::Sb;
+		}
+		else if (x == "Te")
+		{
+			return atom::Te;
+		}
+		else if (x == "I")
+		{
+			return atom::I;
+		}
+		else if (x == "Xe")
+		{
+			return atom::Xe;
+		}
+		else if (x == "Cs")
+		{
+			return atom::Cs;
+		}
+		else if (x == "Ba")
+		{
+			return atom::Ba;
+		}
+		else if (x == "La")
+		{
+			return atom::La;
+		}
+		else if (x == "Ce")
+		{
+			return atom::Ce;
+		}
+		else if (x == "Pr")
+		{
+			return atom::Pr;
+		}
+		else if (x == "Nd")
+		{
+			return atom::Nd;
+		}
+		else if (x == "Pm")
+		{
+			return atom::Pm;
+		}
+		else if (x == "Sm")
+		{
+			return atom::Sm;
+		}
+		else if (x == "Eu")
+		{
+			return atom::Eu;
+		}
+		else if (x == "Gd")
+		{
+			return atom::Gd;
+		}
+		else if (x == "Tb")
+		{
+			return atom::Tb;
+		}
+		else if (x == "Dy")
+		{
+			return atom::Dy;
+		}
+		else if (x == "Ho")
+		{
+			return atom::Ho;
+		}
+		else if (x == "Er")
+		{
+			return atom::Er;
+		}
+		else if (x == "Tm")
+		{
+			return atom::Tm;
+		}
+		else if (x == "Yb")
+		{
+			return atom::Yb;
+		}
+		else if (x == "Lu")
+		{
+			return atom::Lu;
+		}
+		else if (x == "Hf")
+		{
+			return atom::Hf;
+		}
+		else if (x == "Ta")
+		{
+			return atom::Ta;
+		}
+		else if (x == "W")
+		{
+			return atom::W;
+		}
+		else if (x == "Re")
+		{
+			return atom::Re;
+		}
+		else if (x == "Os")
+		{
+			return atom::Os;
+		}
+		else if (x == "Ir")
+		{
+			return atom::Ir;
+		}
+		else if (x == "Pt")
+		{
+			return atom::Pt;
+		}
+		else if (x == "Au")
+		{
+			return atom::Au;
+		}
+		else if (x == "Hg")
+		{
+			return atom::Hg;
+		}
+		else if (x == "Tl")
+		{
+			return atom::Tl;
+		}
+		else if (x == "Pb")
+		{
+			return atom::Pb;
+		}
+		else if (x == "Bi")
+		{
+			return atom::Bi;
+		}
+		else if (x == "Po")
+		{
+			return atom::Po;
+		}
+		else if (x == "At")
+		{
+			return atom::At;
+		}
+		else if (x == "Rn")
+		{
+			return atom::Rn;
+		}
+		else if (x == "Fr")
+		{
+			return atom::Fr;
+		}
+		else if (x == "Ra")
+		{
+			return atom::Ra;
+		}
+		else if (x == "Ac")
+		{
+			return atom::Ac;
+		}
+		else if (x == "Th")
+		{
+			return atom::Th;
+		}
+		else if (x == "Pa")
+		{
+			return atom::Pa;
+		}
+		else if (x == "U")
+		{
+			return atom::U;
+		}
+		else if (x == "Np")
+		{
+			return atom::Np;
+		}
+		else if (x == "Pu")
+		{
+			return atom::Pu;
+		}
+		else if (x == "Am")
+		{
+			return atom::Am;
+		}
+		else if (x == "Cm")
+		{
+			return atom::Cm;
+		}
+		else if (x == "Bk")
+		{
+			return atom::Bk;
+		}
+		else if (x == "Cf")
+		{
+			return atom::Cf;
+		}
+		else if (x == "Es")
+		{
+			return atom::Es;
+		}
+		else if (x == "Fm")
+		{
+			return atom::Fm;
+		}
+		else if (x == "Md")
+		{
+			return atom::Md;
+		}
+		else if (x == "No")
+		{
+			return atom::No;
+		}
+		else if (x == "Lr")
+		{
+			return atom::Lr;
+		}
+		else if (x == "Rf")
+		{
+			return atom::Rf;
+		}
+		else if (x == "Db")
+		{
+			return atom::Db;
+		}
+		else if (x == "Sg")
+		{
+			return atom::Sg;
+		}
+		else if (x == "Bh")
+		{
+			return atom::Bh;
+		}
+		else if (x == "Hs")
+		{
+			return atom::Hs;
+		}
+		else if (x == "Mt")
+		{
+			return atom::Mt;
+		}
+		else if (x == "Ds")
+		{
+			return atom::Ds;
+		}
+		else if (x == "Rg")
+		{
+			return atom::Rg;
+		}
+		else if (x == "Cn")
+		{
+			return atom::Cn;
+		}
+		else if (x == "Nh")
+		{
+			return atom::Nh;
+		}
+		else if (x == "Fl")
+		{
+			return atom::Fl;
+		}
+		else if (x == "Mc")
+		{
+			return atom::Mc;
+		}
+		else if (x == "Lv")
+		{
+			return atom::Lv;
+		}
+		else if (x == "Ts")
+		{
+			return atom::Ts;
+		}
+		else if (x == "Og")
+		{
+			return atom::Og;
 		}
 		return atom::NO_SPECIES;
 	}

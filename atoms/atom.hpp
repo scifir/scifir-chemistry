@@ -75,6 +75,7 @@ namespace scifir
 			int get_z() const;
 			int get_valence_number() const;
 			int get_mass_number() const;
+			int get_common_mass_number() const;
 
 			length get_atomic_radius() const;
 			mass get_standard_atomic_mass() const;
@@ -249,8 +250,7 @@ namespace scifir
 
             inline bool is_common_isotope() const
             {
-            	return true;
-            	//return (get_mass_number() == T::mass_number);
+            	return (get_mass_number() == neutrons);
             }
 
             inline bool is_uncommon_isotope() const
@@ -258,7 +258,7 @@ namespace scifir
             	return !is_common_isotope();
             }
 
-            //bool is_exotic() const;
+            virtual bool is_exotic() const;
 
             scifir::color get_atomic_color() const;
 
@@ -275,17 +275,9 @@ namespace scifir
 				return !is_chiral();
 			}
 
-			int valence_number() const;
-
 			/*electron_cloud get_electron_cloud() const
 			{
 
-			}
-
-			void print_electron_cloud() const
-			{
-				electron_cloud x = get_electron_cloud();
-				x.print_3d();
 			}*/
 
 		private:

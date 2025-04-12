@@ -11,11 +11,11 @@ namespace scifir
 	{
 		for (const atom& new_atom : new_atoms)
 		{
-			//atoms.push_back(make_shared<atom>(new_atom));
+			atoms.push_back(make_shared<atom>(new_atom));
 		}
 		for (const atomic_bond_builder& new_atomic_bond : new_atomic_bonds)
 		{
-			//bonds.push_back(make_shared<atomic_bond>(atoms[new_atomic_bond.atom1],atoms[new_atomic_bond.atom2],new_atomic_bond.weight));
+			bonds.push_back(make_shared<atomic_bond>(atoms[new_atomic_bond.atom1],atoms[new_atomic_bond.atom2],new_atomic_bond.weight));
 		}
 	}
 
@@ -167,18 +167,20 @@ namespace scifir
 
 	string molecule::get_canonical_formula() const
 	{
-		vector<shared_ptr<atom>> atoms = get_atoms();
 		vector<shared_ptr<atom>> atoms_used = vector<shared_ptr<atom>>();
 		ostringstream formula_text;
 		for (const shared_ptr<atom>& atom1 : atoms)
 		{
 			int atom_number = 0;
 			bool is_repeated = false;
-			for (const shared_ptr<atom>& atom_used : atoms_used)
+			if (atoms_used.size() > 0)
 			{
-				if (same_specimen(*atom_used,*atom1))
+				for (const shared_ptr<atom>& atom_used : atoms_used)
 				{
-					is_repeated = true;
+					if (same_specimen(*atom_used,*atom1))
+					{
+						is_repeated = true;
+					}
 				}
 			}
 			if (is_repeated)
@@ -192,7 +194,11 @@ namespace scifir
 					atom_number++;
 				}
 			}
-			formula_text << atom1->get_symbol().c_str() << atom_number;
+			formula_text << atom1->get_symbol();
+			if (atom_number > 1)
+			{
+				formula_text << atom_number;
+			}
 			atoms_used.push_back(atom1);
 		}
 		return formula_text.str();

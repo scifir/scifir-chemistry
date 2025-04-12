@@ -343,7 +343,7 @@ namespace scifir
 
 	string atom::get_symbol() const
 	{
-		return std::to_string(species);
+		return to_string(species);
 	}
 
 	atom::atomic_group atom::get_atomic_group() const

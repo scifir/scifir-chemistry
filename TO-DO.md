@@ -2,13 +2,12 @@
 
 - **Number of TO-DOs:** 54
 
-## IMPORTANT (1)
+## IMPORTANT (2)
 
 - TODO: use molecule_literal where it's needed instead of another name for the respective variable
+- TODO: segmentation fault with some string constants in scifir-units
 
 ## ATOMS (17)
-
-- TODO: segmentation fault with some string constants
 
 - TODO: atom::get_molecular_geometry_angle() needs good the square_antipristamic and tricapped_trigonal_prismatic values
 - TODO: review all electrical classes, atom::get_lone_pairs() among others
@@ -62,7 +61,7 @@
 - TODO: are_isomers(), are_conformational_isomers(), are_enantiomers()
 - TODO: are_miscible(), are_inmiscible()
 - TODO: molecule::is_cyclical() and molecule::is_acyclical()
-- TODO: is_ether(), and all the others of those functions
+- TODO: has_category(functional_group), and all the others of those functions
 - TODO: molecule::get_formula(),operator << of molecule
 - TODO: operator == and operator != of molecule
 - TODO: ordering for molecules

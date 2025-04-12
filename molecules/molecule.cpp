@@ -19,6 +19,18 @@ namespace scifir
 		}
 	}
 
+	molecule::molecule(const vector<atom::atomic_species>& new_atoms,const vector<atomic_bond_builder>& new_atomic_bonds) : atoms(),bonds()
+	{
+		for (const atom::atomic_species& new_atom : new_atoms)
+		{
+			atoms.push_back(make_shared<atom>(new_atom));
+		}
+		for (const atomic_bond_builder& new_atomic_bond : new_atomic_bonds)
+		{
+			bonds.push_back(make_shared<atomic_bond>(atoms[new_atomic_bond.atom1],atoms[new_atomic_bond.atom2],new_atomic_bond.weight));
+		}
+	}
+
 	vector<shared_ptr<atom>> molecule::get_atoms() const
 	{
 		return atoms;
@@ -137,7 +149,7 @@ namespace scifir
 		mass atoms_mass = 0.0_g;
 		for (const auto& atom: atoms)
 		{
-			//atoms_mass += atom->get_real_mass_simplified();
+			atoms_mass += atom->get_real_mass_simplified();
 		}
 		return atoms_mass;
 	}

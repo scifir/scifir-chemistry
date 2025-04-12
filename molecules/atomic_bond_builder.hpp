@@ -14,7 +14,7 @@ namespace scifir
 	{
 		public:
 			atomic_bond_builder();
-			explicit atomic_bond_builder(int new_atom1,int new_atom2,atomic_bond_weight new_weight = atomic_bond_weight::SINGLE);
+			atomic_bond_builder(int new_atom1,int new_atom2,atomic_bond_weight new_weight = atomic_bond_weight::SINGLE);
 
 			int atom1;
 			int atom2;

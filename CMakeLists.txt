@@ -91,7 +91,7 @@ substances)
 file(GLOB_RECURSE TARGET_SRC analytical/*.cpp atoms/*.cpp molecules/*.cpp biochemistry/*.cpp particles/*.cpp substances/*.cpp constants.cpp)
 
 add_library(scifir-chemistry ${TARGET_SRC})
-target_link_libraries(scifir-chemistry Boost::system ${ICU_LIBRARIES} scifir-units)
+target_link_libraries(scifir-chemistry scifir-units Boost::system ${ICU_LIBRARIES})
 
 if(BUILD_TESTING)
 
@@ -103,11 +103,26 @@ if(BUILD_TESTING)
 
 	if(Catch2_FOUND)
 		enable_testing()
+		
+		add_executable(test_atomic_orbital tests/test_atomic_orbital.cpp)
+		target_link_libraries(test_atomic_orbital PRIVATE Catch2::Catch2WithMain scifir-chemistry scifir-units Boost::system ${ICU_LIBRARIES})
+		add_test(NAME test_atomic_orbital COMMAND test_atomic_orbital)
+		set_tests_properties(test_atomic_orbital PROPERTIES LABELS tests)
 
 		add_executable(test_atoms tests/test_atoms.cpp)
-		target_link_libraries(test_atoms PRIVATE Catch2::Catch2WithMain scifir-chemistry scifir-units Boost::system ${ICU_LIBRARIES} )
+		target_link_libraries(test_atoms PRIVATE Catch2::Catch2WithMain scifir-chemistry scifir-units Boost::system ${ICU_LIBRARIES})
 		add_test(NAME test_atoms COMMAND test_atoms)
 		set_tests_properties(test_atoms PROPERTIES LABELS tests)
+
+		add_executable(test_atomic_bond tests/test_atomic_bond.cpp)
+		target_link_libraries(test_atomic_bond PRIVATE Catch2::Catch2WithMain scifir-chemistry scifir-units Boost::system ${ICU_LIBRARIES})
+		add_test(NAME test_atomic_bond COMMAND test_atomic_bond)
+		set_tests_properties(test_atomic_bond PROPERTIES LABELS tests)
+
+		add_executable(test_molecule tests/test_molecule.cpp)
+		target_link_libraries(test_molecule PRIVATE Catch2::Catch2WithMain scifir-chemistry scifir-units Boost::system ${ICU_LIBRARIES})
+		add_test(NAME test_molecule COMMAND test_molecule)
+		set_tests_properties(test_molecule PROPERTIES LABELS tests)
 
 		include(CTest)
 		include(Catch)

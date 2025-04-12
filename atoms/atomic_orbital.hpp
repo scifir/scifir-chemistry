@@ -1,64 +1,41 @@
 #ifndef SCIFIR_CHEMISTRY_ATOMS_ATOMIC_ORBITAL_HPP_INCLUDED
 #define SCIFIR_CHEMISTRY_ATOMS_ATOMIC_ORBITAL_HPP_INCLUDED
 
-#include "../particles/electron.hpp"
-
 #include <string>
 #include <vector>
+
+#include "../particles/electron.hpp"
 
 using namespace std;
 
 namespace scifir
 {
-	enum class orbital_symbol {s, p, d, f};
-
 	class orbital
 	{
 		public:
 			enum type {s,p,d,f};
 
-			orbital(orbital_symbol, int, int);
+			orbital();
+			orbital(const orbital& x);
+			orbital(orbital&& x);
+			explicit orbital(int new_period, orbital::type new_orbital_specie, int electron_number);
 
-			orbital_symbol orbital_specie;
-			string name;
+			orbital& operator =(const orbital& x);
+			orbital& operator =(orbital&& x);
+
+			orbital::type orbital_specie;
 			vector<scifir::electron> electrons;
 			int period;
 	};
-
-	class orbital_s : public orbital
-	{
-		public:
-			orbital_s(int, int);
-	};
-
-	class orbital_p : public orbital
-	{
-		public:
-			orbital_p(int, int);
-	};
-
-	class orbital_d : public orbital
-	{
-		public:
-			orbital_d(int, int);
-	};
-
-	class orbital_f : public orbital
-	{
-		public:
-			orbital_f(int, int);
-	};
-
-	orbital create_orbital(orbital_symbol, int, int);
 
 	class orbital_group
 	{
 		public:
 			vector<orbital> orbitals;
-			orbital_symbol orbital_specie;
+			orbital::type orbital_specie;
 			unsigned int orbital_max;
 
-			orbital_group(orbital_symbol);
+			orbital_group(orbital::type);
 			void add(orbital);
 			vector<orbital>::size_type total_orbitals();
 			bool is_full();
@@ -69,6 +46,8 @@ namespace scifir
 
 			orbital operator [](int);
 	};
+
+	string to_string(orbital::type x);
 }
 
 ostream& operator <<(ostream&, const scifir::orbital&);

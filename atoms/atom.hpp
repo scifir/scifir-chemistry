@@ -11,7 +11,7 @@
 
 #include "scifir/units.hpp"
 
-#include "atomic_orbital.hpp"
+#include "./atomic_orbital.hpp"
 
 using namespace std;
 
@@ -43,27 +43,14 @@ namespace scifir
 
 			enum atomic_group {NO_GROUP, IA, IIA, IIIA, IVA, VA, VIA, VIIA, VIIIA, IB, IIB, IIIB, IVB, VB, VIB, VIIB, VIIIB, LA, AC};
 
-			class orbital_configuration
-			{
-				public:
-					orbital_configuration();
-					orbital_configuration(int,orbital::type,int);
-
-					string display() const;
-
-					int period;
-					orbital::type orbital_type;
-					int electrons;
-			};
-
 			atom();
-			atom(const atom&);
-			atom(atom&&);
+			atom(const atom& x);
+			atom(atom&& x);
 			explicit atom(atom::atomic_species);
 			explicit atom(const string&);
 
-			atom& operator =(const atom&);
-			atom& operator =(atom&&);
+			atom& operator =(const atom& x);
+			atom& operator =(atom&& x);
 
 			inline atom::atomic_species get_species() const
 			{
@@ -105,11 +92,6 @@ namespace scifir
 			virtual const magnetic_ordering& get_magnetic_ordering() const = 0;
 			virtual const magnetic_susceptibility& get_magnetic_susceptibility() const = 0;*/
 			//cas_number get_cas_number() const;
-
-			inline bool is_atom_specimen(atom::atomic_species x) const
-			{
-				return (x == species);
-			}
 
 			bool is_factible() const;
 
@@ -212,7 +194,7 @@ namespace scifir
 
             inline bool is_rare_earth() const
             {
-            	return (is_lanthanide() or is_atom_specimen(atom::Sc) or is_atom_specimen(atom::Y));
+            	return (is_lanthanide() or get_species() == atom::Sc or get_species() == atom::Y);
             }
 
             inline bool is_atomic_group_a() const
@@ -232,7 +214,7 @@ namespace scifir
 				return (get_valence_number() - get_ionic_charge());
 			}
 
-			vector<atom::orbital_configuration> get_electronic_configuration() const;
+			vector<orbital> get_electronic_configuration() const;
 
             string display_electronic_configuration() const;
 
@@ -240,7 +222,7 @@ namespace scifir
 
             mass get_real_mass() const;
 
-            inline mass get_real_mass_simplified() const
+        	inline mass get_real_mass_simplified() const
             {
 				int calculated_mass = get_z() + get_mass_number();
             	return mass(calculated_mass,"amu");
@@ -263,13 +245,13 @@ namespace scifir
             	return !is_common_isotope();
             }
 
-            virtual bool is_exotic() const;
+            bool is_exotic() const;
 
             scifir::color get_atomic_color() const;
 
 			atomic_drawing get_atomic_pattern() const;
 
-			molecular_geometry get_molecular_geometry(int) const;
+			molecular_geometry get_molecular_geometry(int bonds_number) const;
 
 			bool is_valence_full() const;
 
@@ -292,27 +274,27 @@ namespace scifir
 			int8_t charge;
 			int8_t neutrons;
 
-			static vector<atom::orbital_configuration> electronic_configuration;
+			static vector<orbital> electronic_configuration;
 	};
 
-	scifir::angle get_molecular_geometry_angle(const atom&);
+	scifir::angle get_molecular_geometry_angle(const atom& x);
 
-	bool are_isotopes(const atom&,const atom&);
-	bool are_isobares(const atom&,const atom&);
-	bool are_isoelectronics(const atom&,const atom&);
-	bool same_element(const atom&,const atom&);
-	bool same_specimen(const atom&,const atom&);
+	bool are_isotopes(const atom& x,const atom& y);
+	bool are_isobares(const atom& x,const atom& y);
+	bool are_isoelectronics(const atom& x,const atom& y);
+	bool same_element(const atom& x,const atom& y);
+	bool same_specimen(const atom& x,const atom& y);
 
-	string to_string(const atom::atomic_species&);
-	string to_string(const atom::atomic_group&);
-	string to_string(const atomic_block&);
-	string to_string(const orbital::type);
+	string to_string(const atom::atomic_species& x);
+	string to_string(const atom::atomic_group& x);
+	string to_string(const atomic_block& x);
 
-	atom::atomic_species create_atomic_species(const string&);
+	atom::atomic_species create_atomic_species(const string& x);
 }
 
-bool operator ==(const scifir::atom&,const scifir::atom&);
-bool operator !=(const scifir::atom&,const scifir::atom&);
-ostream& operator <<(ostream&,const scifir::atom&);
+bool operator ==(const scifir::atom& x,const scifir::atom& y);
+bool operator !=(const scifir::atom& x,const scifir::atom& y);
+
+ostream& operator <<(ostream& os,const scifir::atom& x);
 
 #endif // SCIFIR_CHEMISTRY_ATOMS_ATOM_HPP_INCLUDED

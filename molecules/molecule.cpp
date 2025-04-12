@@ -137,7 +137,7 @@ namespace scifir
 		mass atoms_mass = 0.0_g;
 		for (const auto& atom: atoms)
 		{
-			atoms_mass += atom->get_real_mass_simplified();
+			//atoms_mass += atom->get_real_mass_simplified();
 		}
 		return atoms_mass;
 	}
@@ -260,7 +260,7 @@ namespace scifir
 	{
 		for (const shared_ptr<atom>& x_atom: atoms)
 		{
-			if (x_atom->is_atom_specimen(x))
+			if (x_atom->get_species() == x)
 			{
 				return true;
 			}

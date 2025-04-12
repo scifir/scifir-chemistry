@@ -8,8 +8,9 @@
 
 ## ATOMS (17)
 
+- TODO: segmentation fault with some string constants
+
 - TODO: atom::get_molecular_geometry_angle() needs good the square_antipristamic and tricapped_trigonal_prismatic values
-- TODO: finish atom::get_atomic_color() using an enum for all colors
 - TODO: review all electrical classes, atom::get_lone_pairs() among others
 - TODO: finish atom::get_electronic_configuration()
 
@@ -32,6 +33,7 @@
 - TODO: create triple_point and melting_point (maybe point classes)
 
 - TODO: in scifir-units add ionic_charge
+- TODO: maybe add an enum of colors for atom class
 
 ## AFTER NEW ATOMS (5)
 

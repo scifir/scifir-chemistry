@@ -8,9 +8,12 @@
 #include <string>
 
 using namespace std;
+using namespace scifir;
 
 TEST_CASE("atom class","Full test of atom class") {
-	scifir::atom a(scifir::atom::H);
-	
+	SECTION("atom class constructors")
+	{
+		scifir::atom a(atom::He);
+	}
 }
 

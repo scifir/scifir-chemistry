@@ -7,7 +7,16 @@ using namespace std;
 
 namespace scifir
 {
-	orbital::orbital(orbital_symbol new_orbital_specie, int new_period, int electron_number)
+	orbital::orbital() : orbital_specie(orbital::s),electrons(0),period(0)
+	{}
+
+	orbital::orbital(const orbital& x) : orbital_specie(x.orbital_specie),electrons(x.electrons),period(x.period)
+	{}
+
+	orbital::orbital(orbital&& x) : orbital_specie(std::move(x.orbital_specie)),electrons(std::move(x.electrons)),period(std::move(x.period))
+	{}
+
+	orbital::orbital(int new_period, orbital::type new_orbital_specie, int electron_number)
 	{
 		orbital_specie = new_orbital_specie;
 		period = new_period;
@@ -24,59 +33,38 @@ namespace scifir
 		}
 	}
 
-	orbital_s::orbital_s(int new_period, int electron_number) : orbital(orbital_symbol::s, new_period, electron_number)
+	orbital& orbital::operator =(const orbital& x)
 	{
-		name = "s";
+		orbital_specie = x.orbital_specie;
+		electrons = x.electrons;
+		period = x.period;
+		return *this;
 	}
 
-	orbital_p::orbital_p(int new_period, int electron_number) : orbital(orbital_symbol::p, new_period, electron_number)
+	orbital& orbital::operator =(orbital&& x)
 	{
-		name = "p";
+		orbital_specie = std::move(x.orbital_specie);
+		electrons = std::move(x.electrons);
+		period = std::move(x.period);
+		return *this;
 	}
 
-	orbital_d::orbital_d(int new_period, int electron_number) : orbital(orbital_symbol::d, new_period, electron_number)
-	{
-		name = "d";
-	}
-
-	orbital_f::orbital_f(int new_period, int electron_number) : orbital(orbital_symbol::f, new_period, electron_number)
-	{
-		name = "f";
-	}
-
-	orbital create_orbital(orbital_symbol orbital_specie, int period, int electron_number)
-	{
-		switch(orbital_specie)
-		{
-			case orbital_symbol::s:
-				return orbital_s(period, electron_number);
-			case orbital_symbol::p:
-				return orbital_p(period, electron_number);
-			case orbital_symbol::d:
-				return orbital_d(period, electron_number);
-			case orbital_symbol::f:
-				return orbital_f(period, electron_number);
-			default:
-				return orbital_s(period, electron_number);
-		}
-	}
-
-	orbital_group::orbital_group(orbital_symbol new_orbital_specie)
+	orbital_group::orbital_group(orbital::type new_orbital_specie)
 	{
 		orbitals = vector<orbital>();
 		orbital_specie = new_orbital_specie;
 		switch(orbital_specie)
 		{
-			case orbital_symbol::s:
+			case orbital::s:
 				orbital_max = 1;
 				break;
-			case orbital_symbol::p:
+			case orbital::p:
 				orbital_max = 3;
 				break;
-			case orbital_symbol::d:
+			case orbital::d:
 				orbital_max = 5;
 				break;
-			case orbital_symbol::f:
+			case orbital::f:
 				orbital_max = 7;
 				break;
 		}
@@ -94,7 +82,7 @@ namespace scifir
 
 	bool orbital_group::is_full()
 	{
-		if(orbital_specie == orbital_symbol::s and total_orbitals() == orbital_max)
+		if(orbital_specie == orbital::s and total_orbitals() == orbital_max)
 		{
 			return true;
 		}
@@ -102,11 +90,6 @@ namespace scifir
 		{
 			return false;
 		}
-	}
-
-	string orbital_group::name()
-	{
-		return orbitals[0].name;
 	}
 
 	int orbital_group::period()
@@ -138,18 +121,39 @@ namespace scifir
 	{
 		return orbitals[number];
 	}
+
+	string to_string(orbital::type x)
+	{
+		if (x == orbital::s)
+		{
+			return "s";
+		}
+		else if (x == orbital::p)
+		{
+			return "p";
+		}
+		else if (x == orbital::d)
+		{
+			return "d";
+		}
+		else if (x == orbital::f)
+		{
+			return "f";
+		}
+		return "";
+	}
 }
 
 ostream& operator <<(ostream& os, const scifir::orbital& orbital)
 {
 	ostringstream output;
-	output << orbital.period << orbital.name << orbital.electrons.size();
+	output << orbital.period << to_string(orbital.orbital_specie) << orbital.electrons.size();
 	return os << output.str();
 }
 
 ostream& operator <<(ostream& os, scifir::orbital_group orbital_group)
 {
 	ostringstream output;
-	output << orbital_group.period() << orbital_group.name() << orbital_group.total_electrons();
+	output << orbital_group.period() /*<< orbital_group.name()*/ << orbital_group.total_electrons();
 	return os << output.str();
 }

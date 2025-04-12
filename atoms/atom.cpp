@@ -1,14 +1,15 @@
 #include "./atom.hpp"
 
-#include "../molecules/atomic_bond.hpp"
-#include "../constants.hpp"
-
 #include <cmath>
 #include <iostream>
 #include <memory>
 #include <sstream>
 #include <string>
 #include <vector>
+
+#include "../molecules/atomic_bond.hpp"
+#include "../constants.hpp"
+
 using namespace std;
 
 namespace scifir
@@ -36,45 +37,32 @@ namespace scifir
 		{7, orbital::p}
 	};
 
-	atom::orbital_configuration::orbital_configuration() : period(),orbital_type(),electrons()
-	{
-	}
-
-	atom::orbital_configuration::orbital_configuration(int new_period,orbital::type new_orbital_type,int new_electrons) : period(new_period),orbital_type(new_orbital_type),electrons(new_electrons)
-	{
-	}
-
-	string atom::orbital_configuration::display() const
-	{
-		return std::to_string(period) + std::to_string(orbital_type) + std::to_string(electrons);
-	}
-
-	vector<atom::orbital_configuration> atom::electronic_configuration = {
-		atom::orbital_configuration(1,orbital::s,2),
-		atom::orbital_configuration(2,orbital::s,2),
-		atom::orbital_configuration(2,orbital::p,6),
-		atom::orbital_configuration(3,orbital::s,2),
-		atom::orbital_configuration(3,orbital::p,6),
-		atom::orbital_configuration(4,orbital::s,2),
-		atom::orbital_configuration(3,orbital::d,10),
-		atom::orbital_configuration(4,orbital::p,6),
-		atom::orbital_configuration(5,orbital::s,2),
-		atom::orbital_configuration(4,orbital::d,10),
-		atom::orbital_configuration(5,orbital::p,6),
-		atom::orbital_configuration(6,orbital::s,2),
-		atom::orbital_configuration(4,orbital::f,14),
-		atom::orbital_configuration(5,orbital::d,10),
-		atom::orbital_configuration(6,orbital::p,6),
-		atom::orbital_configuration(7,orbital::s,2),
-		atom::orbital_configuration(5,orbital::f,14),
-		atom::orbital_configuration(6,orbital::d,10),
-		atom::orbital_configuration(7,orbital::p,6),
-		atom::orbital_configuration(6,orbital::f,14),
-		atom::orbital_configuration(7,orbital::d,10),
-		atom::orbital_configuration(7,orbital::f,14)
+	vector<orbital> atom::electronic_configuration = {
+		orbital(1,orbital::s,2),
+		orbital(2,orbital::s,2),
+		orbital(2,orbital::p,6),
+		orbital(3,orbital::s,2),
+		orbital(3,orbital::p,6),
+		orbital(4,orbital::s,2),
+		orbital(3,orbital::d,10),
+		orbital(4,orbital::p,6),
+		orbital(5,orbital::s,2),
+		orbital(4,orbital::d,10),
+		orbital(5,orbital::p,6),
+		orbital(6,orbital::s,2),
+		orbital(4,orbital::f,14),
+		orbital(5,orbital::d,10),
+		orbital(6,orbital::p,6),
+		orbital(7,orbital::s,2),
+		orbital(5,orbital::f,14),
+		orbital(6,orbital::d,10),
+		orbital(7,orbital::p,6),
+		orbital(6,orbital::f,14),
+		orbital(7,orbital::d,10),
+		orbital(7,orbital::f,14)
 	};
 
-	atom::atom() : species(),charge(),neutrons()
+	atom::atom() : species(atom::NO_SPECIES),charge(0),neutrons(0)
 	{}
 
 	atom::atom(const atom& x) : species(x.get_species()),charge(x.get_ionic_charge()),neutrons(x.get_mass_number())
@@ -83,10 +71,10 @@ namespace scifir
 	atom::atom(atom&& x) : species(std::move(x.get_species())),charge(std::move(x.get_ionic_charge())),neutrons(std::move(x.get_mass_number()))
 	{}
 
-	atom::atom(atom::atomic_species new_atomic_species) : species(new_atomic_species),charge(),neutrons()
+	atom::atom(atom::atomic_species new_atomic_species) : species(new_atomic_species),charge(0),neutrons(0)
 	{}
 
-	atom::atom(const string& new_atomic_species) : species(create_atomic_species(new_atomic_species)),charge(),neutrons()
+	atom::atom(const string& new_atomic_species) : species(create_atomic_species(new_atomic_species)),charge(0),neutrons(0)
 	{}
 
 	atom& atom::operator =(const atom& x)
@@ -2978,7 +2966,7 @@ namespace scifir
 		}
 		if (atom::is_atomic_group_a())
 		{
-			if (atom::is_atom_specimen(atom::H) or atom::is_atom_specimen(atom::He))
+			if (get_species() == atom::H or get_species() == atom::He)
 			{
 				if ((get_ionic_charge() < 0) and (std::abs(get_ionic_charge()) > (2 - get_z())))
 				{
@@ -3028,12 +3016,12 @@ namespace scifir
 		return get_z() - charge;
 	}
 
-	vector<atom::orbital_configuration> atom::get_electronic_configuration() const
+	vector<orbital> atom::get_electronic_configuration() const
 	{
 		int electrons_number = get_electrons_number();
 		int total_electrons = 0;
-		vector<atom::orbital_configuration> electronic_configuration = vector<atom::orbital_configuration>();
-		for (const auto& x_orbital_configuration : atom::electronic_configuration)
+		vector<orbital> electronic_configuration = vector<orbital>();
+		/*for (const auto& x_orbital_configuration : atom::electronic_configuration)
 		{
 			if ((total_electrons + x_orbital_configuration.electrons) <= electrons_number)
 			{
@@ -3047,21 +3035,21 @@ namespace scifir
 			else
 			{
 				int pending_electrons = electrons_number - total_electrons;
-				atom::orbital_configuration x_configuration = orbital_configuration(x_orbital_configuration.period,x_orbital_configuration.orbital_type,pending_electrons);
+				orbital x_configuration = orbital_configuration(x_orbital_configuration.period,x_orbital_configuration.orbital_type,pending_electrons);
 				electronic_configuration.push_back(x_configuration);
 				break;
 			}
-		}
+		}*/
 		return electronic_configuration;
 	}
 
 	string atom::display_electronic_configuration() const
 	{
 		ostringstream out;
-		vector<atom::orbital_configuration> electronic_configuration = get_electronic_configuration();
+		vector<orbital> electronic_configuration = get_electronic_configuration();
 		for (const auto& x : electronic_configuration)
 		{
-			out << x.display() << " ";
+			out << to_string(x.orbital_specie) << " ";
 		}
 		return out.str();
 	}
@@ -3696,22 +3684,6 @@ namespace scifir
 			case atomic_block::d:
 				return "d";
 			case atomic_block::f:
-				return "f";
-		}
-		return "";
-	}
-
-	string to_string(const orbital::type x)
-	{
-		switch (x)
-		{
-			case orbital::s:
-				return "s";
-			case orbital::p:
-				return "p";
-			case orbital::d:
-				return "d";
-			case orbital::f:
 				return "f";
 		}
 		return "";

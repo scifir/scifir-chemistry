@@ -15,6 +15,6 @@ using namespace scifir;
 TEST_CASE("molecule class","Full test of molecule class") {
 	SECTION("molecule class constructors")
 	{
-		/*scifir::molecule a(vector<atom>{ atom(atom::C),atom(atom::H),atom(atom::H),atom(atom::H),atom(atom::H) },vector<atomic_bond_builder>{atomic_bond_builder(0,1),atomic_bond_builder(0,2),atomic_bond_builder(0,3),atomic_bond_builder(0,4)});*/
+		scifir::molecule a(vector<atom>{ atom(atom::C),atom(atom::H),atom(atom::H),atom(atom::H),atom(atom::H) },vector<atomic_bond_builder>{atomic_bond_builder(0,1),atomic_bond_builder(0,2),atomic_bond_builder(0,3),atomic_bond_builder(0,4)});
 	}
 }

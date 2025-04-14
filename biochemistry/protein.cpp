@@ -1,32 +1,36 @@
 #include "./protein.hpp"
 
+#include <cmath>
 #include <sstream>
 
 using namespace std;
 
 namespace scifir
 {
-	protein::protein() : aminoacids()
-	{
-	}
+	protein::protein() : aminoacids(),name()
+	{}
 
-	aminoacid::type protein::operator [](int i)
-	{
-		return aminoacids.at(i);
-	}
+	protein::protein(const string& new_name,const vector<aminoacid::type>& new_aminoacids) : aminoacids(new_aminoacids),name(new_name)
+	{}
 
-	aminoacid::type protein::operator [](int i) const
+	protein::protein(const string& new_name,const string& init_protein) : aminoacids(),name(new_name)
 	{
-		return aminoacids.at(i);
+		if ((init_protein.length() / 3) == (std::floor(init_protein.length()) / 3))
+		{
+			for (int i = 0; i < init_protein.length(); i += 3)
+			{
+				aminoacids.push_back(create_aminoacid_type(init_protein.substr(i,3)));
+			}
+		}
 	}
 
 	string protein::get_aminoacid_sequence() const
 	{
 		ostringstream out;
-		for (int i = 0; i < number_of_aminoacids(); i++)
+		for (int i = 0; i < aminoacids.size(); i++)
 		{
 			out << aminoacid_abbreviation(aminoacids[i]);
-			if (i != number_of_aminoacids())
+			if (i != aminoacids.size())
 			{
 				out << "-";
 			}
@@ -34,21 +38,30 @@ namespace scifir
 		return out.str();
 	}
 
-	void protein::add_aminoacid(aminoacid::type x)
+	string protein::get_aminoacid_one_letter_sequence() const
 	{
-		aminoacids.push_back(x);
+		ostringstream out;
+		for (int i = 0; i < aminoacids.size(); i++)
+		{
+			out << aminoacid_one_letter_abbreviation(aminoacids[i]);
+			if (i != aminoacids.size())
+			{
+				out << "-";
+			}
+		}
+		return out.str();
 	}
 }
 
 bool operator ==(const scifir::protein& x,const scifir::protein& y)
 {
-	if (x.number_of_aminoacids() != y.number_of_aminoacids())
+	if (x.aminoacids.size() != y.aminoacids.size())
 	{
 		return false;
 	}
-	for (int i = 0; i < x.number_of_aminoacids(); i++)
+	for (int i = 0; i < x.aminoacids.size(); i++)
 	{
-		if (x[i] != y[i])
+		if (x.aminoacids[i] != y.aminoacids[i])
 		{
 			return false;
 		}

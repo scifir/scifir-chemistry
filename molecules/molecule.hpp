@@ -27,9 +27,11 @@ namespace scifir
 			explicit molecule(const vector<atom>& new_atoms,const vector<atomic_bond_builder>& new_atomic_bonds);
 			explicit molecule(const vector<atom::atomic_species>& new_atoms,const vector<atomic_bond_builder>& new_atomic_bonds);
 
-			virtual vector<shared_ptr<atom>> get_atoms() const;
-			virtual vector<shared_ptr<atomic_bond>> get_bonds() const;
-			virtual int get_total_atoms() const;
+			vector<shared_ptr<atom>> get_atoms() const;
+			vector<shared_ptr<atomic_bond>> get_bonds() const;
+			int get_total_atoms() const;
+
+			void add_atom(const atom& new_atom,const vector<atomic_bond_builder>& new_atomic_bonds);
 
 			bool is_factible() const;
 
@@ -65,10 +67,8 @@ namespace scifir
             bool has_bond_group(const string&) const;
             bool has_functional_group(functional_group) const;
 
-            virtual void add_atom(const atom&);
-
-            virtual bool is_cyclical() const;
-            virtual bool is_acyclical() const;
+            bool is_cyclical() const;
+            bool is_acyclical() const;
             bool is_polar() const;
             bool is_apolar() const;
             bool is_chiral() const;
@@ -93,7 +93,7 @@ namespace scifir
 
             bool is_eter() const;
 
-            virtual void save(const string&,const string&) const;
+            void save(const string&,const string&) const;
 
 		private:
 			///tuple<shared_ptr<atom>,scifir::coordinates_3d<>> get_image_3d_calculate_atom_position(shared_ptr<atom>,tuple<shared_ptr<atom>,scifir::coordinates_3d<>>,tuple<shared_ptr<atom>,scifir::coordinates_3d<>>) const;

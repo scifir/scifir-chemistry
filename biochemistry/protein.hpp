@@ -16,36 +16,14 @@ namespace scifir
 	{
 		public:
 			protein();
-
-			inline vector<aminoacid::type>& get_aminoacids()
-			{
-				return aminoacids;
-			}
-
-			inline const vector<aminoacid::type>& get_aminoacids() const
-			{
-				return aminoacids;
-			}
-
-			inline int number_of_aminoacids()
-			{
-				return aminoacids.size();
-			}
-
-			inline int number_of_aminoacids() const
-			{
-				return aminoacids.size();
-			}
-
-			aminoacid::type operator [](int);
-			aminoacid::type operator [](int) const;
+			explicit protein(const string& new_name,const vector<aminoacid::type>& new_aminoacids);
+			explicit protein(const string& new_name,const string& init_protein);
 
 			string get_aminoacid_sequence() const;
+			string get_aminoacid_one_letter_sequence() const;
 
-			void add_aminoacid(aminoacid::type);
-
-		private:
 			vector<aminoacid::type> aminoacids;
+			string name;
 	};
 }
 

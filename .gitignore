@@ -1,8 +1,12 @@
 chemistry.kdev4
 compile_commands.json
 install_manifest.txt
-libmsci_chemistry.a
-msci_chemistry.cbp
-msci_chemistry.depend
-msci_chemistry.layout
 .kdev4
+CTestTestfile.cmake
+DartConfiguration.tcl
+.vscode
+bin
+build
+Testing
+CMakeFiles
+CMakeCache.txt

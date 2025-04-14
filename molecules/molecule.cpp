@@ -46,7 +46,7 @@ namespace scifir
 		return atoms.size();
 	}
 
-	void molecule::add_atom(const atom& x)
+	void molecule::add_atom(const atom& new_atom,const vector<atomic_bond_builder>& new_atomic_bonds)
 	{
 
 	}

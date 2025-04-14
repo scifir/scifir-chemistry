@@ -27,6 +27,7 @@ namespace scifir
 
 	string aminoacid_name(aminoacid::type);
 	string aminoacid_abbreviation(aminoacid::type);
+	string aminoacid_one_letter_abbreviation(aminoacid::type);
 
 	aminoacid::type create_aminoacid_type(const string&);
 

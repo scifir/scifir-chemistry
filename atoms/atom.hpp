@@ -75,22 +75,10 @@ namespace scifir
 			float get_electronegativity() const;
 			bool is_radioactive() const;
 
-			/*virtual const temperature& get_melting_point() const = 0;
-			virtual const temperature& get_boiling_point() const = 0;
-			virtual const density& get_density_stp() const = 0;
-
-			virtual const molar_enthalpy& get_heat_of_fusion() const = 0;
-			virtual const molar_enthalpy& get_heat_of_vaporization() const = 0;
-			virtual const molar_heat_capacity& get_heat_capacity() const = 0;*/
-
 			molar_energy get_ionization_energy() const;
 			length get_covalent_radius() const;
 			length get_van_der_waals_radius() const;
 
-			/*virtual const crystal_structure get_crystal_structure() const = 0;
-			virtual const thermal_conductivity& get_thermal_conductivity() const = 0;
-			virtual const magnetic_ordering& get_magnetic_ordering() const = 0;
-			virtual const magnetic_susceptibility& get_magnetic_susceptibility() const = 0;*/
 			//cas_number get_cas_number() const;
 
 			bool is_factible() const;

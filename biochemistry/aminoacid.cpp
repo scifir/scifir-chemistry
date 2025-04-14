@@ -258,6 +258,107 @@ namespace scifir
 		return "";
 	}
 
+	string aminoacid_one_letter_abbreviation(aminoacid::type x)
+	{
+		if (x == aminoacid::Ala)
+		{
+			return "A";
+		}
+		else if (x == aminoacid::Arg)
+		{
+			return "R";
+		}
+		else if (x == aminoacid::Asn)
+		{
+			return "N";
+		}
+		else if (x == aminoacid::Asp)
+		{
+			return "D";
+		}
+		else if (x == aminoacid::Cys)
+		{
+			return "C";
+		}
+		else if (x == aminoacid::Glu)
+		{
+			return "E";
+		}
+		else if (x == aminoacid::Gln)
+		{
+			return "Q";
+		}
+		else if (x == aminoacid::Gly)
+		{
+			return "G";
+		}
+		else if (x == aminoacid::His)
+		{
+			return "H";
+		}
+		else if (x == aminoacid::Ile)
+		{
+			return "I";
+		}
+		else if (x == aminoacid::Leu)
+		{
+			return "L";
+		}
+		else if (x == aminoacid::Lys)
+		{
+			return "K";
+		}
+		else if (x == aminoacid::Met)
+		{
+			return "M";
+		}
+		else if (x == aminoacid::Phe)
+		{
+			return "F";
+		}
+		else if (x == aminoacid::Pro)
+		{
+			return "P";
+		}
+		else if (x == aminoacid::Pyl)
+		{
+			return "O";
+		}
+		else if (x == aminoacid::Sec)
+		{
+			return "U";
+		}
+		else if (x == aminoacid::Ser)
+		{
+			return "S";
+		}
+		else if (x == aminoacid::Thr)
+		{
+			return "T";
+		}
+		else if (x == aminoacid::Trp)
+		{
+			return "W";
+		}
+		else if (x == aminoacid::Tyr)
+		{
+			return "Y";
+		}
+		else if (x == aminoacid::Val)
+		{
+			return "V";
+		}
+		else if (x == aminoacid::ERROR)
+		{
+			return "0";
+		}
+		else if (x == aminoacid::OTHER)
+		{
+			return "1";
+		}
+		return "";
+	}
+
 	aminoacid::type create_aminoacid_type(const string& x)
 	{
 		if (x == "Ala")

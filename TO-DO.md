@@ -34,10 +34,9 @@
 - TODO: in scifir-units add ionic_charge
 - TODO: maybe add an enum of colors for atom class
 
-## AFTER NEW ATOMS (5)
+## AFTER NEW ATOMS (4)
 
 - TODO: use a better criteria than the atomic number to determine radioactivity
-- TODO: finish is_factible() function
 - TODO: get_ionic_charge() for metals
 - TODO: create all common isotopes of chemistry
 - TODO: exotic atoms
@@ -51,7 +50,7 @@
 
 ## MOLECULES (15)
 
-- TODO: atomi_bond_weight name is bad
+- TODO: atomic_bond_weight name is bad
 - TODO: atomic_bond should have a child class for the atomic bonds that are not geometrically identical but have different angles based on the position
 - TODO: implement the bond_length inside atomic_bond class
 - TODO: handling of molecule_literals (valid_molecule_literal-with error messages)
@@ -69,11 +68,11 @@
 
 ## BIOCHEMISTRY (5)
 
+- TODO: lipids can be triglycerides or steroids
 - TODO: creation of carbohidrates as instance of molecule class
 - TODO: protein class with special format to store and load it
 - TODO: molecule::is_biochemical()
-- TODO: think and implement this: store the proteins only one time, and to calculate a lot of them use that unique instead for the data purpose. For movement modeling, with one instance is enough, and use position coordinates and rotation coordinates to store the data of each protein
-- TODO: add abbreviation of one letter to aminoacids
+- TODO: for movement modeling, with one instance is enough, and use position coordinates and rotation coordinates to store the data of each protein
 
 ## MATTER (1)
 

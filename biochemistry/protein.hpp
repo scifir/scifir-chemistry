@@ -1,6 +1,7 @@
 #ifndef SCIFIR_CHEMISTRY_BIOCHEMISTRY_PROTEIN_HPP_INCLUDED
 #define SCIFIR_CHEMISTRY_BIOCHEMISTRY_PROTEIN_HPP_INCLUDED
 
+#include "./biomolecule.hpp"
 #include "./aminoacid.hpp"
 #include "./protein.hpp"
 
@@ -12,7 +13,7 @@ using namespace std;
 
 namespace scifir
 {
-	class protein
+	class protein : public biomolecule
 	{
 		public:
 			protein();
@@ -23,7 +24,6 @@ namespace scifir
 			string get_aminoacid_one_letter_sequence() const;
 
 			vector<aminoacid::type> aminoacids;
-			string name;
 	};
 }
 

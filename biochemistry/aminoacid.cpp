@@ -5,15 +5,15 @@ using namespace std;
 
 namespace scifir
 {
-	aminoacid::aminoacid() : aminoacid_type()
+	aminoacid::aminoacid() : biomolecule(biomolecule::AMINOACID),aminoacid_type()
 	{
 	}
 
-	aminoacid::aminoacid(aminoacid::type x) : aminoacid_type(x)
+	aminoacid::aminoacid(aminoacid::type x) : biomolecule(biomolecule::AMINOACID),aminoacid_type(x)
 	{
 	}
 
-	aminoacid::aminoacid(const string& x) : aminoacid_type()
+	aminoacid::aminoacid(const string& x) : biomolecule(biomolecule::AMINOACID),aminoacid_type()
 	{
 		if (is_aminoacid(x))
 		{
@@ -48,6 +48,19 @@ namespace scifir
 		if (aminoacid_type != aminoacid::OTHER)
 		{
 			return aminoacid_abbreviation(aminoacid_type);
+		}
+		else
+		{
+			extended_aminoacid x_ultimate = reinterpret_cast<const extended_aminoacid&>(*this);
+			return extended_aminoacids[x_ultimate.get_number()].get_abbreviation();
+		}
+	}
+
+	string aminoacid::get_one_letter_abbreviation() const
+	{
+		if (aminoacid_type != aminoacid::OTHER)
+		{
+			return aminoacid_one_letter_abbreviation(aminoacid_type);
 		}
 		else
 		{

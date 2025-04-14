@@ -68,8 +68,8 @@
 
 ## BIOCHEMISTRY (5)
 
-- TODO: lipids can be triglycerides or steroids
-- TODO: creation of carbohidrates as instance of molecule class
+- TODO: check what to do with the nucleic acids
+- TODO: add protein_type
 - TODO: protein class with special format to store and load it
 - TODO: molecule::is_biochemical()
 - TODO: for movement modeling, with one instance is enough, and use position coordinates and rotation coordinates to store the data of each protein

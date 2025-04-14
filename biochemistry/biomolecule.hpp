@@ -7,29 +7,28 @@ using namespace std;
 
 namespace scifir
 {
-	enum class biomolecule_type {protein,lipid,carbohidrate};
-
 	class biomolecule
 	{
 		public:
+			enum type {AMINOACID, PROTEIN, CARBOHIDRATE, LIPID};
+
+			string name;
+		
+			protected:
 			biomolecule();
-			biomolecule(biomolecule_type);
+			explicit biomolecule(biomolecule::type);
+			explicit biomolecule(biomolecule::type,const string& new_name);
 
-			inline biomolecule_type& get_biomolecule_type()
+			inline const biomolecule::type& get_biomolecule_type() const
 			{
-				return bio_type;
-			}
-
-			inline const biomolecule_type& get_biomolecule_type() const
-			{
-				return bio_type;
+				return biomolecule_type;
 			}
 
 		private:
-			biomolecule_type bio_type;
+			biomolecule::type biomolecule_type;
 	};
 
-	string biomolecule_type_name(biomolecule_type);
+	string biomolecule_type_name(biomolecule::type);
 }
 
 #endif // SCIFIR_CHEMISTRY_BIOCHEMISTRY_BIOMOLECULE_HPP_INCLUDED

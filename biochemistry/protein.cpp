@@ -7,13 +7,13 @@ using namespace std;
 
 namespace scifir
 {
-	protein::protein() : aminoacids(),name()
+	protein::protein() : biomolecule(biomolecule::PROTEIN),aminoacids()
 	{}
 
-	protein::protein(const string& new_name,const vector<aminoacid::type>& new_aminoacids) : aminoacids(new_aminoacids),name(new_name)
+	protein::protein(const string& new_name,const vector<aminoacid::type>& new_aminoacids) : biomolecule(biomolecule::PROTEIN,new_name),aminoacids(new_aminoacids)
 	{}
 
-	protein::protein(const string& new_name,const string& init_protein) : aminoacids(),name(new_name)
+	protein::protein(const string& new_name,const string& init_protein) : biomolecule(biomolecule::PROTEIN,new_name),aminoacids()
 	{
 		if ((init_protein.length() / 3) == (std::floor(init_protein.length()) / 3))
 		{

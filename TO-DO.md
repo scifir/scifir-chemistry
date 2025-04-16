@@ -1,6 +1,6 @@
 # TO-DO - scifir-chemistry
 
-- **Number of TO-DOs:** 54
+- **Number of TO-DOs:** 53
 
 ## IMPORTANT (2)
 
@@ -48,9 +48,8 @@
 - TODO: document that the unfinished atoms doesn't have their values actually calculated. Document which values and atoms aren't completed
 - TODO: document that normal_atom template-class isn't an abstract class because it's not intended to be used directly
 
-## MOLECULES (15)
+## MOLECULES (14)
 
-- TODO: atomic_bond_weight name is bad
 - TODO: atomic_bond should have a child class for the atomic bonds that are not geometrically identical but have different angles based on the position
 - TODO: implement the bond_length inside atomic_bond class
 - TODO: handling of molecule_literals (valid_molecule_literal-with error messages)

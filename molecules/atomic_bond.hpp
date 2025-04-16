@@ -14,7 +14,7 @@ namespace scifir
 	{
 		public:
 			atomic_bond();
-			atomic_bond(const shared_ptr<atom>&,const shared_ptr<atom>&,atomic_bond_weight);
+			atomic_bond(const shared_ptr<atom>&,const shared_ptr<atom>&,atomic_bond_order);
 
 			inline const shared_ptr<atom>& get_atom1() const
 			{
@@ -31,7 +31,7 @@ namespace scifir
 				return bond_length;
 			}
 
-			inline const atomic_bond_weight& get_atomic_bond_weight() const
+			inline const atomic_bond_order& get_atomic_bond_weight() const
 			{
 				return weight;
 			}
@@ -79,7 +79,7 @@ namespace scifir
 
 			inline bool is_flexible() const
 			{
-				return (weight == atomic_bond_weight::SINGLE);
+				return (weight == atomic_bond_order::SINGLE);
 			}
 
 			inline bool is_rigid() const
@@ -89,17 +89,17 @@ namespace scifir
 
 			inline bool is_single() const
 			{
-				return (weight == atomic_bond_weight::SINGLE);
+				return (weight == atomic_bond_order::SINGLE);
 			}
 
 			inline bool is_double() const
 			{
-				return (weight == atomic_bond_weight::DUAL);
+				return (weight == atomic_bond_order::DUAL);
 			}
 
 			inline bool is_triple() const
 			{
-				return (weight == atomic_bond_weight::TRIPLE);
+				return (weight == atomic_bond_order::TRIPLE);
 			}
 
 			int get_total_electrons() const;
@@ -108,7 +108,7 @@ namespace scifir
 		private:
 			shared_ptr<atom> atom1;
 			shared_ptr<atom> atom2;
-			atomic_bond_weight weight;
+			atomic_bond_order weight;
 			length bond_length;
 			//enthalpy bond_enthalpy;
 	};

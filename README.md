@@ -12,6 +12,10 @@ scifir-chemistry is developed by [Ismael Correa](https://github.com/Iarfen/), a 
 
 ## Core features
 
+### About the SQLite database
+
+The **sqlite database** is included with scifir-chemistry with the file **extra/scifir-chemistry-data**. That file is used by scifir-chemistry to obtain the data of molecules and substances that are not programmed directly inside the code because of being too many different values to be all contained inside the code. It's better to handle that case with a database, an sqlite is used for that. Use scifir-chemistry-data along the rest of scifir-chemistry for the same projects you program with scifir-chemistry.
+
 ### Molecules
 
 The molecule class handles all molecules, and, also, any other, as defined by the IUPAC, **molecular entity**. So, although in general they represent molecules, a molecule object can represent a single atom, an ion, a radical, and any other related molecular entity. A molecule represents an atom when it contains no bonds and contains a single atom.

@@ -25,7 +25,7 @@ namespace scifir
 	
 	enum class atomic_bond_type {IONIC,COVALENT,METALLIC};
 	
-	enum class atomic_bond_weight {SINGLE,DUAL,TRIPLE};
+	enum class atomic_bond_order {SINGLE,DUAL,TRIPLE};
 	
 	enum class crystal_structure {BCC,HEXAGONAL};
 	

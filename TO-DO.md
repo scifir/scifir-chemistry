@@ -1,6 +1,6 @@
 # TO-DO - scifir-chemistry
 
-- **Number of TO-DOs:** 53
+- **Number of TO-DOs:** 52
 
 ## IMPORTANT (2)
 
@@ -48,22 +48,23 @@
 - TODO: document that the unfinished atoms doesn't have their values actually calculated. Document which values and atoms aren't completed
 - TODO: document that normal_atom template-class isn't an abstract class because it's not intended to be used directly
 
-## MOLECULES (14)
+## MOLECULES (13)
 
-- TODO: atomic_bond should have a child class for the atomic bonds that are not geometrically identical but have different angles based on the position
-- TODO: implement the bond_length inside atomic_bond class
-- TODO: handling of molecule_literals (valid_molecule_literal-with error messages)
+- TODO: handling of molecule_literals (valid_molecule_literal with error messages)
 - TODO: molecule::has_functional_group(functional_group)
 - TODO: molecule::get_dipole()
 - TODO: molecule::is_polar() and molecule::is_apolar()
 - TODO: are_isomers(), are_conformational_isomers(), are_enantiomers()
 - TODO: are_miscible(), are_inmiscible()
 - TODO: molecule::is_cyclical() and molecule::is_acyclical()
-- TODO: has_category(functional_group), and all the others of those functions
 - TODO: molecule::get_formula(),operator << of molecule
 - TODO: operator == and operator != of molecule
-- TODO: ordering for molecules
+- TODO: atomic_bond should have a child class for the atomic bonds that are not geometrically identical but have different angles based on the position
+
 - TODO: .msm should have \<atom\> with nick attribute to abbreviate special atoms
+
+- TODO: ordering for molecules
+- TODO: implement the bond_length inside atomic_bond class
 
 ## BIOCHEMISTRY (5)
 

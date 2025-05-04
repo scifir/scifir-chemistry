@@ -13,6 +13,14 @@ namespace scifir
 	protein::protein(const string& new_name,const vector<aminoacid::type>& new_aminoacids) : biomolecule(biomolecule::PROTEIN,new_name),aminoacids(new_aminoacids)
 	{}
 
+	protein::protein(const string& new_name,const vector<aminoacid>& new_aminoacids) : biomolecule(biomolecule::PROTEIN,new_name),aminoacids()
+	{
+		for(const aminoacid& new_aminoacid : new_aminoacids)
+		{
+			aminoacids.push_back(new_aminoacid.aminoacid_type);
+		}
+	}
+
 	protein::protein(const string& new_name,const string& init_protein) : biomolecule(biomolecule::PROTEIN,new_name),aminoacids()
 	{
 		if ((init_protein.length() / 3) == (std::floor(init_protein.length()) / 3))

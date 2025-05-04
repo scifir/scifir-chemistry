@@ -18,6 +18,7 @@ namespace scifir
 		public:
 			protein();
 			explicit protein(const string& new_name,const vector<aminoacid::type>& new_aminoacids);
+			explicit protein(const string& new_name,const vector<aminoacid>& new_aminoacids);
 			explicit protein(const string& new_name,const string& init_protein);
 
 			string get_aminoacid_sequence() const;

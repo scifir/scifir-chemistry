@@ -1213,7 +1213,7 @@ namespace scifir
 		switch (species)
 		{
 			case atom::H:
-				return 1.09_Å;
+				return 53_pm;
 			case atom::D:
 				return 2.12562_fm;
 			case atom::T:

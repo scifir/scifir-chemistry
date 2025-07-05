@@ -21,13 +21,13 @@ namespace scifir
 		}
 		else
 		{
-			aminoacid_type = aminoacid::ERROR;
+			aminoacid_type = aminoacid::AMINOACID_ERROR;
 		}
 	}
 
 	bool aminoacid::is_valid() const
 	{
-		return (aminoacid_type != aminoacid::ERROR);
+		return (aminoacid_type != aminoacid::AMINOACID_ERROR);
 	}
 
 	string aminoacid::get_name() const
@@ -159,7 +159,7 @@ namespace scifir
 		{
 			return "Valine";
 		}
-		else if (x == aminoacid::ERROR)
+		else if (x == aminoacid::AMINOACID_ERROR)
 		{
 			return "Error";
 		}
@@ -260,7 +260,7 @@ namespace scifir
 		{
 			return "Val";
 		}
-		else if (x == aminoacid::ERROR)
+		else if (x == aminoacid::AMINOACID_ERROR)
 		{
 			return "Err";
 		}
@@ -361,7 +361,7 @@ namespace scifir
 		{
 			return "V";
 		}
-		else if (x == aminoacid::ERROR)
+		else if (x == aminoacid::AMINOACID_ERROR)
 		{
 			return "0";
 		}

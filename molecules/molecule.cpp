@@ -43,7 +43,7 @@ namespace scifir
 
 	int molecule::get_total_atoms() const
 	{
-		return atoms.size();
+		return int(atoms.size());
 	}
 
 	void molecule::add_atom(const atom& new_atom,const vector<atomic_bond_builder>& new_atomic_bonds)

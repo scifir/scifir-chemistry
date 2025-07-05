@@ -102,7 +102,7 @@ namespace scifir
 		int total_electrons = 0;
 		for(auto& orbital : orbitals)
 		{
-			total_electrons += orbital.electrons.size();
+			total_electrons += int(orbital.electrons.size());
 		}
 		return total_electrons;
 	}
